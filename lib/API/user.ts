@@ -1,3 +1,4 @@
+import user from '@/pages/api/user'
 import { client, query } from '@lib/db'
 
 const { Get, Match, Index, Create, Collection, Delete, Update } = query
@@ -30,7 +31,12 @@ const createUser = async (body: any): Promise<boolean> => {
     return false
   }
 
-  const data = { ...body, email: body.email.toLowerCase(), settings: body.settings ?? {} }
+  const data = {
+    ...body,
+    email: body.email.toLowerCase(),
+    settings: body.settings ?? {},
+    tags: body.tags ?? [],
+  }
   const alreadyExist = await readUser(data.email)
   if (!alreadyExist) {
     try {
