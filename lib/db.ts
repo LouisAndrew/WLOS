@@ -1,12 +1,13 @@
-import { Client, query } from 'faunadb'
+import { createClient } from '@supabase/supabase-js'
 import dotenv from 'dotenv'
+
 dotenv.config({})
 
-const { FAUNA_KEY } = process.env
+const { SUPABASE_URL, SUPABASE_KEY } = process.env
 
-const client = new Client({
-  secret: FAUNA_KEY,
-  queryTimeout: 1000,
-})
+/**
+ * instantiate superbase client
+ */
+const client = createClient(SUPABASE_URL, SUPABASE_KEY)
 
-export { query, client }
+export default client
