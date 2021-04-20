@@ -1,3 +1,5 @@
+import { uniqBy } from 'lodash'
+
 import client from '@lib/db'
 import tables from '@lib/tables'
 import { LibAPIResponse, LibAPIResponseError } from '@t/APIResponse'
@@ -85,7 +87,7 @@ const getSavedExercise = async (
       ? []
       : defaultExercisesResponeObj.data
     return {
-      data: [...exerciseData, ...defaultExercises],
+      data: uniqBy([...exerciseData, ...defaultExercises], 'id'),
     }
   }
 
