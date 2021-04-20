@@ -31,6 +31,20 @@ export default async (request: NextApiRequest, response: NextApiResponse) => {
     }
 
     case 'POST': {
+      const { body } = request
+      if (!body || !body.uuid) {
+        response.status(400).send({ msg: 'Invalid data posted' })
+        return
+      }
+
+      const serviceResponse = await userApiHandler.createUser(body)
+      if (isError(serviceResponse)) {
+        response.status(400).send({ msg: serviceResponse.error.msg })
+        return
+      }
+
+      response.send({ data: { ...serviceResponse } })
+      return
     }
 
     case 'PUT': {

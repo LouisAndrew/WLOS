@@ -2,6 +2,7 @@ import client from '@lib/db'
 import tables from '@lib/tables'
 import { LibAPIResponse, LibAPIResponseError } from '@t/APIResponse'
 import { UserDataTable } from '@t/tables/UserData'
+import { isError } from './helper'
 
 /**
  * get user by his/her uuid
@@ -31,10 +32,12 @@ const getUser = async (uuid: string): Promise<LibAPIResponse<UserDataTable>> => 
  * @returns error if operation is not succesful and uuid of the user if operation
  * is sucesful
  */
-const createUser = async (
-  uuid: string,
-  data: UserDataTable
-): Promise<{ uuid: string } | LibAPIResponseError> => {
+const createUser = async (data: UserDataTable): Promise<{ uuid: string } | LibAPIResponseError> => {
+  const userObj = await getUser(data.uuid)
+  if (!isError(userObj)) {
+    return { error: { msg: 'User already exists' } }
+  }
+
   const { error, data: responseData } = await client.from(tables.USER_DATA).insert(data)
   if (error) {
     return { error: { msg: error.message } }
