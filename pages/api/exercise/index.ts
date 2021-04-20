@@ -50,21 +50,19 @@ export default async (request: NextApiRequest, response: NextApiResponse) => {
     }
 
     case 'PUT': {
-      // const {
-      //   body,
-      //   query: { uuid },
-      // } = request
-      // if (!body || !uuid) {
-      //   response.status(400).send({ msg: 'Invalid data posted' })
-      //   return
-      // }
-      // const serviceResponse = await userApiHandler.updateUser(uuid as string, body)
-      // if (isError(serviceResponse)) {
-      //   response.status(400).send({ msg: serviceResponse.error.msg })
-      //   return
-      // }
-      // response.send({ data: { ...serviceResponse } })
-      // return
+      const { body } = request
+      if (!body || !body.id || !body.uuid) {
+        response.status(400).send({ msg: 'Invalid data posted' })
+        return
+      }
+      const { uuid, ...exercise } = body
+      const serviceResponse = await exerciseApiHandler.updateExercise(uuid, exercise)
+      if (isError(serviceResponse)) {
+        response.status(400).send({ msg: serviceResponse.error.msg })
+        return
+      }
+      response.send(serviceResponse)
+      return
     }
 
     case 'DELETE': {

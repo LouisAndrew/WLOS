@@ -44,6 +44,39 @@ const saveExercise = async (
 }
 
 /**
+ * delete an exercise from user's saved list
+ * @param exercise to be deleted exercise. Either APIResponse object or id of the exercise
+ * @param user the actual user. either APIResponse object of a user or uuid of the exercise
+ */
+const deleteExerciseFromSaveList = async (
+  exercise: LibAPIResponse<ExerciseTable> | number,
+  user: LibAPIResponse<UserDataTable> | string
+): Promise<LibAPIResponse<{ success: true }>> => {
+  const userObj = typeof user === 'string' ? await userApiHandler.getUser(user) : user
+  const exerciseObj = typeof exercise === 'number' ? await getExercise(exercise) : exercise
+
+  if (isError(userObj)) {
+    return { error: { msg: userObj.error.msg } }
+  }
+
+  if (isError(exerciseObj)) {
+    return { error: { msg: exerciseObj.error.msg } }
+  }
+
+  const response = await client
+    .from(tables.SAVED_EXERCISES)
+    .delete()
+    .match({ exercise_id: exerciseObj.data.id.toString(), user_id: userObj.data.id.toString() })
+
+  const { error } = response
+  if (error) {
+    return { error: { msg: error.message } }
+  }
+
+  return { data: { success: true } }
+}
+
+/**
  * get exercises saved by user
  * @param uuid id of the user
  * @param getAll sets if default exercises should also be retrieved
@@ -135,7 +168,8 @@ const getCreatedExercises = async (
 const getExercise = async (exerciseId: number): Promise<LibAPIResponse<ExerciseTable>> => {
   const query = `
     name,
-    id
+    id,
+    created_by
   `
   const response = await client
     .from(tables.EXERCISE)
@@ -163,7 +197,7 @@ const getExercise = async (exerciseId: number): Promise<LibAPIResponse<ExerciseT
 const createExercise = async (
   user: string | LibAPIResponse<UserDataTable>,
   data: ExerciseTable
-) => {
+): Promise<LibAPIResponse<{ exercise_id: number }>> => {
   const userObj = typeof user === 'string' ? await userApiHandler.getUser(user) : user
   if (isError(userObj)) {
     return { error: { msg: userObj.error.msg } }
@@ -186,8 +220,59 @@ const createExercise = async (
   return { data: { exercise_id: responseData[0].id } }
 }
 
+/**
+ * edit an existing exercise, but create a new one if the exercise isn't created by
+ * the user
+ * @param user either a ApiResponse object or uuid of the user
+ * @param data exercise data
+ * @returns id of the created exercise
+ */
+const updateExercise = async (
+  user: string | LibAPIResponse<UserDataTable>,
+  data: ExerciseTable
+): Promise<LibAPIResponse<{ exercise_id: number }>> => {
+  const userObj = typeof user === 'string' ? await userApiHandler.getUser(user) : user
+  if (isError(userObj)) {
+    return { error: { msg: userObj.error.msg } }
+  }
+
+  if (!data.id) {
+    return { error: { msg: 'Exercise ID is not defined' } }
+  }
+
+  const { id, ...newData } = data
+  const exerciseObj = await getExercise(data.id)
+  if (isError(exerciseObj)) {
+    return exerciseObj
+  }
+
+  if (exerciseObj.data.created_by !== userObj.data.id) {
+    const removeFromListResponse = await deleteExerciseFromSaveList(exerciseObj, userObj)
+    if (isError(removeFromListResponse)) {
+      return removeFromListResponse
+    }
+
+    const { id, ...oldData } = exerciseObj.data
+    return await createExercise(userObj, ({ ...oldData, ...newData } as unknown) as ExerciseTable)
+  }
+
+  const response = await client
+    .from(tables.EXERCISE)
+    .update(newData)
+    .match({ id: exerciseObj.data.id.toString() })
+
+  const { error, data: responseData } = response
+
+  if (error) {
+    return { error: { msg: error.message } }
+  }
+
+  return { data: { exercise_id: data[0].id } }
+}
+
 export default {
   getSavedExercise,
   saveExercise,
   createExercise,
+  updateExercise,
 }
