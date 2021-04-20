@@ -10,7 +10,7 @@ export default {
   /**
    * store basic datas about exercise
    */
-  EXECISE: 'exercise',
+  EXERCISE: 'exercise',
   /**
    * store data for a log document
    */

@@ -1,4 +1,5 @@
-export type UserDataTable = {
+import { Table } from './Table'
+export type UserDataTable = Table & {
   /**
    * name of the user
    */
