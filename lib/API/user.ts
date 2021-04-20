@@ -48,6 +48,13 @@ const createUser = async (data: UserDataTable): Promise<{ uuid: string } | LibAP
   }
 }
 
+/**
+ * updates user based on the uuid and data provided
+ * todo: create data type validation
+ * @param uuid id of the user
+ * @param data data to be updated
+ * @returns uuid if operation succesful and error if it's not
+ */
 const updateUser = async (
   uuid: string,
   data: Partial<UserDataTable>
