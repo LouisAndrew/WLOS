@@ -154,9 +154,40 @@ const getExercise = async (exerciseId: number): Promise<LibAPIResponse<ExerciseT
   return { data: data[0] }
 }
 
-const createExercise = async (uuid: string, data: Partial<ExerciseTable>) => {}
+/**
+ * create a new exercise while also adding it to the user's saved exercise
+ * @param user either a ApiResponse object or uuid of the user
+ * @param data exercise data
+ * @returns id of the created exercise
+ */
+const createExercise = async (
+  user: string | LibAPIResponse<UserDataTable>,
+  data: ExerciseTable
+) => {
+  const userObj = typeof user === 'string' ? await userApiHandler.getUser(user) : user
+  if (isError(userObj)) {
+    return { error: { msg: userObj.error.msg } }
+  }
+
+  const response = await client
+    .from(tables.EXERCISE)
+    .insert({ ...data, created_by: userObj.data.id })
+
+  const { error, data: responseData } = response
+  if (error) {
+    return { error: { msg: error.message } }
+  }
+
+  const saveResponse = await saveExercise({ data: responseData[0] }, userObj)
+  if (isError(saveResponse)) {
+    return { ...saveResponse }
+  }
+
+  return { data: { exercise_id: responseData[0].id } }
+}
 
 export default {
   getSavedExercise,
   saveExercise,
+  createExercise,
 }
