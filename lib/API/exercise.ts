@@ -119,6 +119,8 @@ const getSavedExercise = async (
     const defaultExercises = isError(defaultExercisesResponeObj)
       ? []
       : defaultExercisesResponeObj.data
+
+    // todo: filter updated exercise with the same name (prioritize user's)
     return {
       data: uniqBy([...exerciseData, ...defaultExercises], 'id'),
     }
