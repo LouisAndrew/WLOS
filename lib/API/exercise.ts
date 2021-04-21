@@ -2,7 +2,7 @@ import { uniqBy } from 'lodash'
 
 import client from '@lib/db'
 import tables from '@lib/tables'
-import { LibAPIResponse, LibAPIResponseError } from '@t/APIResponse'
+import { LibAPIResponse } from '@t/APIResponse'
 import { ExerciseTable } from '@t/tables/Exercise'
 import { UserDataTable } from '@t/tables/UserData'
 
@@ -15,7 +15,7 @@ import userApiHandler from './user'
  * @param user either an APIResponse object or a user id
  * @returns id of the exercise
  */
-const saveExercise = async (
+const addExerciseToSavelist = async (
   exercise: LibAPIResponse<ExerciseTable> | number,
   user: LibAPIResponse<UserDataTable> | string
 ): Promise<LibAPIResponse<{ exercise_id: number }>> => {
@@ -212,7 +212,7 @@ const createExercise = async (
     return { error: { msg: error.message } }
   }
 
-  const saveResponse = await saveExercise({ data: responseData[0] }, userObj)
+  const saveResponse = await addExerciseToSavelist({ data: responseData[0] }, userObj)
   if (isError(saveResponse)) {
     return { ...saveResponse }
   }
@@ -272,7 +272,7 @@ const updateExercise = async (
 
 export default {
   getSavedExercise,
-  saveExercise,
+  addExerciseToSavelist,
   createExercise,
   updateExercise,
 }
