@@ -8,7 +8,7 @@ export default async (request: NextApiRequest, response: NextApiResponse) => {
   switch (method) {
     case 'GET': {
       const {
-        query: { uuid, getDefault, type },
+        query: { uuid, getDefault, type, getData },
       } = request
       if (!uuid) {
         response.status(400).send({ msg: 'Please add uuid to the url query' })
@@ -23,7 +23,8 @@ export default async (request: NextApiRequest, response: NextApiResponse) => {
       const serviceResponse = await templateApiHandler.getUserTemplates(
         uuid as string,
         !!getDefault && getDefault === 'true',
-        type ? (parseInt(type as string, 10) as TemplateType) : undefined
+        type ? (parseInt(type as string, 10) as TemplateType) : undefined,
+        !!getData && getData === 'true'
       )
       if (isError(serviceResponse)) {
         response.status(400).send({ msg: serviceResponse.error.msg })

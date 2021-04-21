@@ -1,5 +1,6 @@
 import { UserDataTable } from './UserData'
 import { Table } from './Table'
+import { ExerciseTable } from './Exercise'
 
 /**
  * type of the template
@@ -33,4 +34,29 @@ export type TemplateTable = Table & {
    * todo: decide if this should be editable
    */
   color: string
+}
+
+export type TemplateTableWithData = TemplateTable & {
+  /**
+   * template table but also with data provided
+   */
+  exercises: TemplateExerciseTable[]
+}
+
+export type TemplateExerciseTable = {
+  /**
+   * data of the exercise
+   * @see ExerciseTable
+   */
+  exerciseData: ExerciseTable
+  /**
+   * nums of sets of the exercise in `Range` type
+   * @see Range
+   */
+  sets: string
+  /**
+   * nums of reps of the exercise in `Range` type
+   * @see Range
+   */
+  reps: string
 }
