@@ -67,6 +67,7 @@ export default async (request: NextApiRequest, response: NextApiResponse) => {
 
     case 'DELETE': {
       response.status(401).send({ msg: 'Not yet supported' })
+      return
     }
 
     default: {

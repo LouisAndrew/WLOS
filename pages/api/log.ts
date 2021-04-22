@@ -47,6 +47,8 @@ export default async (request: NextApiRequest, response: NextApiResponse) => {
     }
 
     case 'PUT': {
+      response.status(401).send({ msg: 'Not yet supported' })
+      return
       // const { body } = request
       // if (!body || !body.id || !body.uuid) {
       //   response.status(400).send({ msg: 'Invalid data posted' })
@@ -64,6 +66,7 @@ export default async (request: NextApiRequest, response: NextApiResponse) => {
 
     case 'DELETE': {
       response.status(401).send({ msg: 'Not yet supported' })
+      return
     }
 
     default: {
