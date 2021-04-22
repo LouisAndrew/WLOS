@@ -120,7 +120,7 @@ const getSavedExercise = async (
       ? []
       : defaultExercisesResponeObj.data
 
-    // todo: filter updated exercise with the same name (prioritize user's)
+    // todo: filter updated exercise with the same name (prioritize user)
     return {
       data: uniqBy([...exerciseData, ...defaultExercises], 'id'),
     }

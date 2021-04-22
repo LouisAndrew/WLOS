@@ -36,18 +36,18 @@ export default async (request: NextApiRequest, response: NextApiResponse) => {
     }
 
     case 'POST': {
-      // const { body } = request
-      // if (!body || !body.name || !body.uuid) {
-      //   response.status(400).send({ msg: 'Invalid data posted' })
-      //   return
-      // }
-      // const { uuid, ...exercise } = body
-      // const serviceResponse = await exerciseApiHandler.createExercise(uuid, exercise)
-      // if (isError(serviceResponse)) {
-      //   response.status(400).send({ msg: serviceResponse.error.msg })
-      //   return
-      // }
-      // response.send({ data: { ...serviceResponse } })
+      const { body } = request
+      const { uuid, template } = body
+      if (!body || !template || !uuid || !template.name) {
+        response.status(400).send({ msg: 'Invalid data posted' })
+        return
+      }
+      const serviceResponse = await templateApiHandler.createTemplate(uuid, template)
+      if (isError(serviceResponse)) {
+        response.status(400).send({ msg: serviceResponse.error.msg })
+        return
+      }
+      response.send({ data: { ...serviceResponse } })
       return
     }
 

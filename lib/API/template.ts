@@ -3,10 +3,16 @@ import tables from '@lib/tables'
 
 import { LibAPIResponse } from '@t/APIResponse'
 import { UserDataTable } from '@t/tables/UserData'
-import { TemplateExerciseTable, TemplateTable, TemplateType } from '@t/tables/Template'
+import {
+  TemplateExerciseTable,
+  TemplateTable,
+  TemplateTableWithData,
+  TemplateType,
+} from '@t/tables/Template'
 import { ExerciseTable } from '@t/tables/Exercise'
 
 import userApiHandler from './user'
+import exerciseApiHandler from './exercise'
 import { isError } from './helper'
 
 /**
@@ -108,6 +114,112 @@ const getExerciseData = async (templateId: number): Promise<TemplateExerciseTabl
   return data.map((d) => ({ exerciseData: { ...d.exercise_id }, sets: d.sets, reps: d.reps }))
 }
 
+/**
+ * save exercise as child of a template
+ * @param templateId id of the template
+ * @param exercise data of the exercise
+ * @returns error if not succesful and data: { success: true } if successful
+ */
+const saveExerciseToTemplate = async (
+  templateId: number,
+  exercise: TemplateExerciseTable
+): Promise<LibAPIResponse<{ succes: true }>> => {
+  const { exerciseData, reps, sets } = exercise
+
+  const response = await client.from(tables.TEMPLATE_EXERCISE).insert({
+    exercise_id: exerciseData.id,
+    template_id: templateId,
+    sets,
+    reps,
+  })
+  const { error } = response
+
+  if (error) {
+    return { error: { msg: error.message } }
+  }
+
+  return { data: { succes: true } }
+}
+
+/**
+ * helper function to handle exercise (create if it's not yet in the DB)
+ * @param exercises
+ * @param userObj
+ * @returns
+ */
+const exerciseHandler = async (
+  exercises: TemplateExerciseTable[],
+  userObj: LibAPIResponse<UserDataTable>
+): Promise<TemplateExerciseTable[]> =>
+  Promise.all(
+    exercises.map(async (exercise) => {
+      // exercise id is going to be equal -1 if it's not yet created
+      if (exercise.exerciseData.id === -1) {
+        // destructure exercise to extract its id
+        const {
+          exerciseData: { id: _, ...data },
+          ...rest
+        } = exercise
+        const exerciseId = await exerciseApiHandler.createExercise(userObj, data as ExerciseTable)
+        if (isError(exerciseId)) {
+          return exercise
+        }
+
+        return {
+          ...rest,
+          exerciseData: {
+            ...data,
+            id: exerciseId.data.exercise_id,
+          },
+        }
+      }
+
+      return exercise
+    })
+  )
+
+/**
+ * create a new template on the db with the created_flag by user
+ * @param user user who creates the template / his/her uuid
+ * @param data template data
+ */
+const createTemplate = async (
+  user: LibAPIResponse<UserDataTable> | string,
+  data: TemplateTableWithData
+): Promise<LibAPIResponse<{ template_id: number }>> => {
+  const userObj = typeof user === 'string' ? await userApiHandler.getUser(user) : user
+  if (isError(userObj)) {
+    return { error: { msg: userObj.error.msg } }
+  }
+
+  // creating exercise db entry if not yet available..
+  const exercises = await exerciseHandler(data.exercises, userObj)
+
+  const { exercises: _, ...templateData } = data
+
+  const response = await client
+    .from(tables.TEMPLATE)
+    .insert({ ...templateData, created_by: userObj.data.id })
+
+  const { error, data: responseData } = response
+  if (error) {
+    return { error: { msg: error.message } }
+  }
+
+  const templateId = responseData[0].id
+
+  const savePromises = await Promise.all(
+    exercises.map((e) => saveExerciseToTemplate(templateId, e))
+  )
+
+  if (!savePromises.every((promise) => !isError(promise))) {
+    return { error: { msg: 'Error while saving the exercises to the template' } }
+  }
+
+  return { data: { template_id: templateId } }
+}
+
 export default {
   getUserTemplates,
+  createTemplate,
 }
