@@ -6,7 +6,7 @@ export type LogEntryTable = Table & {
   /**
    * id of the exercise logged or its
    */
-  id: number | ExerciseTable
+  exercise_id: number | ExerciseTable
   /**
    * stringified version of a LogEntry object
    * @see LogEntry

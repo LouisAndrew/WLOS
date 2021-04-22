@@ -38,6 +38,30 @@ export default async (request: NextApiRequest, response: NextApiResponse) => {
       return
     }
 
+    case 'POST': {
+      const { body } = request
+      if (!body || !lid || !body.entries) {
+        response.status(400).send({ msg: 'Invalid body structure' })
+        return
+      }
+
+      const { entries } = body
+      const logId = parseInt(lid as string, 10)
+      if (Number.isNaN(logId)) {
+        response.status(400).send({ msg: 'Please provide a vaild log id' })
+        return
+      }
+
+      const serviceResponse = await logEntriesApiHandler.postLogEntries(entries, logId)
+      if (isError(serviceResponse)) {
+        response.status(400).send({ msg: serviceResponse.error.msg })
+        return
+      }
+
+      response.send({ ...serviceResponse })
+      return
+    }
+
     default: {
       response.status(500).send({ msg: 'Operation not supported' })
       return
