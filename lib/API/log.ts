@@ -52,6 +52,44 @@ const getUserSavedLogs = async (
 }
 
 /**
+ * function to get a workout log based on its id
+ * @param logId id of the log
+ */
+const getLog = async (logId: number): Promise<LibAPIResponse<LogTable>> => {
+  const query = `
+    template_id (
+      name,
+      color,
+      tags,
+      id,
+      type,
+      created_by,
+      id
+    ),
+    date,
+    id
+  `
+  const response = await client
+    .from(tables.EXERCISE_LOG)
+    .select(query)
+    .match({ id: logId.toString() })
+  const { error, data } = response
+  if (error) {
+    return { error: { msg: error.message } }
+  }
+
+  if (data.length === 0) {
+    return {
+      error: { msg: 'Data not found' },
+    }
+  }
+
+  return {
+    data: data[0],
+  }
+}
+
+/**
  * create a new log to the user's saved entry
  * @param user user id or LibAPIResponse object containing user data
  * @param data data to be created
@@ -93,5 +131,6 @@ const createLog = async (
 
 export default {
   getUserSavedLogs,
+  getLog,
   createLog,
 }

@@ -45,7 +45,7 @@ export default async (request: NextApiRequest, response: NextApiResponse) => {
         response.status(400).send({ msg: serviceResponse.error.msg })
         return
       }
-      response.send({ data: { ...serviceResponse } })
+      response.send({ ...serviceResponse })
       return
     }
 
@@ -61,7 +61,7 @@ export default async (request: NextApiRequest, response: NextApiResponse) => {
         response.status(400).send({ msg: serviceResponse.error.msg })
         return
       }
-      response.send(serviceResponse)
+      response.send({ ...serviceResponse })
       return
     }
 

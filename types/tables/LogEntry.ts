@@ -29,3 +29,7 @@ export type EntriesTable = Table & {
    */
   order: number
 }
+
+export type CompleteLogTable = LogTable & {
+  entries: LogEntryTable[]
+}

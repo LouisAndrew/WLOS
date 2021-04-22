@@ -43,7 +43,7 @@ export default async (request: NextApiRequest, response: NextApiResponse) => {
         return
       }
 
-      response.send({ data: { ...serviceResponse } })
+      response.send({ ...serviceResponse })
       return
     }
 
@@ -63,7 +63,7 @@ export default async (request: NextApiRequest, response: NextApiResponse) => {
         return
       }
 
-      response.send({ data: { ...serviceResponse } })
+      response.send({ ...serviceResponse })
       return
     }
 
