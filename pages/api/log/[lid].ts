@@ -77,7 +77,6 @@ export default async (request: NextApiRequest, response: NextApiResponse) => {
       }
 
       const serviceResponse = await logEntriesApiHandler.updateLogEntries(entries, logId)
-      console.log({ serviceResponse })
       if (isError(serviceResponse)) {
         response.status(400).send({ msg: serviceResponse.error.msg })
         return
