@@ -43,7 +43,7 @@ export default async (request: NextApiRequest, response: NextApiResponse) => {
         return
       }
 
-      response.send({ data: { ...serviceResponse } })
+      response.send({ ...serviceResponse })
       return
     }
 
@@ -63,12 +63,13 @@ export default async (request: NextApiRequest, response: NextApiResponse) => {
         return
       }
 
-      response.send({ data: { ...serviceResponse } })
+      response.send({ ...serviceResponse })
       return
     }
 
     case 'DELETE': {
       response.status(401).send({ msg: 'Not yet supported' })
+      return
     }
 
     default: {

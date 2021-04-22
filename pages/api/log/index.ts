@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-import exerciseApiHandler from '@lib/API/exercise'
+import logApiHandler from '@lib/API/log'
 import { isError } from '@lib/API/helper'
 
 export default async (request: NextApiRequest, response: NextApiResponse) => {
@@ -8,7 +8,7 @@ export default async (request: NextApiRequest, response: NextApiResponse) => {
   switch (method) {
     case 'GET': {
       const {
-        query: { uuid, getAll },
+        query: { uuid },
       } = request
       if (!uuid) {
         response.status(400).send({ msg: 'Please add uuid to the url query' })
@@ -20,10 +20,7 @@ export default async (request: NextApiRequest, response: NextApiResponse) => {
         return
       }
 
-      const serviceResponse = await exerciseApiHandler.getSavedExercise(
-        uuid as string,
-        getAll as string
-      )
+      const serviceResponse = await logApiHandler.getUserSavedLogs(uuid as string)
       if (isError(serviceResponse)) {
         response.status(400).send({ msg: serviceResponse.error.msg })
         return
@@ -35,12 +32,12 @@ export default async (request: NextApiRequest, response: NextApiResponse) => {
 
     case 'POST': {
       const { body } = request
-      if (!body || !body.name || !body.uuid) {
+      if (!body || !body.logData || !body.uuid || !body.logData.date || !body.logData.template_id) {
         response.status(400).send({ msg: 'Invalid data posted' })
         return
       }
-      const { uuid, ...exercise } = body
-      const serviceResponse = await exerciseApiHandler.createExercise(uuid, exercise)
+      const { uuid, logData } = body
+      const serviceResponse = await logApiHandler.createLog(uuid, logData)
       if (isError(serviceResponse)) {
         response.status(400).send({ msg: serviceResponse.error.msg })
         return
@@ -50,19 +47,21 @@ export default async (request: NextApiRequest, response: NextApiResponse) => {
     }
 
     case 'PUT': {
-      const { body } = request
-      if (!body || !body.id || !body.uuid) {
-        response.status(400).send({ msg: 'Invalid data posted' })
-        return
-      }
-      const { uuid, ...exercise } = body
-      const serviceResponse = await exerciseApiHandler.updateExercise(uuid, exercise)
-      if (isError(serviceResponse)) {
-        response.status(400).send({ msg: serviceResponse.error.msg })
-        return
-      }
-      response.send({ ...serviceResponse })
+      response.status(401).send({ msg: 'Not yet supported' })
       return
+      // const { body } = request
+      // if (!body || !body.id || !body.uuid) {
+      //   response.status(400).send({ msg: 'Invalid data posted' })
+      //   return
+      // }
+      // const { uuid, ...exercise } = body
+      // const serviceResponse = await exerciseApiHandler.updateExercise(uuid, exercise)
+      // if (isError(serviceResponse)) {
+      //   response.status(400).send({ msg: serviceResponse.error.msg })
+      //   return
+      // }
+      // response.send(serviceResponse)
+      // return
     }
 
     case 'DELETE': {
