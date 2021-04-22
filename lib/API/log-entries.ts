@@ -8,6 +8,7 @@ import { UserDataTable } from '@t/tables/UserData'
 import { isError } from './helper'
 import userApiHandler from './user'
 import logApiHandler from './log'
+import { differenceBy } from 'lodash'
 
 /**
  * get log entries based on its id
@@ -35,7 +36,8 @@ const getLogEntries = async (
       id,
       exercise_id (
         name,
-        tags
+        tags,
+        id
       ),
       log
     ),
@@ -75,11 +77,42 @@ const saveEntry = async (entry: LogEntryTable): Promise<LibAPIResponse<{ entry_i
 }
 
 /**
+ * delete an entry from log_entry table
+ * @param entryId id of the entry
+ */
+const deleteEntry = async (entryId: number): Promise<LibAPIResponse<{ success: true }>> => {
+  const response = await client.from(tables.LOG_ENTRY).delete().match({ id: entryId.toString() })
+  const { error } = response
+  if (error) {
+    return { error: { msg: error.message } }
+  }
+
+  return { data: { success: true } }
+}
+
+/**
  * function to bind entry with the logId in the entries table
  * @param entry entry to be added
  */
 const bindEntry = async (entry: EntriesTable): Promise<LibAPIResponse<{ success: true }>> => {
   const response = await client.from(tables.ENTRIES).insert(entry)
+  const { error } = response
+  if (error) {
+    return { error: { msg: error.message } }
+  }
+
+  return { data: { success: true } }
+}
+
+/**
+ * delete an entry from ENTRIES table
+ * @param entryId id of the entry
+ */
+const unbindEntry = async (entryId: number): Promise<LibAPIResponse<{ success: true }>> => {
+  const response = await client
+    .from(tables.ENTRIES)
+    .delete()
+    .match({ entry_id: entryId.toString() })
   const { error } = response
   if (error) {
     return { error: { msg: error.message } }
@@ -129,7 +162,102 @@ const postLogEntries = async (
   return { data: { success: true } }
 }
 
+/**
+ * function to update log entry
+ * @param entries ![ALL] entries (also including the new ones)
+ * @param logId id of the log
+ */
+const updateLogEntries = async (
+  entries: LogEntryTable[],
+  logId: number
+): Promise<LibAPIResponse<{ success: true }>> => {
+  const logObject = await logApiHandler.getLog(logId)
+  const logEntriesObject = await getLogEntries('ROOT', logId)
+  if (isError(logObject)) {
+    return logObject
+  }
+  if (isError(logEntriesObject)) {
+    return logEntriesObject
+  }
+
+  const oldEntries = logEntriesObject.data.entries.map((d: any) => ({
+    id: d.entry_id.id as number,
+    exercise_id: d.entry_id.exercise_id.id as number,
+    log: d.entry_id.log as string,
+  }))
+
+  const savedPromises = await entries.map(async (entry, index) => {
+    const oldIndex = oldEntries.findIndex((value) => value.id === entry.exercise_id)
+    // log with the same exercise id exists
+    if (oldIndex !== -1) {
+      // check if log is the same
+      const isChanged = entry.log !== oldEntries[oldIndex].log
+      if (isChanged) {
+        // update row but still keep its id
+        const updateResponse = await client
+          .from(tables.ENTRIES)
+          .update(entry)
+          .match({ id: oldEntries[oldIndex].id.toString() })
+
+        const { error } = updateResponse
+        if (error) {
+          return { error: { msg: '' } }
+        }
+
+        return { data: { success: true } }
+      }
+
+      return { data: { success: true } }
+    }
+
+    const saveResponse = await saveEntry(entry)
+    if (isError(saveResponse)) {
+      return saveResponse
+    }
+
+    const bindResponse = await bindEntry({
+      log_id: logId,
+      entry_id: saveResponse.data.entry_id,
+      order: index,
+    } as EntriesTable)
+
+    if (isError(bindResponse)) {
+      return bindResponse
+    }
+
+    return { data: { success: true } }
+  })
+
+  if (!savedPromises.every((promise) => !isError(promise))) {
+    return { error: { msg: 'Error while saving new logs' } }
+  }
+
+  const toBeRemoved = differenceBy(oldEntries, entries, 'exercise_id')
+  const removePromises = await Promise.all(
+    toBeRemoved.map(async (entry) => {
+      const unbindResponse = await unbindEntry(entry.id)
+      if (isError(unbindResponse)) {
+        return unbindResponse
+      }
+
+      const removeResponse = await deleteEntry(entry.id)
+      if (isError(removeResponse)) {
+        return removeResponse
+      }
+
+      return { data: { success: true } }
+    })
+  )
+
+  if (!removePromises.every((promise) => !isError(promise))) {
+    return { error: { msg: 'Error while removing old logs' } }
+  }
+
+  return { data: { success: true } }
+}
+
 export default {
   getLogEntries,
   postLogEntries,
+  updateLogEntries,
 }
