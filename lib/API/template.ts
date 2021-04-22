@@ -341,4 +341,5 @@ export default {
   getUserTemplates,
   createTemplate,
   updateTemplate,
+  getTemplate,
 }
