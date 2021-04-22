@@ -184,6 +184,7 @@ const updateLogEntries = async (
     id: d.entry_id.id as number,
     exercise_id: d.entry_id.exercise_id.id as number,
     log: d.entry_id.log as string,
+    order: d.order,
   }))
 
   const savedPromises = await entries.map(async (entry, index) => {
@@ -202,6 +203,13 @@ const updateLogEntries = async (
         const { error } = updateResponse
         if (error) {
           return { error: { msg: '' } }
+        }
+
+        if (oldEntries[oldIndex].order !== index) {
+          await client
+            .from(tables.LOG_ENTRY)
+            .update({ order: index })
+            .match({ id: oldEntries[oldIndex].id.toString() })
         }
 
         return { data: { success: true } }
