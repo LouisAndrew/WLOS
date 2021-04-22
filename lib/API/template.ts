@@ -14,7 +14,7 @@ import { ExerciseTable } from '@t/tables/Exercise'
 import userApiHandler from './user'
 import exerciseApiHandler from './exercise'
 import { isError } from './helper'
-import { difference } from 'lodash'
+import { before, difference } from 'lodash'
 
 /**
  * get user created templates
@@ -134,7 +134,9 @@ const getExerciseData = async (templateId: number): Promise<TemplateExerciseTabl
       created_by
     ),
     sets,
-    reps
+    reps,
+    order,
+    id
   `
   const response = await client
     .from(tables.TEMPLATE_EXERCISE)
@@ -145,7 +147,13 @@ const getExerciseData = async (templateId: number): Promise<TemplateExerciseTabl
     return null
   }
 
-  return data.map((d) => ({ exerciseData: { ...d.exercise_id }, sets: d.sets, reps: d.reps }))
+  return data.map((d) => ({
+    exerciseData: { ...d.exercise_id },
+    sets: d.sets,
+    reps: d.reps,
+    order: d.order,
+    id: d.id,
+  }))
 }
 
 /**
@@ -156,7 +164,8 @@ const getExerciseData = async (templateId: number): Promise<TemplateExerciseTabl
  */
 const saveExerciseToTemplate = async (
   templateId: number,
-  exercise: TemplateExerciseTable
+  exercise: TemplateExerciseTable,
+  order: number
 ): Promise<LibAPIResponse<{ succes: true }>> => {
   const { exerciseData, reps, sets } = exercise
 
@@ -165,6 +174,7 @@ const saveExerciseToTemplate = async (
     template_id: templateId,
     sets,
     reps,
+    order,
   })
   const { error } = response
 
@@ -264,7 +274,7 @@ const createTemplate = async (
   // creating exercise db entry if not yet available..
   const exercises = await exerciseHandler(exercisesData, userObj)
   const savePromises = await Promise.all(
-    exercises.map((e) => saveExerciseToTemplate(templateId, e))
+    exercises.map((e, index) => saveExerciseToTemplate(templateId, e, index))
   )
 
   if (!savePromises.every((promise) => !isError(promise))) {
@@ -314,7 +324,29 @@ const updateTemplate = async (
 
   const exercisesAfterHandled = await exerciseHandler(exercisesAfter, userObj)
   const savePromises = await Promise.all(
-    exercisesAfterHandled.map((e) => saveExerciseToTemplate(templateData.id, e))
+    exercisesAfterHandled.map(async (e, index) => {
+      exercisesBefore.findIndex((before) => before.exerciseData.id === e.exerciseData.id)
+      const beforeIndex = exercisesBefore.findIndex(
+        (before) => before.exerciseData.id === e.exerciseData.id
+      )
+      if (beforeIndex !== -1) {
+        const before = exercisesBefore[beforeIndex]
+        if (before.reps !== e.reps || before.sets !== e.sets || before.order !== index) {
+          const updateResponse = await client
+            .from(tables.TEMPLATE_EXERCISE)
+            .update({ sets: e.sets, reps: e.reps, order: index })
+            .match({ id: (before as any).id.toString() })
+
+          const { error } = updateResponse
+          if (error) {
+            return { error: { msg: error.message } }
+          }
+        }
+        return { data: { success: true } }
+      }
+
+      return saveExerciseToTemplate(templateData.id, e, index)
+    })
   )
 
   if (!savePromises.every((promise) => !isError(promise))) {

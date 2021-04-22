@@ -59,4 +59,8 @@ export type TemplateExerciseTable = {
    * @see Range
    */
   reps: string
+  /**
+   * order of the exercise within the template
+   */
+  order: number
 }
