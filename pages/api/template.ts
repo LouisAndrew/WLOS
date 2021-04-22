@@ -37,11 +37,12 @@ export default async (request: NextApiRequest, response: NextApiResponse) => {
 
     case 'POST': {
       const { body } = request
-      const { uuid, template } = body
-      if (!body || !template || !uuid || !template.name) {
+      if (!body || !body.template || !body.uuid || !body.template.name) {
         response.status(400).send({ msg: 'Invalid data posted' })
         return
       }
+      const { uuid, template } = body
+
       const serviceResponse = await templateApiHandler.createTemplate(uuid, template)
       if (isError(serviceResponse)) {
         response.status(400).send({ msg: serviceResponse.error.msg })
@@ -52,18 +53,20 @@ export default async (request: NextApiRequest, response: NextApiResponse) => {
     }
 
     case 'PUT': {
-      // const { body } = request
-      // if (!body || !body.id || !body.uuid) {
-      //   response.status(400).send({ msg: 'Invalid data posted' })
-      //   return
-      // }
-      // const { uuid, ...exercise } = body
-      // const serviceResponse = await exerciseApiHandler.updateExercise(uuid, exercise)
-      // if (isError(serviceResponse)) {
-      //   response.status(400).send({ msg: serviceResponse.error.msg })
-      //   return
-      // }
-      // response.send(serviceResponse)
+      const { body } = request
+      if (!body || !body.template || !body.uuid || !body.template.id) {
+        response.status(400).send({ msg: 'Invalid data posted' })
+        return
+      }
+
+      const { uuid, template } = body
+
+      const serviceResponse = await templateApiHandler.updateTemplate(uuid, template)
+      if (isError(serviceResponse)) {
+        response.status(400).send({ msg: serviceResponse.error.msg })
+        return
+      }
+      response.send(serviceResponse)
       return
     }
 

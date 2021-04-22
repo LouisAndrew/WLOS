@@ -14,6 +14,7 @@ import { ExerciseTable } from '@t/tables/Exercise'
 import userApiHandler from './user'
 import exerciseApiHandler from './exercise'
 import { isError } from './helper'
+import { difference } from 'lodash'
 
 /**
  * get user created templates
@@ -73,6 +74,39 @@ const getUserTemplates = async (
   )
 
   return { data: withData }
+}
+
+/**
+ * get a single template with the provided id
+ * @param templateId id of the template
+ * @param getData sets if the data should also be retrieved
+ */
+const getTemplate = async (
+  templateId: number,
+  getData: boolean = false
+): Promise<LibAPIResponse<TemplateTable | TemplateTableWithData>> => {
+  const query = `
+    type,
+    name,
+    color,
+    id,
+    created_by
+  `
+
+  const response = await client
+    .from(tables.TEMPLATE)
+    .select(query)
+    .match({ id: templateId.toString() })
+  const { error, data } = response
+  if (error) {
+    return { error: { msg: error.message } }
+  }
+
+  const templateData: TemplateTable = data[0]
+
+  return {
+    data: { ...templateData, exercises: getData ? await getExerciseData(templateData.id) : null },
+  }
 }
 
 /**
@@ -142,6 +176,28 @@ const saveExerciseToTemplate = async (
 }
 
 /**
+ * remove an exercise from template
+ * @param templateId id of the template
+ * @param exerciseId id of the exercise
+ */
+const removeExerciseFromTemplate = async (
+  templateId: number,
+  exerciseId: number
+): Promise<LibAPIResponse<{ success: true }>> => {
+  const response = await client
+    .from(tables.TEMPLATE_EXERCISE)
+    .delete()
+    .match({ template_id: templateId.toString(), exercise_id: exerciseId.toString() })
+
+  const { error } = response
+  if (error) {
+    return { error: { msg: error.message } }
+  }
+
+  return { data: { success: true } }
+}
+
+/**
  * helper function to handle exercise (create if it's not yet in the DB)
  * @param exercises
  * @param userObj
@@ -192,10 +248,7 @@ const createTemplate = async (
     return { error: { msg: userObj.error.msg } }
   }
 
-  // creating exercise db entry if not yet available..
-  const exercises = await exerciseHandler(data.exercises, userObj)
-
-  const { exercises: _, ...templateData } = data
+  const { exercises: exercisesData, ...templateData } = data
 
   const response = await client
     .from(tables.TEMPLATE)
@@ -208,6 +261,8 @@ const createTemplate = async (
 
   const templateId = responseData[0].id
 
+  // creating exercise db entry if not yet available..
+  const exercises = await exerciseHandler(exercisesData, userObj)
   const savePromises = await Promise.all(
     exercises.map((e) => saveExerciseToTemplate(templateId, e))
   )
@@ -219,7 +274,71 @@ const createTemplate = async (
   return { data: { template_id: templateId } }
 }
 
+/**
+ * updates an existing template
+ * @param user user who updates the template / his/her uuid
+ * @param data template data
+ */
+const updateTemplate = async (
+  user: LibAPIResponse<UserDataTable> | string,
+  data: TemplateTableWithData
+): Promise<LibAPIResponse<{ template_id: number }>> => {
+  const userObj = typeof user === 'string' ? await userApiHandler.getUser(user) : user
+  const templateObj = (await getTemplate(data.id, true)) as LibAPIResponse<TemplateTableWithData>
+  if (isError(userObj)) {
+    return { error: { msg: userObj.error.msg } }
+  }
+
+  if (isError(templateObj)) {
+    return { error: { msg: templateObj.error.msg } }
+  }
+
+  // restrict editing to just the creator
+  if (templateObj.data.created_by !== userObj.data.id) {
+    console.log({ templateObj, userObj })
+    return { error: { msg: 'User is not the creator of the template' } }
+  }
+
+  const exercisesBefore = templateObj.data.exercises
+  const { exercises: exercisesAfter, ...templateData } = data
+
+  const response = await client
+    .from(tables.TEMPLATE)
+    .update(templateData)
+    .match({ id: templateData.id.toString() })
+
+  const { error } = response
+  if (error) {
+    return { error: { msg: error.message } }
+  }
+
+  const exercisesAfterHandled = await exerciseHandler(exercisesAfter, userObj)
+  const savePromises = await Promise.all(
+    exercisesAfterHandled.map((e) => saveExerciseToTemplate(templateData.id, e))
+  )
+
+  if (!savePromises.every((promise) => !isError(promise))) {
+    return { error: { msg: 'Error while saving the exercises to the template' } }
+  }
+
+  // delete exercise that's not in the exerciseAfter array..
+  const exerciseAfterIds = exercisesAfter.map((e) => e.exerciseData.id)
+  const exerciseBeforeIds = exercisesBefore.map((e) => e.exerciseData.id)
+
+  const toBeRemoved = difference(exerciseBeforeIds, exerciseAfterIds)
+  const removePromises = await Promise.all(
+    toBeRemoved.map((id) => removeExerciseFromTemplate(templateData.id, id))
+  )
+
+  if (!removePromises.every((promise) => !isError(promise))) {
+    return { error: { msg: 'Error while removing exercises' } }
+  }
+
+  return { data: { template_id: templateData.id } }
+}
+
 export default {
   getUserTemplates,
   createTemplate,
+  updateTemplate,
 }
