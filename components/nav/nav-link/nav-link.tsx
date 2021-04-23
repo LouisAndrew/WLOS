@@ -1,4 +1,5 @@
 import React, { FC } from 'react'
+import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { IconType } from 'react-icons'
 import { RiHome2Line, RiBookletLine, RiStickyNoteLine } from 'react-icons/ri'
@@ -51,15 +52,20 @@ const NavLink: FC<Props> = ({ type }) => {
   const router = useRouter()
   const linkItem = linkItems[type]
 
-  // const isActive = router.pathname.includes(linkItem.link)
+  const isActive = router.pathname.includes(linkItem.link)
 
   return (
-    <button className={`${styles.container}`} type="button">
-      <Space size="middle" align="center">
-        <linkItem.Icon className={styles.icon} />
-        {linkItem.text}
-      </Space>
-    </button>
+    <Link href={linkItem.link}>
+      <button
+        className={`${styles.container} ${isActive ? styles.container_active : ''}`}
+        type="button"
+      >
+        <Space size="middle" align="start">
+          <linkItem.Icon className={styles.icon} />
+          {linkItem.text}
+        </Space>
+      </button>
+    </Link>
   )
 }
 
