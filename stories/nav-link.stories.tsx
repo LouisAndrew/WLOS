@@ -15,3 +15,8 @@ export const Default = Template.bind({})
 Default.args = {
   type: 'HOME',
 }
+
+export const Logs = Template.bind({})
+Logs.args = {
+  type: 'LOGS',
+}

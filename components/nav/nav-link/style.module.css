@@ -1,11 +1,14 @@
-/* const styles = {
-  container: `text-gray-300 py-1 px-5 w-full text-left border-l-4
-               border-transparent text-md sm:text-base duration-200
-               hover:bg-bg-gray hover:text-white`,
-  containerActive: 'bg-bg-gray text-white border-primary-yellow',
-  icon: `h-full w-full`,
-} */
-
 .container {
-  @apply text-gray-300;
+  @apply text-gray-300 py-2 px-5 w-full border-l-4
+    flex items-center rounded-sm
+    border-transparent text-sm sm:text-base duration-200
+    hover:bg-bg-gray hover:text-white;
+}
+
+.container_active {
+  @apply bg-bg-gray text-white border-primary-yellow;
+}
+
+.icon {
+  @apply h-5 w-5;
 }
