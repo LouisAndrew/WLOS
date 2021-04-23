@@ -1,0 +1,17 @@
+.container {
+  height: -webkit-fill-content;
+  grid-template-rows: auto 1fr auto;
+  @apply grid h-screen bg-primary-gray px-5 py-5 duration-200 w-min;
+}
+
+.link_list {
+  @apply block mb-auto;
+}
+
+.link_list li {
+  @apply my-2;
+}
+
+.settings_btn {
+  margin-top: auto;
+}

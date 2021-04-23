@@ -2,12 +2,11 @@ import React, { FC } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { IconType } from 'react-icons'
-import { RiHome2Line, RiBookletLine, RiStickyNoteLine } from 'react-icons/ri'
-import { Space } from 'antd'
+import { RiHome2Line, RiBookletLine, RiStickyNoteLine, RiSettingsLine } from 'react-icons/ri'
 
 import styles from './style.module.css'
 
-export type LinkType = 'HOME' | 'LOGS' | 'PLANS'
+export type LinkType = 'HOME' | 'LOGS' | 'PLANS' | 'SETTINGS'
 
 export type LinkItem = {
   /**
@@ -40,6 +39,11 @@ const linkItems: Record<LinkType, LinkItem> = {
     Icon: RiStickyNoteLine,
     link: '/logs',
   },
+  SETTINGS: {
+    text: 'SETTINGS',
+    Icon: RiSettingsLine,
+    link: '/settings',
+  },
 }
 
 export type Props = {
@@ -47,8 +51,17 @@ export type Props = {
    * type of the link
    */
   type: LinkType
+  /**
+   * additional styling
+   */
+  className?: string
+  /**
+   * sets if the button content should be shrinked
+   */
+  shouldShrink?: boolean
 }
-const NavLink: FC<Props> = ({ type }) => {
+
+const NavLink: FC<Props> = ({ type, className, shouldShrink = false }) => {
   const router = useRouter()
   const linkItem = linkItems[type]
 
@@ -57,13 +70,13 @@ const NavLink: FC<Props> = ({ type }) => {
   return (
     <Link href={linkItem.link}>
       <button
-        className={`${styles.container} ${isActive ? styles.container_active : ''}`}
+        className={`${styles.container} ${isActive ? styles.container_active : ''} ${className}`}
         type="button"
       >
-        <Space size="middle" align="start">
-          <linkItem.Icon className={styles.icon} />
+        <linkItem.Icon className={styles.icon} />
+        <span className={`${styles.content} ${shouldShrink ? styles.content_shrinked : ''}`}>
           {linkItem.text}
-        </Space>
+        </span>
       </button>
     </Link>
   )
