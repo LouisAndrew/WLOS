@@ -3,13 +3,20 @@ const path = require('path')
 module.exports = {
   webpackFinal: async (config) => {
     config.module.rules.push({
-      test: /\,css&/,
+      test: /\.css$/,
       use: [
         {
           loader: 'postcss-loader',
           options: {
-            ident: 'postcss',
-            plugins: [require('tailwindcss'), require('autoprefixer')],
+            postcssOptions: {
+              ident: 'postcss',
+              plugins: [
+                require('postcss-import'),
+                require('tailwindcss'),
+                require('postcss-nested'), // or require('postcss-nesting')
+                require('autoprefixer'),
+              ],
+            },
           },
         },
       ],
@@ -42,5 +49,5 @@ module.exports = {
     return config
   },
   stories: ['../stories/**/*.stories.mdx', '../stories/**/*.stories.@(js|jsx|ts|tsx)'],
-  addons: ['@storybook/addon-links', '@storybook/addon-essentials'],
+  addons: ['@storybook/addon-links', '@storybook/addon-essentials', 'storybook-css-modules-preset'],
 }

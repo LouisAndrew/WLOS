@@ -1,0 +1,11 @@
+/* const styles = {
+  container: `text-gray-300 py-1 px-5 w-full text-left border-l-4
+               border-transparent text-md sm:text-base duration-200
+               hover:bg-bg-gray hover:text-white`,
+  containerActive: 'bg-bg-gray text-white border-primary-yellow',
+  icon: `h-full w-full`,
+} */
+
+.container {
+  @apply text-gray-300;
+}
