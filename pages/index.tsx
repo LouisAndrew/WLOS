@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import { Button } from 'rsuite'
+import { Button } from 'antd'
 
 import styles from '../styles/Home.module.css'
 
