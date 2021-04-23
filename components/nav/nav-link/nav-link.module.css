@@ -14,7 +14,7 @@
 }
 
 .content {
-  @apply duration-200 ml-3;
+  @apply duration-200 ml-4;
 }
 
 .content_shrinked {

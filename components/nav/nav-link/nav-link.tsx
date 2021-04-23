@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 import { IconType } from 'react-icons'
 import { RiHome2Line, RiBookletLine, RiStickyNoteLine, RiSettingsLine } from 'react-icons/ri'
 
-import styles from './style.module.css'
+import styles from './nav-link.module.css'
 
 export type LinkType = 'HOME' | 'LOGS' | 'PLANS' | 'SETTINGS'
 
