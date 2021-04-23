@@ -2,6 +2,8 @@ const withSass = require("@zeit/next-sass");
 const withLess = require("@zeit/next-less");
 const withCSS = require("@zeit/next-css");
 
+const path = require('path')
+
 const isProd = process.env.NODE_ENV === "production";
 
 // fix: prevents error when .less files are required by node
@@ -22,4 +24,7 @@ module.exports = withCSS({
       },
     })
   ),
+  sassOptions: {
+    includePaths: [path.resolve(__dirname, 'styles'), path.resolve(__dirname, 'components')]
+  }
 });

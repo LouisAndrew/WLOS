@@ -2,7 +2,9 @@ import React, { FC } from 'react'
 import { useRouter } from 'next/router'
 import { IconType } from 'react-icons'
 import { RiHome2Line, RiBookletLine, RiStickyNoteLine } from 'react-icons/ri'
-import { Button } from 'antd'
+import { Space } from 'antd'
+
+import styles from './style.module.css'
 
 export type LinkType = 'HOME' | 'LOGS' | 'PLANS'
 
@@ -45,16 +47,19 @@ export type Props = {
    */
   type: LinkType
 }
-
 const NavLink: FC<Props> = ({ type }) => {
   const router = useRouter()
   const linkItem = linkItems[type]
 
+  // const isActive = router.pathname.includes(linkItem.link)
+
   return (
-    <Button onClick={() => router.push(linkItem.link)}>
-      <linkItem.Icon />
-      {linkItem.text}
-    </Button>
+    <button className={`${styles.container}`} type="button">
+      <Space size="middle" align="center">
+        <linkItem.Icon className={styles.icon} />
+        {linkItem.text}
+      </Space>
+    </button>
   )
 }
 
