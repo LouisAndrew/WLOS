@@ -9,7 +9,9 @@ export default function Home() {
       <Head>
         <title>Hello, world!</title>
       </Head>
-      <Button>Click me!</Button>
+      <Button type="primary" loading>
+        CLICK ME!
+      </Button>
     </div>
   )
 }
