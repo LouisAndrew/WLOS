@@ -10,11 +10,8 @@
     "type-check": "tsc --project tsconfig.json --pretty --noEmit",
     "lint": "eslint --ext js,jsx,ts,tsx --fix",
     "test": "jest",
-    "test:watch": "jest --watch",
-    "test:update": "jest --u",
-    "storybook": "start-storybook -p 6006 -s public",
-    "build-storybook": "build-storybook",
-    "script": "python3 script.py"
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "dependencies": {
     "@supabase/supabase-js": "^1.11.6",
@@ -45,8 +42,6 @@
     "autoprefixer": "^10.2.5",
     "babel-jest": "^26.6.3",
     "babel-loader": "^8.2.2",
-    "css-loader": "^5.2.4",
-    "dotenv": "^8.2.0",
     "eslint": "^7.24.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-prettier": "^8.2.0",

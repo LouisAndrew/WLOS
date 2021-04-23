@@ -1,6 +1,3 @@
-import 'tailwindcss/tailwind.css'
-import 'reactjs-popup/dist/index.css';
-import '../styles/globals.css'
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
@@ -11,10 +8,3 @@ export const parameters = {
     },
   },
 }
-export const decorators = [
-  (Story) => (
-    <div className="w-full bg-bg-gray relative">
-      <Story />
-    </div>
-  )
-]
