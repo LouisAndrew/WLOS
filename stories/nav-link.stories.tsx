@@ -14,6 +14,7 @@ const Template: Story<Props> = (args) => <NavLink {...args} />
 export const Default = Template.bind({})
 Default.args = {
   type: 'HOME',
+  shouldShrink: true,
 }
 
 export const Logs = Template.bind({})
