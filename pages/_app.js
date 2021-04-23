@@ -1,5 +1,5 @@
 import '../styles/globals.css'
-import 'rsuite/lib/styles/index.less';
+import '../styles/antd.less'
 
 function MyApp({ Component, pageProps }) {
   return <Component {...pageProps} />
