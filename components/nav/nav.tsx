@@ -1,7 +1,7 @@
 import React, { FC, useState } from 'react'
 
 import { NavLink } from './nav-link'
-import styles from './styles.module.css'
+import styles from './nav.module.css'
 
 export type Props = {}
 
