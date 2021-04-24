@@ -5,14 +5,15 @@ Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <div
-        class="container"
+      <nav
+        class="container container_show_mobile"
       >
         <div
           class="upper_section "
         >
           <button
             class="nav-button btn close_btn"
+            data-testid="close-btn"
           >
             <svg
               fill="currentColor"
@@ -77,18 +78,19 @@ Object {
           </li>
         </ul>
         <div />
-      </div>
+      </nav>
     </div>
   </body>,
   "container": <div>
-    <div
-      class="container"
+    <nav
+      class="container container_show_mobile"
     >
       <div
         class="upper_section "
       >
         <button
           class="nav-button btn close_btn"
+          data-testid="close-btn"
         >
           <svg
             fill="currentColor"
@@ -153,7 +155,7 @@ Object {
         </li>
       </ul>
       <div />
-    </div>
+    </nav>
   </div>,
   "debug": [Function],
   "findAllByAltText": [Function],

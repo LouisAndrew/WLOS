@@ -5,17 +5,30 @@ import { NavLink } from './nav-link'
 import { Avatar } from './avatar'
 import styles from './nav.module.css'
 
-export type Props = {}
+export type Props = {
+  /**
+   * sets if the menu / nav should be shown on mobile
+   */
+  showMenu: boolean
+  /**
+   * function to close / hide menu on mobile
+   */
+  closeMenu: () => void
+}
 
-const Nav: FC<Props> = () => {
+const Nav: FC<Props> = ({ closeMenu, showMenu }) => {
   const [shouldShrinkMenu, setShouldShrinkMenu] = useState(false)
 
   return (
-    <div className={styles.container}>
+    <nav className={`${styles.container} ${showMenu ? styles.container_show_mobile : ''}`}>
       <div
         className={`${styles.upper_section} ${shouldShrinkMenu ? styles.upper_section_wrap : ''}`}
       >
-        <button className={`nav-button ${styles.btn} ${styles.close_btn}`}>
+        <button
+          className={`nav-button ${styles.btn} ${styles.close_btn}`}
+          data-testid="close-btn"
+          onClick={closeMenu}
+        >
           <RiCloseLine />
         </button>
         <Avatar />
@@ -43,7 +56,7 @@ const Nav: FC<Props> = () => {
         </li>
       </ul>
       <NavLink shouldShrink={shouldShrinkMenu} type="SETTINGS" className={styles.settings_btn} />
-    </div>
+    </nav>
   )
 }
 

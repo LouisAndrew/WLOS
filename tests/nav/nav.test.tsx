@@ -14,7 +14,9 @@ jest.mock('@c/nav/nav-link/nav-link', () => jest.fn(() => <div />))
 
 afterEach(cleanup)
 
-const Component = <Nav />
+const closeMenu = jest.fn()
+
+const Component = <Nav showMenu={true} closeMenu={closeMenu} />
 
 describe('Navigation component', () => {
   it('matches snapshot', () => {
@@ -35,5 +37,13 @@ describe('Navigation component', () => {
 
     expect(result.queryByTestId(leftArrowTestId)).not.toBeInTheDocument()
     expect(result.getByTestId(rightArrowTestId)).toBeInTheDocument()
+  })
+
+  it('should call closeMenu function when close button is clicked', () => {
+    const result = render(Component)
+    const closeBtn = result.getByTestId('close-btn')
+
+    fireEvent.click(closeBtn)
+    expect(closeMenu).toBeCalled()
   })
 })
