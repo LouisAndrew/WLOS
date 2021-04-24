@@ -27,4 +27,9 @@ describe('Nav link componnet', () => {
     const result = render(<NavLink type="LOGS" />)
     expect(result.getByRole('button').classList.contains('container_active')).toBe(false)
   })
+
+  it('hides content if `shouldShrink` props is set to `true`', () => {
+    const result = render(<NavLink type="HOME" shouldShrink={true} />)
+    expect(result.getByTestId('content').classList).toContain('content_shrinked')
+  })
 })

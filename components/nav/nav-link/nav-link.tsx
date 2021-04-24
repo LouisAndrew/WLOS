@@ -76,7 +76,10 @@ const NavLink: FC<Props> = ({ type, className, shouldShrink = false }) => {
         type="button"
       >
         <linkItem.Icon className={styles.icon} />
-        <span className={`${styles.content} ${shouldShrink ? styles.content_shrinked : ''}`}>
+        <span
+          data-testid="content"
+          className={`${styles.content} ${shouldShrink ? styles.content_shrinked : ''}`}
+        >
           {linkItem.text}
         </span>
       </button>
