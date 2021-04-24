@@ -1,5 +1,6 @@
 import Head from 'next/head'
-import { Button } from 'antd'
+
+import { Layout } from '@c/layout'
 
 import styles from '../styles/Home.module.css'
 
@@ -9,9 +10,7 @@ export default function Home() {
       <Head>
         <title>Hello, world!</title>
       </Head>
-      <Button type="primary" loading>
-        CLICK ME!
-      </Button>
+      <Layout>Hello, world!</Layout>
     </div>
   )
 }

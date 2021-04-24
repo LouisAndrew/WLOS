@@ -2,6 +2,7 @@
 
 * {
   letter-spacing: 2px;
+  @apply text-white;
 }
 
 button {
