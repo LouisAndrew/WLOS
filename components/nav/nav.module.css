@@ -17,4 +17,24 @@
 }
 
 .upper_section {
+  @apply flex justify-between items-center mb-3;
+}
+
+.upper_section_wrap {
+  @apply sm:flex-col sm:justify-center;
+}
+
+.upper_section_wrap .expand_btn {
+  @apply sm:mt-4;
+}
+
+.btn svg {
+  @apply h-6 w-6 sm:w-8 sm:h-8;
+}
+
+.expand_btn {
+  @apply rounded-sm hidden sm:block;
+}
+.close_btn {
+  @apply block sm:hidden;
 }

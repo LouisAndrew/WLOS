@@ -6,7 +6,7 @@ Object {
   "baseElement": <body>
     <div>
       <button
-        class="container container_active undefined"
+        class="nav-button container container_active undefined"
         type="button"
       >
         <svg
@@ -39,7 +39,7 @@ Object {
   </body>,
   "container": <div>
     <button
-      class="container container_active undefined"
+      class="nav-button container container_active undefined"
       type="button"
     >
       <svg

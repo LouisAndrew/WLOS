@@ -1,8 +1,7 @@
 .container {
-  @apply text-gray-300 py-2 px-5 w-full border-l-4
+  @apply py-2 px-5 w-full border-l-4
     flex items-center rounded-sm
-    border-transparent text-sm sm:text-base duration-200
-    hover:bg-bg-gray hover:text-white focus:outline-none;
+    border-transparent text-sm sm:text-base duration-200;
 }
 
 .container_active {
