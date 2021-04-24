@@ -1,0 +1,22 @@
+.container {
+  border-right-color: transparent !important;
+  @apply py-2 px-5 w-full border-l-4 border-r-4 
+    flex items-center rounded-sm
+    border-transparent text-sm sm:text-base duration-200;
+}
+
+.container_active {
+  @apply bg-bg-gray text-white border-primary-yellow;
+}
+
+.icon {
+  @apply h-5 w-5 sm:w-6 sm:h-6;
+}
+
+.content {
+  @apply duration-200 ml-4;
+}
+
+.content_shrinked {
+  @apply block overflow-hidden w-0 ml-0;
+}
