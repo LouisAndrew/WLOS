@@ -4,6 +4,8 @@ import { Layout } from '@c/layout'
 
 afterEach(cleanup)
 
+jest.mock('@c/nav/nav-link/nav-link', () => jest.fn(() => <div />))
+
 const Component = <Layout />
 
 describe('main layout component', () => {
@@ -13,11 +15,11 @@ describe('main layout component', () => {
 
   it('show nav component when menu button is clicked', () => {
     const result = render(Component)
-    // const menuBtn = result.getByTestId('menu-btn')
+    const menuBtn = result.getByTestId('menu-btn')
 
-    // fireEvent.click(menuBtn)
+    fireEvent.click(menuBtn)
 
-    // const navComponent = result.getByRole('navigation')
-    // expect(navComponent.classList).toContain('container_show_mobile')
+    const navComponent = result.getByRole('navigation')
+    expect(navComponent.classList).toContain('container_show_mobile')
   })
 })

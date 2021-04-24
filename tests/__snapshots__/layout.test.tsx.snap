@@ -5,11 +5,221 @@ Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <div />
+      <div
+        class="container"
+      >
+        <div
+          class="header"
+        >
+          <nav
+            class="container "
+          >
+            <div
+              class="upper_section "
+            >
+              <button
+                class="nav-button btn close_btn"
+                data-testid="close-btn"
+              >
+                <svg
+                  fill="currentColor"
+                  height="1em"
+                  stroke="currentColor"
+                  stroke-width="0"
+                  viewBox="0 0 24 24"
+                  width="1em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g>
+                    <path
+                      d="M0 0h24v24H0z"
+                      fill="none"
+                    />
+                    <path
+                      d="M12 10.586l4.95-4.95 1.414 1.414-4.95 4.95 4.95 4.95-1.414 1.414-4.95-4.95-4.95 4.95-1.414-1.414 4.95-4.95-4.95-4.95L7.05 5.636z"
+                    />
+                  </g>
+                </svg>
+              </button>
+              <div
+                class="container"
+              />
+              <button
+                class="nav-button btn expand_btn"
+                data-testid="shrink-toggle"
+              >
+                <svg
+                  data-testid="left-arrow"
+                  fill="currentColor"
+                  height="1em"
+                  stroke="currentColor"
+                  stroke-width="0"
+                  viewBox="0 0 24 24"
+                  width="1em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g>
+                    <path
+                      d="M0 0h24v24H0z"
+                      fill="none"
+                    />
+                    <path
+                      d="M10.828 12l4.95 4.95-1.414 1.414L8 12l6.364-6.364 1.414 1.414z"
+                    />
+                  </g>
+                </svg>
+              </button>
+            </div>
+            <ul
+              class="link_list"
+            >
+              <li>
+                <div />
+              </li>
+              <li>
+                <div />
+              </li>
+              <li>
+                <div />
+              </li>
+            </ul>
+            <div />
+          </nav>
+          <button
+            class="nav-button menu_btn"
+            data-testid="menu-btn"
+          >
+            <svg
+              fill="currentColor"
+              height="1em"
+              stroke="currentColor"
+              stroke-width="0"
+              viewBox="0 0 24 24"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g>
+                <path
+                  d="M0 0h24v24H0z"
+                  fill="none"
+                />
+                <path
+                  d="M3 4h18v2H3V4zm0 7h18v2H3v-2zm0 7h18v2H3v-2z"
+                />
+              </g>
+            </svg>
+          </button>
+        </div>
+      </div>
     </div>
   </body>,
   "container": <div>
-    <div />
+    <div
+      class="container"
+    >
+      <div
+        class="header"
+      >
+        <nav
+          class="container "
+        >
+          <div
+            class="upper_section "
+          >
+            <button
+              class="nav-button btn close_btn"
+              data-testid="close-btn"
+            >
+              <svg
+                fill="currentColor"
+                height="1em"
+                stroke="currentColor"
+                stroke-width="0"
+                viewBox="0 0 24 24"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g>
+                  <path
+                    d="M0 0h24v24H0z"
+                    fill="none"
+                  />
+                  <path
+                    d="M12 10.586l4.95-4.95 1.414 1.414-4.95 4.95 4.95 4.95-1.414 1.414-4.95-4.95-4.95 4.95-1.414-1.414 4.95-4.95-4.95-4.95L7.05 5.636z"
+                  />
+                </g>
+              </svg>
+            </button>
+            <div
+              class="container"
+            />
+            <button
+              class="nav-button btn expand_btn"
+              data-testid="shrink-toggle"
+            >
+              <svg
+                data-testid="left-arrow"
+                fill="currentColor"
+                height="1em"
+                stroke="currentColor"
+                stroke-width="0"
+                viewBox="0 0 24 24"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g>
+                  <path
+                    d="M0 0h24v24H0z"
+                    fill="none"
+                  />
+                  <path
+                    d="M10.828 12l4.95 4.95-1.414 1.414L8 12l6.364-6.364 1.414 1.414z"
+                  />
+                </g>
+              </svg>
+            </button>
+          </div>
+          <ul
+            class="link_list"
+          >
+            <li>
+              <div />
+            </li>
+            <li>
+              <div />
+            </li>
+            <li>
+              <div />
+            </li>
+          </ul>
+          <div />
+        </nav>
+        <button
+          class="nav-button menu_btn"
+          data-testid="menu-btn"
+        >
+          <svg
+            fill="currentColor"
+            height="1em"
+            stroke="currentColor"
+            stroke-width="0"
+            viewBox="0 0 24 24"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <g>
+              <path
+                d="M0 0h24v24H0z"
+                fill="none"
+              />
+              <path
+                d="M3 4h18v2H3V4zm0 7h18v2H3v-2zm0 7h18v2H3v-2z"
+              />
+            </g>
+          </svg>
+        </button>
+      </div>
+    </div>
   </div>,
   "debug": [Function],
   "findAllByAltText": [Function],
