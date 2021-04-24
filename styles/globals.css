@@ -5,6 +5,10 @@
   @apply text-white;
 }
 
+body {
+  @apply overflow-y-hidden;
+}
+
 button {
   cursor: pointer;
 }
