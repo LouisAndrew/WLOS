@@ -1,5 +1,6 @@
 .container {
-  @apply py-2 px-5 w-full border-l-4
+  border-right-color: transparent !important;
+  @apply py-2 px-5 w-full border-l-4 border-r-4 
     flex items-center rounded-sm
     border-transparent text-sm sm:text-base duration-200;
 }
