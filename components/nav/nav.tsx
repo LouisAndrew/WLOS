@@ -1,4 +1,5 @@
 import React, { FC, useState } from 'react'
+import { RiArrowLeftSLine, RiArrowRightSLine, RiCloseLine } from 'react-icons/ri'
 
 import { NavLink } from './nav-link'
 import { Avatar } from './avatar'
@@ -11,8 +12,24 @@ const Nav: FC<Props> = () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.upper_section}>
+      <div
+        className={`${styles.upper_section} ${shouldShrinkMenu ? styles.upper_section_wrap : ''}`}
+      >
+        <button className={`nav-button ${styles.btn} ${styles.close_btn}`}>
+          <RiCloseLine />
+        </button>
         <Avatar />
+        <button
+          className={`nav-button ${styles.btn} ${styles.expand_btn}`}
+          onClick={() => setShouldShrinkMenu((prev) => !prev)}
+          data-testid="shrink-toggle"
+        >
+          {shouldShrinkMenu ? (
+            <RiArrowRightSLine data-testid="right-arrow" />
+          ) : (
+            <RiArrowLeftSLine data-testid="left-arrow" />
+          )}
+        </button>
       </div>
       <ul className={styles.link_list}>
         <li>

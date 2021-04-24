@@ -70,7 +70,9 @@ const NavLink: FC<Props> = ({ type, className, shouldShrink = false }) => {
   return (
     <Link href={linkItem.link}>
       <button
-        className={`${styles.container} ${isActive ? styles.container_active : ''} ${className}`}
+        className={`nav-button ${styles.container} ${
+          isActive ? styles.container_active : ''
+        } ${className}`}
         type="button"
       >
         <linkItem.Icon className={styles.icon} />

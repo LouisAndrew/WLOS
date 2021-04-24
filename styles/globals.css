@@ -3,6 +3,14 @@
 * {
   letter-spacing: 2px;
 }
+
+button {
+  cursor: pointer;
+}
+
+.nav-button {
+  @apply text-gray-300 hover:bg-bg-gray hover:text-white focus:outline-none duration-200;
+}
 /* font-family: 'Raleway', sans-serif;
 font-family: 'Ubuntu', sans-serif; */
 
