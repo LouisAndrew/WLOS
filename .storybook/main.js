@@ -22,21 +22,6 @@ module.exports = {
       ],
       include: path.resolve(__dirname, '../'),
     })
-    config.module.rules.push({
-      test: /\.less$/,
-      loaders: [
-        'style-loader',
-        'css-loader',
-        // https://github.com/SolidZORO/next-plugin-antd-less/issues/30
-        {
-          loader: 'less-loader', // should not be ^8.0.0
-          options: {
-            lessOptions: { javascriptEnabled: true },
-          },
-        },
-      ],
-      include: path.resolve(__dirname, '../'),
-    })
     config.resolve.alias = {
       ...config.resolve.alias,
       '@c': path.resolve(__dirname, '../components/'),
