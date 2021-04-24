@@ -1,6 +1,7 @@
 import React, { FC, useState } from 'react'
 
 import { NavLink } from './nav-link'
+import { Avatar } from './avatar'
 import styles from './nav.module.css'
 
 export type Props = {}
@@ -10,7 +11,9 @@ const Nav: FC<Props> = () => {
 
   return (
     <div className={styles.container}>
-      <button onClick={() => setShouldShrinkMenu((prev) => !prev)}>Shrink menu</button>
+      <div className={styles.upper_section}>
+        <Avatar />
+      </div>
       <ul className={styles.link_list}>
         <li>
           <NavLink shouldShrink={shouldShrinkMenu} type="HOME" />
