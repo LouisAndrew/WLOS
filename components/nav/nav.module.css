@@ -4,6 +4,9 @@
   @apply grid h-screen bg-primary-gray px-5 py-5 duration-200 w-min;
 }
 
+.container_show_mobile {
+}
+
 .link_list {
   @apply block mb-auto;
 }
