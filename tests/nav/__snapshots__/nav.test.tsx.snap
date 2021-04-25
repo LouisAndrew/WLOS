@@ -6,7 +6,7 @@ Object {
   "baseElement": <body>
     <div>
       <nav
-        class="container container_show_mobile"
+        class="full-height container container_show_mobile"
       >
         <div
           class="upper_section "
@@ -83,7 +83,7 @@ Object {
   </body>,
   "container": <div>
     <nav
-      class="container container_show_mobile"
+      class="full-height container container_show_mobile"
     >
       <div
         class="upper_section "
