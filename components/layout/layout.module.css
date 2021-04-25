@@ -1,6 +1,5 @@
 .container {
-  height: -webkit-fill-content;
-  @apply h-screen w-full bg-bg-gray px-5 py-5 flex items-start relative flex-col 
+  @apply w-full bg-bg-gray px-5 py-5 flex items-start relative flex-col 
     sm:flex-row sm:py-10;
 }
 

@@ -20,7 +20,9 @@ const Nav: FC<Props> = ({ closeMenu, showMenu }) => {
   const [shouldShrinkMenu, setShouldShrinkMenu] = useState(false)
 
   return (
-    <nav className={`${styles.container} ${showMenu ? styles.container_show_mobile : ''}`}>
+    <nav
+      className={`full-height ${styles.container} ${showMenu ? styles.container_show_mobile : ''}`}
+    >
       <div
         className={`${styles.upper_section} ${shouldShrinkMenu ? styles.upper_section_wrap : ''}`}
       >
