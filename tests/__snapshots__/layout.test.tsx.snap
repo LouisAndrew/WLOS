@@ -6,13 +6,13 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="full-height container"
+        class="h-full-screen container"
       >
         <div
           class="header"
         >
           <nav
-            class="full-height container "
+            class="h-full-screen container "
           >
             <div
               class="upper_section "
@@ -115,13 +115,13 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="full-height container"
+      class="h-full-screen container"
     >
       <div
         class="header"
       >
         <nav
-          class="full-height container "
+          class="h-full-screen container "
         >
           <div
             class="upper_section "
