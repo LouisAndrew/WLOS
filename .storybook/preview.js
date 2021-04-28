@@ -10,3 +10,10 @@ export const parameters = {
     },
   },
 }
+export const decorators = [
+  (Story) => (
+    <div className="h-screen w-full bg-bg-gray relative">
+      <Story />
+    </div>
+  )
+]
