@@ -1,17 +1,14 @@
 import Head from 'next/head'
-import { Button } from 'antd'
 
-import styles from '../styles/Home.module.css'
+import { Layout } from '@c/layout'
 
 export default function Home() {
   return (
-    <div className={styles.container}>
+    <div>
       <Head>
         <title>Hello, world!</title>
       </Head>
-      <Button type="primary" loading>
-        CLICK ME!
-      </Button>
+      <Layout>Hello, world!</Layout>
     </div>
   )
 }

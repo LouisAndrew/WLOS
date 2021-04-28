@@ -1,8 +1,9 @@
 import 'tailwindcss/tailwind.css'
 import '../styles/globals.css'
-import '../styles/antd.less'
+import { useAppHeight } from '../hooks/useAppHeight'
 
 function MyApp({ Component, pageProps }) {
+  useAppHeight()
   return <Component {...pageProps} />
 }
 
