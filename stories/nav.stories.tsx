@@ -6,7 +6,14 @@ import Nav, { Props } from '@c/nav/nav'
 export default {
   title: 'Components/Navigation',
   component: Nav,
-  decorators: [withNextRouter],
+  decorators: [
+    withNextRouter,
+    (Story) => (
+      <div className="px-6 py-10">
+        <Story />
+      </div>
+    ),
+  ],
 }
 
 const Template: Story<Props> = (args) => <Nav {...args} />
