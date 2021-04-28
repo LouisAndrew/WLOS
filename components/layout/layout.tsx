@@ -10,7 +10,7 @@ const Layout: FC<Props> = ({ children }) => {
   const [showMenu, setShowMenu] = useState(false)
 
   return (
-    <div className={`full-height ${styles.container}`}>
+    <div className={`h-full-screen ${styles.container}`}>
       <div className={styles.header}>
         <Nav showMenu={showMenu} closeMenu={() => setShowMenu(false)} />
         <button

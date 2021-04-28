@@ -17,9 +17,16 @@ button {
   @apply text-gray-300 hover:bg-bg-gray hover:text-white focus:outline-none duration-200;
 }
 
-.full-height {
-  height: calc(100vh - 112px);
+.h-full-screen {
+  --custom-height: calc(var(--vh, 1vh) * 100);
+  height: var(--custom-height);
+  @supports (-webkit-appearance: none) {
+    .os-android & {
+      height: var(--custom-height);
+    }
+  }
+
   @screen sm {
-    @apply h-screen;
+    height: 100vh;
   }
 }
