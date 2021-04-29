@@ -28,6 +28,7 @@ module.exports = {
       '@lib': path.resolve(__dirname, '../lib/'),
       '@h': path.resolve(__dirname, '../hooks/'),
       '@t': path.resolve(__dirname, '../types/'),
+      "@v": path.resolve(__dirname, "../views/"),
       '@': path.resolve(__dirname, '../'),
     }
     config.resolve.extensions.push('.ts', '.tsx')

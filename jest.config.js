@@ -8,5 +8,6 @@ module.exports = {
     '^@lib/(.*)$': '<rootDir>/lib/$1',
     '^@t/(.*)$': '<rootDir>/types/$1',
     '^@h/(.*)$': '<rootDir>/hooks/$1',
+    '^@v/(.*)$': '<rootDir>/views/$1'
   },
 }
