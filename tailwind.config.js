@@ -9,6 +9,10 @@ module.exports = {
         'primary-gray':'#2C2B2B',
         'primary-yellow': "#E7D321",
         'secondary-gray': '#565656'
+      },
+      fontFamily: {
+        'body': ['Raleway', 'Arial', 'sans-serif'],
+        'display': ['Ubuntu', 'Arial', 'sans-serif']
       }
     },
   },
