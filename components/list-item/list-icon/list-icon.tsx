@@ -23,7 +23,11 @@ export type Props = {
 
 const ListIcon: FC<Props> = ({ color, Icon = RiQuestionLine, imgUrl }) => {
   return (
-    <div data-testid="wrapper" className={styles.wrapper} style={{ backgroundColor: color }}>
+    <div
+      data-testid="list-icon__wrapper"
+      className={styles.wrapper}
+      style={{ backgroundColor: color }}
+    >
       <div className={styles['content__wrapper']}>
         {imgUrl ? (
           <img src={imgUrl} alt="List item image" className={styles['content--img']} />

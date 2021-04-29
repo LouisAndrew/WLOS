@@ -1,0 +1,19 @@
+.wrapper {
+  @apply flex items-center bg-secondary-gray px-3 py-2 rounded;
+}
+
+.content {
+  @apply w-full ml-5;
+}
+
+.content__text {
+  @apply uppercase;
+}
+
+.menu-button {
+  @apply self-start block h-6 w-7 duration-200 hover:bg-bg-gray px-1 rounded;
+}
+
+.menu-button svg {
+  @apply h-full w-full;
+}
