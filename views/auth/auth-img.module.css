@@ -1,0 +1,22 @@
+.wrapper {
+  @apply relative bg-bg-gray flex flex-center;
+}
+
+.background-wrapper {
+  @apply absolute z-10 w-full h-full top-0 left-0 px-6
+    flex flex-col items-center justify-center;
+}
+
+.yellow-stripe {
+  transform: skew(-15deg) rotate(-5deg);
+  @apply h-24 w-full bg-primary-yellow;
+}
+
+.white-stripe {
+  transform: skew(-12deg) rotate(-5deg);
+  @apply h-28 w-4/5 bg-white mt-8;
+}
+
+.img-wrapper {
+  @apply w-full max-w-xs relative z-20;
+}
