@@ -34,5 +34,5 @@ module.exports = {
     return config
   },
   stories: ['../stories/**/*.stories.mdx', '../stories/**/*.stories.@(js|jsx|ts|tsx)'],
-  addons: ['@storybook/addon-links', '@storybook/addon-essentials', 'storybook-css-modules-preset'],
+  addons: ['@storybook/addon-links', '@storybook/addon-essentials', 'storybook-css-modules-preset', 'storybook-dark-mode'],
 }

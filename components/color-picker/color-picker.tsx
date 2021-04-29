@@ -3,7 +3,6 @@ import classname from 'classnames/bind'
 import { colorTable } from './base-colors'
 
 import styles from './color-picker.module.css'
-
 const cx = classname.bind(styles)
 
 export type Props = {
@@ -18,20 +17,29 @@ export type Props = {
 }
 
 const ColorPicker: FC<Props> = ({ defaultSelected, onColorChange }) => {
-  const [selectedColor, setSelectedColor] = useState(defaultSelected || '')
+  const checkIfColorCustomed = (color: string) =>
+    colorTable.findIndex(([_, colorCode]) => colorCode === color) === -1
 
-  const isColorCustomed =
-    colorTable.findIndex(([_, colorCode]) => colorCode === selectedColor) === -1
+  const [selectedColor, setSelectedColor] = useState(defaultSelected || '')
+  const [isColorCustomed, setIsColorCustomed] = useState(checkIfColorCustomed(selectedColor))
 
   const handleChangeCustomColor = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value
 
-    if (value[0] === '#' || value === '') {
-      setSelectedColor(value)
+    if (value.length > 7) {
+      return
     }
+
+    if (value === '' || value[0] === '#') {
+      setSelectedColor(value)
+      return
+    }
+
+    setSelectedColor(`#${value}`)
   }
 
   useEffect(() => {
+    setIsColorCustomed(checkIfColorCustomed(selectedColor))
     onColorChange(selectedColor)
   }, [selectedColor])
 
@@ -42,13 +50,18 @@ const ColorPicker: FC<Props> = ({ defaultSelected, onColorChange }) => {
 
   return (
     <div className={styles.container} data-testid="wrapper">
-      <h3>Colors</h3>
-      <div className={styles['color-selector-wrapper']}>
+      <h3 className="heading heading-3 pb-2">Colors</h3>
+      <div className={styles['color-selector__wrapper']}>
         {colorTable.map(([colorName, colorCode]) => {
           const isColorActive = selectedColor === colorCode
           const colorId = `color-selector-${colorName}`
           const colorSelectorClass = cx({
             'color-selector': true,
+            group: true,
+            'is-active': isColorActive,
+          })
+          const colorSelectorMarkerClass = cx({
+            'color-selector__marker': true,
             'is-active': isColorActive,
           })
           return (
@@ -59,20 +72,27 @@ const ColorPicker: FC<Props> = ({ defaultSelected, onColorChange }) => {
               className={colorSelectorClass}
               onClick={() => setSelectedColor(colorCode)}
             >
-              {isColorActive && <div className={styles['color-selector__active-marker']} />}
+              <div className={colorSelectorMarkerClass} />
             </button>
           )
         })}
       </div>
-      <label htmlFor="custom-color">
+      <label htmlFor="custom-color" className="block body mt-3">
         Custom color
-        <div>
+        <div className={styles['custom-color__input-wrapper']}>
           <div
             data-testid="custom-color-preview"
             className={customColorPreviewClass}
-            style={{ backgroundColor: isColorCustomed ? selectedColor : 'transparent' }}
+            style={{ backgroundColor: selectedColor }}
           />
-          <input type="text" id="custom-color" onChange={handleChangeCustomColor} />
+          <input
+            type="text"
+            id="custom-color"
+            onChange={handleChangeCustomColor}
+            placeholder="#"
+            value={selectedColor}
+            className={styles['custom-color__input']}
+          />
         </div>
       </label>
     </div>
