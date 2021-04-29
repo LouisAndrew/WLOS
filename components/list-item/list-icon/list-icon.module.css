@@ -1,0 +1,18 @@
+.wrapper {
+  padding: 3px;
+  @apply w-max rounded;
+}
+
+.content__wrapper {
+  padding: 3px;
+  @apply bg-white bg-opacity-60 rounded;
+}
+
+.content {
+  @apply h-6 w-6;
+}
+
+.content--img {
+  transform: scale(1.2);
+  @apply h-6 w-6 rounded;
+}
