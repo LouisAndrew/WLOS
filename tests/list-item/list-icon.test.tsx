@@ -11,7 +11,7 @@ const Component = <ListIcon color={colorCodes.yellow} />
 describe('List icon component', () => {
   it('renders the component', () => {
     const { queryByTestId } = render(Component)
-    expect(queryByTestId('wrapper')).toBeInTheDocument()
+    expect(queryByTestId('list-icon__wrapper')).toBeInTheDocument()
   })
 
   it('renders an icon even if `imgUrl` and `Icon` props is not defined', () => {
@@ -21,7 +21,9 @@ describe('List icon component', () => {
 
   it("applies color to the wrapper's background color and icon fill", () => {
     const { getByTestId, getByRole, debug } = render(Component)
-    expect(getByTestId('wrapper').style.backgroundColor.toUpperCase()).toBe(YELLOW_RGB_COLOR_CODE)
+    expect(getByTestId('list-icon__wrapper').style.backgroundColor.toUpperCase()).toBe(
+      YELLOW_RGB_COLOR_CODE
+    )
     debug()
     expect(getByRole('img').getAttribute('fill')).toBe(colorCodes.yellow.toUpperCase())
   })

@@ -1,5 +1,5 @@
 .wrapper {
-  padding: 3px;
+  padding: 2px;
   @apply w-max rounded;
 }
 
@@ -13,6 +13,6 @@
 }
 
 .content--img {
-  transform: scale(1.2);
+  transform: scale(1.3);
   @apply h-6 w-6 rounded;
 }

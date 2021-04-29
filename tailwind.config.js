@@ -9,7 +9,7 @@ module.exports = {
         'bg-gray': '#383737',
         'primary-gray': '#2C2B2B',
         'primary-yellow': '#E7D321',
-        'secondary-gray': '#565656',
+        'secondary-gray': '#252525',
         'secondary-yellow': '#F2E889',
         'shade-yellow' :'#FFF8B7'
       },
