@@ -1,0 +1,15 @@
+.wrapper {
+  @apply uppercase font-display font-medium w-max px-0.5 py-0.5 rounded-sm flex flex-center;
+}
+
+.content__wrapper {
+  @apply h-full w-full bg-white bg-opacity-60 px-1 flex items-center;
+}
+
+.content {
+  @apply text-sm text-center align-text-bottom;
+}
+
+.clear-button {
+  @apply ml-1;
+}
