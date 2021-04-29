@@ -1,3 +1,4 @@
+const plugin = require('tailwindcss/plugin')
 
 module.exports = {
   purge: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
@@ -6,19 +7,33 @@ module.exports = {
     extend: {
       colors: {
         'bg-gray': '#383737',
-        'primary-gray':'#2C2B2B',
-        'primary-yellow': "#E7D321",
-        'secondary-gray': '#565656'
+        'primary-gray': '#2C2B2B',
+        'primary-yellow': '#E7D321',
+        'secondary-gray': '#565656',
       },
       fontFamily: {
-        'body': ['Raleway', 'Arial', 'sans-serif'],
-        'display': ['Ubuntu', 'Arial', 'sans-serif']
-      }
+        body: ['Raleway', 'Arial', 'sans-serif'],
+        display: ['Ubuntu', 'Arial', 'sans-serif'],
+      },
     },
   },
   variants: {
-    extend: {},
+    extend: {
+      height: ['hover', 'focus'],
+      width: ['hover', 'focus']
+    },
   },
   plugins: [
+    plugin(function ({ addUtilities }) {
+      const newUtils = {
+        '.flex-center': {
+          alignItems: 'center',
+          justifyContent: 'center',
+        },
+      }
+
+      addUtilities(newUtils)
+    }),
+  
   ],
 }

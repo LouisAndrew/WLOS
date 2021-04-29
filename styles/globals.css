@@ -1,5 +1,39 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400&family=Ubuntu:wght@300;400;500;700&display=swap');
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  input {
+    @apply bg-transparent font-body text-sm placeholder-gray-500
+      py-1 duration-200 focus:outline-none;
+  }
+
+  input:active,
+  input:target {
+    outline: none;
+  }
+}
+
+@layer components {
+  .heading {
+    @apply font-display font-bold;
+  }
+
+  .body {
+    @apply font-body font-light;
+  }
+
+  .heading-3 {
+    @apply text-xl;
+  }
+
+  .input-wrapper {
+    @apply bg-primary-gray;
+  }
+}
+
 * {
   letter-spacing: 2px;
   @apply text-white;
