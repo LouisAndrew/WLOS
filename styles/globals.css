@@ -14,6 +14,10 @@
   input:target {
     outline: none;
   }
+
+  button {
+    @apply focus:outline-none;
+  }
 }
 
 @layer components {

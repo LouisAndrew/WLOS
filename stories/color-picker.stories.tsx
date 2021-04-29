@@ -16,3 +16,9 @@ export const Default = Template.bind({})
 Default.args = {
   onColorChange,
 }
+
+export const Picked = Template.bind({})
+Picked.args = {
+  onColorChange,
+  defaultSelected: '#af4e12',
+}
