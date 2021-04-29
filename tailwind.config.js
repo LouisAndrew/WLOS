@@ -10,6 +10,8 @@ module.exports = {
         'primary-gray': '#2C2B2B',
         'primary-yellow': '#E7D321',
         'secondary-gray': '#565656',
+        'secondary-yellow': '#F2E889',
+        'shade-yellow' :'#FFF8B7'
       },
       fontFamily: {
         body: ['Raleway', 'Arial', 'sans-serif'],
@@ -20,7 +22,9 @@ module.exports = {
   variants: {
     extend: {
       height: ['hover', 'focus', 'group-hover'],
-      width: ['hover', 'focus', 'group-hover']
+      width: ['hover', 'focus', 'group-hover'],
+      filter: ['hover'],
+      brightness: ['hover']
     },
   },
   plugins: [
