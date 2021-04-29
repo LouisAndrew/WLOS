@@ -79,11 +79,14 @@ const ColorPicker: FC<Props> = ({ defaultSelected, onColorChange }) => {
       </div>
       <label htmlFor="custom-color" className="block body mt-3">
         Custom color
-        <div className={styles['custom-color__input-wrapper']}>
+        <div
+          className={styles['custom-color__input-wrapper']}
+          style={{ borderColor: selectedColor }}
+        >
           <div
             data-testid="custom-color-preview"
             className={customColorPreviewClass}
-            style={{ backgroundColor: selectedColor }}
+            style={{ backgroundColor: selectedColor, borderColor: selectedColor }}
           />
           <input
             type="text"

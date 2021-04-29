@@ -19,6 +19,7 @@ export const colorCodes: ColorCode = {
   indigo: '#6366F1',
   pink: '#EC4899',
   black: '#0E0E0E',
+  // black: '#8A8A8A',
   white: '#FFFFFF',
 }
 

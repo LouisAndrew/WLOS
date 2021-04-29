@@ -11,8 +11,8 @@
 }
 
 .color-selector__marker {
-  @apply duration-200 h-2 w-2 opacity-0 group-hover:opacity-100 rounded-full
-    bg-primary-gray;
+  /* background-color: #333; */
+  @apply duration-200 h-2 w-2 opacity-0 group-hover:opacity-100 rounded-full bg-bg-gray;
 }
 
 .color-selector__marker.is-active {
@@ -24,7 +24,7 @@
 }
 
 .custom-color__input-wrapper {
-  @apply bg-bg-gray mt-2 rounded flex items-center py-1 px-3 w-48;
+  @apply bg-bg-gray mt-2 rounded flex items-center py-1 px-3 w-48 border-2 border-bg-gray;
 }
 
 .custom-color__input {
