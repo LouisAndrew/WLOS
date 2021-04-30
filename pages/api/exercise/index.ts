@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-import userApiHandler from '@lib/API/user'
+import exerciseApiHandler from '@lib/API/exercise'
 import { isError } from '@lib/API/helper'
 
 export default async (request: NextApiRequest, response: NextApiResponse) => {
@@ -8,7 +8,7 @@ export default async (request: NextApiRequest, response: NextApiResponse) => {
   switch (method) {
     case 'GET': {
       const {
-        query: { uuid },
+        query: { uuid, getAll },
       } = request
       if (!uuid) {
         response.status(400).send({ msg: 'Please add uuid to the url query' })
@@ -20,7 +20,10 @@ export default async (request: NextApiRequest, response: NextApiResponse) => {
         return
       }
 
-      const serviceResponse = await userApiHandler.getUser(uuid as string)
+      const serviceResponse = await exerciseApiHandler.getSavedExercise(
+        uuid as string,
+        getAll as string
+      )
       if (isError(serviceResponse)) {
         response.status(400).send({ msg: serviceResponse.error.msg })
         return
@@ -32,37 +35,32 @@ export default async (request: NextApiRequest, response: NextApiResponse) => {
 
     case 'POST': {
       const { body } = request
-      if (!body || !body.uuid) {
+      if (!body || !body.name || !body.uuid) {
         response.status(400).send({ msg: 'Invalid data posted' })
         return
       }
-
-      const serviceResponse = await userApiHandler.createUser(body)
+      const { uuid, ...exercise } = body
+      const serviceResponse = await exerciseApiHandler.createExercise(uuid, exercise)
       if (isError(serviceResponse)) {
         response.status(400).send({ msg: serviceResponse.error.msg })
         return
       }
-
       response.send({ ...serviceResponse })
       return
     }
 
     case 'PUT': {
-      const {
-        body,
-        query: { uuid },
-      } = request
-      if (!body || !uuid) {
+      const { body } = request
+      if (!body || !body.id || !body.uuid) {
         response.status(400).send({ msg: 'Invalid data posted' })
         return
       }
-
-      const serviceResponse = await userApiHandler.updateUser(uuid as string, body)
+      const { uuid, ...exercise } = body
+      const serviceResponse = await exerciseApiHandler.updateExercise(uuid, exercise)
       if (isError(serviceResponse)) {
         response.status(400).send({ msg: serviceResponse.error.msg })
         return
       }
-
       response.send({ ...serviceResponse })
       return
     }

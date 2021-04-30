@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-import userApiHandler from '@lib/API/user'
+import logApiHandler from '@lib/API/log'
 import { isError } from '@lib/API/helper'
 
 export default async (request: NextApiRequest, response: NextApiResponse) => {
@@ -20,7 +20,7 @@ export default async (request: NextApiRequest, response: NextApiResponse) => {
         return
       }
 
-      const serviceResponse = await userApiHandler.getUser(uuid as string)
+      const serviceResponse = await logApiHandler.getUserSavedLogs(uuid as string)
       if (isError(serviceResponse)) {
         response.status(400).send({ msg: serviceResponse.error.msg })
         return
@@ -32,39 +32,36 @@ export default async (request: NextApiRequest, response: NextApiResponse) => {
 
     case 'POST': {
       const { body } = request
-      if (!body || !body.uuid) {
+      if (!body || !body.logData || !body.uuid || !body.logData.date || !body.logData.template_id) {
         response.status(400).send({ msg: 'Invalid data posted' })
         return
       }
-
-      const serviceResponse = await userApiHandler.createUser(body)
+      const { uuid, logData } = body
+      const serviceResponse = await logApiHandler.createLog(uuid, logData)
       if (isError(serviceResponse)) {
         response.status(400).send({ msg: serviceResponse.error.msg })
         return
       }
-
       response.send({ ...serviceResponse })
       return
     }
 
     case 'PUT': {
-      const {
-        body,
-        query: { uuid },
-      } = request
-      if (!body || !uuid) {
-        response.status(400).send({ msg: 'Invalid data posted' })
-        return
-      }
-
-      const serviceResponse = await userApiHandler.updateUser(uuid as string, body)
-      if (isError(serviceResponse)) {
-        response.status(400).send({ msg: serviceResponse.error.msg })
-        return
-      }
-
-      response.send({ ...serviceResponse })
+      response.status(401).send({ msg: 'Not yet supported' })
       return
+      // const { body } = request
+      // if (!body || !body.id || !body.uuid) {
+      //   response.status(400).send({ msg: 'Invalid data posted' })
+      //   return
+      // }
+      // const { uuid, ...exercise } = body
+      // const serviceResponse = await exerciseApiHandler.updateExercise(uuid, exercise)
+      // if (isError(serviceResponse)) {
+      //   response.status(400).send({ msg: serviceResponse.error.msg })
+      //   return
+      // }
+      // response.send(serviceResponse)
+      // return
     }
 
     case 'DELETE': {

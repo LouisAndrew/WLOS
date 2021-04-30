@@ -1,14 +1,14 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-import userApiHandler from '@lib/API/user'
+import templateApiHandler from '@lib/API/template'
 import { isError } from '@lib/API/helper'
+import { TemplateType } from '@t/tables/Template'
 
 export default async (request: NextApiRequest, response: NextApiResponse) => {
   const { method } = request
-
   switch (method) {
     case 'GET': {
       const {
-        query: { uuid },
+        query: { uuid, getDefault, type, getData },
       } = request
       if (!uuid) {
         response.status(400).send({ msg: 'Please add uuid to the url query' })
@@ -20,7 +20,12 @@ export default async (request: NextApiRequest, response: NextApiResponse) => {
         return
       }
 
-      const serviceResponse = await userApiHandler.getUser(uuid as string)
+      const serviceResponse = await templateApiHandler.getUserTemplates(
+        uuid as string,
+        !!getDefault && getDefault === 'true',
+        type ? (parseInt(type as string, 10) as TemplateType) : undefined,
+        !!getData && getData === 'true'
+      )
       if (isError(serviceResponse)) {
         response.status(400).send({ msg: serviceResponse.error.msg })
         return
@@ -32,37 +37,35 @@ export default async (request: NextApiRequest, response: NextApiResponse) => {
 
     case 'POST': {
       const { body } = request
-      if (!body || !body.uuid) {
+      if (!body || !body.template || !body.uuid || !body.template.name) {
         response.status(400).send({ msg: 'Invalid data posted' })
         return
       }
+      const { uuid, template } = body
 
-      const serviceResponse = await userApiHandler.createUser(body)
+      const serviceResponse = await templateApiHandler.createTemplate(uuid, template)
       if (isError(serviceResponse)) {
         response.status(400).send({ msg: serviceResponse.error.msg })
         return
       }
-
       response.send({ ...serviceResponse })
       return
     }
 
     case 'PUT': {
-      const {
-        body,
-        query: { uuid },
-      } = request
-      if (!body || !uuid) {
+      const { body } = request
+      if (!body || !body.template || !body.uuid || !body.template.id) {
         response.status(400).send({ msg: 'Invalid data posted' })
         return
       }
 
-      const serviceResponse = await userApiHandler.updateUser(uuid as string, body)
+      const { uuid, template } = body
+
+      const serviceResponse = await templateApiHandler.updateTemplate(uuid, template)
       if (isError(serviceResponse)) {
         response.status(400).send({ msg: serviceResponse.error.msg })
         return
       }
-
       response.send({ ...serviceResponse })
       return
     }
