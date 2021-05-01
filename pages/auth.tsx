@@ -1,5 +1,5 @@
-import { AuthImage } from '../views/auth'
+import { Auth as AuthView } from '../views/auth'
 
 export default function Auth() {
-  return <AuthImage />
+  return <AuthView />
 }

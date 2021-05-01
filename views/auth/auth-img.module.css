@@ -18,5 +18,5 @@
 }
 
 .img-wrapper {
-  @apply w-full max-w-xs relative z-20;
+  @apply max-w-xs relative z-20 w-3/4;
 }

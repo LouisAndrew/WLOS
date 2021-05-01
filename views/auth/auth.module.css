@@ -1,0 +1,16 @@
+.wrapper {
+  @apply p-6 bg-bg-gray;
+}
+
+.auth-image__wrapper {
+  @apply px-12 flex flex-col justify-center h-full;
+}
+
+.auth-image__heading {
+  letter-spacing: 0.5rem;
+  @apply text-base mt-4 italic;
+}
+
+.auth-image__next-btn {
+  @apply py-0 self-end mt-12;
+}

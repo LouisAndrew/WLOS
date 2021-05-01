@@ -9,6 +9,7 @@ module.exports = {
     '^@t/(.*)$': '<rootDir>/types/$1',
     '^@h/(.*)$': '<rootDir>/hooks/$1',
     '^@/mock/(.*)$':'<rootDir>/mock/$1',
-    '^@v/(.*)$': '<rootDir>/views/$1'
+    '^@v/(.*)$': '<rootDir>/views/$1',
+    '^@tests/(.*)$': '<rootDir>/tests/$1'
   },
 }
