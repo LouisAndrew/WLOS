@@ -18,19 +18,32 @@
   button {
     @apply focus:outline-none;
   }
-}
 
-@layer components {
-  .heading {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
     @apply font-display font-bold;
   }
 
-  .body {
-    @apply font-body font-light;
+  h1 {
+    @apply text-3xl;
   }
 
-  .heading-3 {
+  h3 {
     @apply text-xl;
+  }
+
+  h5 {
+    letter-spacing: 0.4em;
+    @apply text-shade-gray text-sm;
+  }
+}
+
+@layer components {
+  .body {
+    @apply font-body font-light;
   }
 
   .input-wrapper {
@@ -79,6 +92,7 @@ button {
 .h-full-screen {
   --custom-height: calc(var(--vh, 1vh) * 100);
   height: var(--custom-height);
+  overflow-y: scroll;
   @supports (-webkit-appearance: none) {
     .os-android & {
       height: var(--custom-height);
