@@ -70,18 +70,18 @@ Object {
               <span
                 class="text-primary-yellow block"
               >
-                Create an account
+                Login Now.
               </span>
             </h1>
             <div
               class="breadcrumb"
             >
-              Already have an account?
+              If you are new
                /
               <button
                 class="btn btn--secondary btn--text inline-block"
               >
-                Sign in
+                Create New Account
               </button>
             </div>
             <form
@@ -120,10 +120,16 @@ Object {
               </label>
               <button
                 class="btn btn--primary mb-3 mt-12 button"
-                data-testid="sign-up"
+                data-testid="sign-in"
                 type="submit"
               >
-                Sign Up
+                Sign In
+              </button>
+              <button
+                class="btn btn--secondary button"
+                data-testid="sign-in-google"
+              >
+                Sign In with Google
               </button>
             </form>
           </div>
@@ -197,18 +203,18 @@ Object {
             <span
               class="text-primary-yellow block"
             >
-              Create an account
+              Login Now.
             </span>
           </h1>
           <div
             class="breadcrumb"
           >
-            Already have an account?
+            If you are new
              /
             <button
               class="btn btn--secondary btn--text inline-block"
             >
-              Sign in
+              Create New Account
             </button>
           </div>
           <form
@@ -247,10 +253,16 @@ Object {
             </label>
             <button
               class="btn btn--primary mb-3 mt-12 button"
-              data-testid="sign-up"
+              data-testid="sign-in"
               type="submit"
             >
-              Sign Up
+              Sign In
+            </button>
+            <button
+              class="btn btn--secondary button"
+              data-testid="sign-in-google"
+            >
+              Sign In with Google
             </button>
           </form>
         </div>

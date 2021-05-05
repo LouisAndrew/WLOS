@@ -12,7 +12,7 @@ const signUp = jest.fn()
 afterEach(cleanup)
 beforeEach(() => {
   mockNextUseRouter({
-    query: { 'sign-in': '' },
+    asPath: '/auth?sign-in',
   })
 })
 
@@ -101,7 +101,7 @@ describe('Auth form component', () => {
 
   describe('renders appropriate buttons on sign-up', () => {
     beforeEach(() => {
-      mockNextUseRouter({ query: { 'sign-up': '' } })
+      mockNextUseRouter({ asPath: '/auth?sign-up' })
       mockUseAuth({
         signIn,
         signInWithGoogle,

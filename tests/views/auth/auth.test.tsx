@@ -1,12 +1,12 @@
 import { render, cleanup } from '@testing-library/react'
+import { mockNextUseRouter } from '@tests/utils/mockNextRouter'
 import { Auth } from '@v/auth'
 
-jest.mock('next/router', () => ({
-  useRouter: () => ({
-    query: '',
-    replace: () => {},
-  }),
-}))
+beforeEach(() => {
+  mockNextUseRouter({
+    asPath: '',
+  })
+})
 afterEach(cleanup)
 
 const Component = <Auth />

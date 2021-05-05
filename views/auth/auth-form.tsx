@@ -22,8 +22,6 @@ const texts: Record<AuthState, { btnText: string; headingText: string }> = {
   },
 }
 
-const isSigningIn = (query: object) => query['sign-in'] !== undefined
-
 const AuthForm: FC<Props> = () => {
   const router = useRouter()
   const { signIn, signInWithGoogle, signUp } = useAuth()
@@ -37,16 +35,16 @@ const AuthForm: FC<Props> = () => {
   const headingText = authState === 'SIGN_IN' ? 'Login Now.' : 'Create an account'
 
   useEffect(() => {
-    if (!router.query['sign-in'] || !router.query['sign-up']) {
-      setAuthState('SIGN_IN')
-      router.replace('auth?sign-in', undefined, { shallow: true })
+    const path = router.asPath.replace('/auth?', '')
+
+    if (path === 'sign-up') {
+      setAuthState('SIGN_UP')
       return
     }
-    setAuthState(isSigningIn(router.query) ? 'SIGN_IN' : 'SIGN_UP')
+    setAuthState('SIGN_IN')
   }, [])
 
   useEffect(() => {
-    console.log('watching auth')
     router.replace(`auth?${authState.toLowerCase().split('_').join('-')}`, undefined, {
       shallow: true,
     })
