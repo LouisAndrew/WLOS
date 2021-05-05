@@ -37,6 +37,11 @@ const AuthForm: FC<Props> = () => {
   const headingText = authState === 'SIGN_IN' ? 'Login Now.' : 'Create an account'
 
   useEffect(() => {
+    if (!router.query['sign-in'] || !router.query['sign-up']) {
+      setAuthState('SIGN_IN')
+      router.replace('auth?sign-in', undefined, { shallow: true })
+      return
+    }
     setAuthState(isSigningIn(router.query) ? 'SIGN_IN' : 'SIGN_UP')
   }, [])
 
