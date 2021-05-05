@@ -1,0 +1,21 @@
+.wrapper {
+  @apply flex  flex-col items-center;
+}
+
+.input-group {
+}
+
+.input {
+  @apply text-xl text-center font-display;
+}
+
+.input.error {
+  @apply text-red-400;
+}
+
+.input-separator {
+}
+
+.placeholder {
+  @apply font-body font-light text-sm;
+}

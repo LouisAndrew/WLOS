@@ -24,7 +24,6 @@ describe('List icon component', () => {
     expect(getByTestId('list-icon__wrapper').style.backgroundColor.toUpperCase()).toBe(
       YELLOW_RGB_COLOR_CODE
     )
-    debug()
     expect(getByRole('img').getAttribute('fill')).toBe(colorCodes.yellow.toUpperCase())
   })
 
