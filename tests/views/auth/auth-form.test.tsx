@@ -64,10 +64,12 @@ describe('Auth form component', () => {
     })
 
     it('calls the `signIn` button when sign in button is clicked and inputs are filled', () => {
-      const { getByLabelText: g, getByRole: gRole, debug } = render(Component)
+      const { getByLabelText: g, getByRole: gRole, debug, getByPlaceholderText: gptxt } = render(
+        Component
+      )
 
       const usernameInput = g('Username')
-      const passwordInput = g('Password')
+      const passwordInput = gptxt('Password')
 
       fireEvent.change(usernameInput, { target: { value: username } })
       fireEvent.change(passwordInput, { target: { value: password } })
@@ -128,9 +130,9 @@ describe('Auth form component', () => {
     })
 
     it('calls the `signIn` button when sign in button is clicked and inputs are filled', () => {
-      const { getByRole: gRole, getByLabelText: g } = render(Component)
+      const { getByRole: gRole, getByLabelText: g, getByPlaceholderText: gptxt } = render(Component)
       const usernameInput = g('Username')
-      const passwordInput = g('Password')
+      const passwordInput = gptxt('Password')
 
       fireEvent.change(usernameInput, { target: { value: username } })
       fireEvent.change(passwordInput, { target: { value: password } })
