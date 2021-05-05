@@ -35,6 +35,9 @@ module.exports = {
           alignItems: 'center',
           justifyContent: 'center',
         },
+        '.tracking-extrawide': {
+          letterSpacing: '0.35em'
+        }
       }
 
       addUtilities(newUtils)

@@ -9,16 +9,19 @@ export function mockNextUseRouter({
   pathname = '',
   asPath = '',
   query = '',
+  replace = () => {},
 }: {
   route?: string
   pathname?: string
   query?: string | object
   asPath?: string
+  replace?: (path?: string) => void
 }) {
   useRouter.mockImplementation(() => ({
-    route: route,
-    pathname: pathname,
-    query: query,
-    asPath: asPath,
+    route,
+    pathname,
+    query,
+    asPath,
+    replace,
   }))
 }

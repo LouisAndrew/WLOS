@@ -4,6 +4,7 @@ import { Auth } from '@v/auth'
 jest.mock('next/router', () => ({
   useRouter: () => ({
     query: '',
+    replace: () => {},
   }),
 }))
 afterEach(cleanup)

@@ -1,0 +1,25 @@
+.wrapper {
+  @apply flex flex-col justify-center h-full;
+}
+
+/* .pass-icon {
+  fill: theme('colors.primary-yellow');
+  @apply absolute bottom-4 right-4 h-6 w-6 cursor-pointer;
+} */
+
+.breadcrumb {
+  @apply text-shade-gray font-display text-sm tracking-extrawide mt-3;
+}
+
+.button {
+  @apply w-full justify-center text-base py-3 md:text-sm;
+}
+
+.password-toggle {
+  @apply absolute bottom-4 right-4 cursor-pointer md:bottom-3 text-primary-yellow duration-200
+    opacity-0;
+}
+
+.password-toggle.show {
+  @apply opacity-100;
+}
