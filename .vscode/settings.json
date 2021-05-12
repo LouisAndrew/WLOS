@@ -1,5 +1,6 @@
 {
   "[typescriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
+  },
+  "vscodeGitCommit.template": ["{prefix}({scope}): {message}"]
 }

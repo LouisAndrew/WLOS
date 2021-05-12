@@ -9,33 +9,37 @@ const cx = classname.bind(styles)
 
 export type Props = {
   /**
-   * max number of digits
+   * Max number of digits.
    */
   maxDigit: number
   /**
-   * placeholder for the ranged input
+   * Placeholder for the ranged input.
    */
   placeholder?: string
   /**
-   * identifier if the input is editable
+   * Identifier if the input is editable.
    */
   isEditable?: boolean
   /**
-   * change function whenever value is changed
+   * Change function whenever value is changed.
    */
-  onChange: (start: number, end?: number) => void
+  onChange?: (start: number, end?: number) => void
   /**
-   * custom styling for the component
+   * Custom styling for the component.
    */
   className?: string
   /**
-   * default value for start
+   * Default value for start.
    */
   defaultStart?: number
   /**
-   * default value for end
+   * Default value for end.
    */
   defaultEnd?: number
+  /**
+   * Custom test-id for testing purposes.
+   */
+  testId?: string
   [key: string]: any
 }
 
@@ -47,6 +51,7 @@ const RangedInput: FC<Props> = ({
   defaultStart,
   className,
   isEditable = false,
+  testId = '',
   ...props
 }) => {
   const [start, setStart] = useState(defaultStart || -1)
@@ -185,7 +190,7 @@ const RangedInput: FC<Props> = ({
   }
 
   const collapseUnecessary = () => {
-    if (end === start || end < start) {
+    if (end === start) {
       setShouldEndRender(false)
       setShouldSeparatorRender(false)
     }
@@ -193,7 +198,7 @@ const RangedInput: FC<Props> = ({
 
   useEffect(() => {
     setShouldEndShowError(end < start)
-  }, [end])
+  }, [end, start])
 
   useEffect(() => {
     const shouldCallWithEnd = end !== -1 && end > start
@@ -245,6 +250,7 @@ const RangedInput: FC<Props> = ({
           placeholder={inputPlaceholder}
           required
           aria-label="Range start"
+          data-testid={`${testId}-range-start`}
         />
         <input
           ref={separatorInput}
@@ -258,6 +264,7 @@ const RangedInput: FC<Props> = ({
             opacity: shouldSeparatorRender ? 1 : 0,
           }}
           aria-label="Range separator"
+          data-testid={`${testId}-range-separator`}
         />
         <input
           value={end === -1 ? '' : end}
@@ -271,6 +278,7 @@ const RangedInput: FC<Props> = ({
           }}
           placeholder={inputPlaceholder}
           aria-label="Range end"
+          data-testid={`${testId}-range-end`}
         />
       </div>
       <div className={styles.placeholder}>{placeholder.toUpperCase()}</div>
