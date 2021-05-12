@@ -1,0 +1,44 @@
+.container {
+  grid-template-rows: auto 1fr auto;
+  @apply grid bg-primary-gray px-5 py-5 duration-200 w-full flex-shrink-0
+    absolute -left-full top-0 sm:relative sm:-left-5 sm:-top-10 sm:w-max;
+}
+
+.container_show_mobile {
+  @apply left-0 sm:-left-10;
+}
+
+.link_list {
+  @apply block mb-auto;
+}
+
+.link_list li {
+  @apply my-2;
+}
+
+.settings_btn {
+  margin-top: auto;
+}
+
+.upper_section {
+  @apply flex justify-between items-center mb-3;
+}
+
+.upper_section_wrap {
+  @apply sm:flex-col sm:justify-center;
+}
+
+.upper_section_wrap .expand_btn {
+  @apply sm:mt-4;
+}
+
+.btn svg {
+  @apply h-6 w-6 sm:w-8 sm:h-8;
+}
+
+.expand_btn {
+  @apply rounded-sm hidden sm:block;
+}
+.close_btn {
+  @apply block sm:hidden;
+}

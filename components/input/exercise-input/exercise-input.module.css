@@ -1,0 +1,14 @@
+.wrapper {
+}
+
+.name-input {
+  @apply text-2xl text-primary-yellow font-bold pl-2;
+}
+
+.ranges {
+  @apply flex items-center;
+}
+
+.ranges-separator {
+  @apply h-5 w-5 mx-3;
+}

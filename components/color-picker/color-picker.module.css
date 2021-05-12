@@ -1,0 +1,32 @@
+.container {
+  @apply bg-primary-gray px-5 py-4;
+}
+
+.color-selector__wrapper {
+  @apply flex flex-wrap;
+}
+
+.color-selector {
+  @apply h-5 w-5 flex flex-center rounded-full mr-2 my-1 focus:outline-none flex-shrink-0;
+}
+
+.color-selector__marker {
+  /* background-color: #333; */
+  @apply duration-200 h-2 w-2 opacity-0 group-hover:opacity-100 rounded-full bg-bg-gray;
+}
+
+.color-selector__marker.is-active {
+  @apply w-3 h-3 opacity-100;
+}
+
+.custom-color__preview {
+  @apply h-6 w-6 border-gray-500 border-2 rounded-full duration-200 mr-3 flex-shrink-0;
+}
+
+.custom-color__input-wrapper {
+  @apply bg-bg-gray mt-2 rounded flex items-center py-1 px-3 w-48 border-2 border-bg-gray;
+}
+
+.custom-color__input {
+  @apply font-display text-xl placeholder-gray-500 uppercase w-36;
+}
