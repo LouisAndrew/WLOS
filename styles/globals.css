@@ -1,10 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400&family=Ubuntu:wght@300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600&family=Ubuntu:wght@300;400;500;700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
+  label {
+    letter-spacing: 0.4em;
+    @apply font-body font-bold uppercase text-sm;
+  }
+
   input {
     @apply bg-transparent font-body text-sm placeholder-gray-500
       py-1 duration-200 focus:outline-none;
@@ -18,19 +23,32 @@
   button {
     @apply focus:outline-none;
   }
-}
 
-@layer components {
-  .heading {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
     @apply font-display font-bold;
   }
 
-  .body {
-    @apply font-body font-light;
+  h1 {
+    @apply text-3xl md:text-2xl;
   }
 
-  .heading-3 {
+  h3 {
     @apply text-xl;
+  }
+
+  h5 {
+    letter-spacing: 0.4em;
+    @apply text-shade-gray text-sm;
+  }
+}
+
+@layer components {
+  .body {
+    @apply font-body font-light;
   }
 
   .input-wrapper {
@@ -57,6 +75,22 @@
   .btn--ghost-yellow {
     @apply hover:bg-secondary-yellow hover:text-bg-gray;
   }
+
+  .btn--text {
+    @apply border-transparent py-0 bg-transparent;
+  }
+
+  .input {
+    @apply py-3 px-5 rounded block w-full mt-1 text-lg border-2 border-transparent md:text-sm;
+  }
+
+  .input--primary {
+    @apply bg-shade-yellow text-bg-gray placeholder-primary-yellow;
+  }
+
+  .input--secondary {
+    @apply bg-bg-gray placeholder-shade-gray text-primary-yellow border-primary-yellow;
+  }
 }
 
 * {
@@ -79,14 +113,16 @@ button {
 .h-full-screen {
   --custom-height: calc(var(--vh, 1vh) * 100);
   height: var(--custom-height);
+  overflow-y: scroll;
+
+  @media (min-width: 640px) {
+    height: 100vh;
+  }
+
   @supports (-webkit-appearance: none) {
     .os-android & {
       height: var(--custom-height);
     }
-  }
-
-  @screen sm {
-    height: 100vh;
   }
 }
 

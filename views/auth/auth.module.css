@@ -1,0 +1,35 @@
+.wrapper {
+  @apply py-6 bg-bg-gray flex duration-200 overflow-x-hidden container;
+
+  @screen md {
+    @apply flex-center;
+  }
+}
+
+.auth-image__wrapper {
+  @apply px-12 flex flex-col justify-center h-full w-screen flex-shrink-0 relative z-0 
+    md:w-1/2 md:max-w-lg
+    lg:mr-14;
+}
+
+.auth-form__wrapper {
+  @apply duration-200 flex-shrink-0 w-screen px-12 
+    md:w-1/2 md:max-w-lg
+    relative z-10 bg-bg-gray;
+}
+
+.auth-form__wrapper.display-form {
+  @apply transform -translate-x-full;
+  @screen md {
+    transform: translateX(0);
+  }
+}
+
+.auth-image__heading {
+  letter-spacing: 0.5rem;
+  @apply text-base mt-4 italic sm:text-sm;
+}
+
+.auth-image__next-btn {
+  @apply py-0 self-end mt-12 md:hidden;
+}

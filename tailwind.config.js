@@ -11,7 +11,8 @@ module.exports = {
         'primary-yellow': '#E7D321',
         'secondary-gray': '#252525',
         'secondary-yellow': '#F2E889',
-        'shade-yellow' :'#FFF8B7'
+        'shade-yellow' :'#FFF8B7',
+        'shade-gray': '#848484'
       },
       fontFamily: {
         body: ['Raleway', 'Arial', 'sans-serif'],
@@ -34,6 +35,9 @@ module.exports = {
           alignItems: 'center',
           justifyContent: 'center',
         },
+        '.tracking-extrawide': {
+          letterSpacing: '0.35em'
+        }
       }
 
       addUtilities(newUtils)

@@ -1,0 +1,324 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Auth view component matches the snapshot 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="h-full-screen wrapper"
+        data-testid="auth-wrapper"
+      >
+        <div
+          class="auth-image__wrapper"
+        >
+          <div
+            class="wrapper"
+            data-testid="wrapper"
+          >
+            <div
+              class="background-wrapper"
+            >
+              <div
+                class="yellow-stripe"
+              />
+              <div
+                class="white-stripe"
+              />
+            </div>
+            <div
+              class="img-wrapper"
+            >
+              <div
+                style="display: block; overflow: hidden; position: relative; box-sizing: border-box; margin: 0px;"
+              >
+                <div
+                  style="display: block; box-sizing: border-box; padding-top: 182.36024844720498%;"
+                />
+                <noscript />
+                <img
+                  decoding="async"
+                  src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                  style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+                />
+              </div>
+            </div>
+          </div>
+          <h5>
+            Get Started
+          </h5>
+          <h3
+            class="auth-image__heading"
+          >
+            Millions of people use this app to make their life better
+          </h3>
+          <button
+            class="btn btn--primary auth-image__next-btn"
+          >
+            Next
+          </button>
+        </div>
+        <div
+          class="auth-form__wrapper"
+        >
+          <div
+            class="wrapper"
+            data-testid="auth-form-wrapper"
+          >
+            <h1>
+              Hey,
+              <span
+                class="text-primary-yellow block"
+              >
+                Login Now.
+              </span>
+            </h1>
+            <div
+              class="breadcrumb"
+            >
+              If you are new
+               /
+              <button
+                class="btn btn--secondary btn--text inline-block"
+              >
+                Create New Account
+              </button>
+            </div>
+            <form
+              class="py-3 duration-200"
+              role="form"
+            >
+              <label
+                for="username"
+              >
+                Username
+                <input
+                  class="input input--primary"
+                  id="username"
+                  placeholder="Username"
+                  type="text"
+                  value=""
+                />
+              </label>
+              <label
+                class="block mt-6 relative"
+                for="password"
+              >
+                Password
+                <input
+                  class="input input--secondary pr-20"
+                  id="password"
+                  placeholder="Password"
+                  type="password"
+                  value=""
+                />
+                <span
+                  class="password-toggle"
+                >
+                  SHOW
+                </span>
+              </label>
+              <button
+                class="btn btn--primary mb-3 mt-12 button"
+                data-testid="sign-in"
+                type="submit"
+              >
+                Sign In
+              </button>
+              <button
+                class="btn btn--secondary button"
+                data-testid="sign-in-google"
+              >
+                Sign In with Google
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="h-full-screen wrapper"
+      data-testid="auth-wrapper"
+    >
+      <div
+        class="auth-image__wrapper"
+      >
+        <div
+          class="wrapper"
+          data-testid="wrapper"
+        >
+          <div
+            class="background-wrapper"
+          >
+            <div
+              class="yellow-stripe"
+            />
+            <div
+              class="white-stripe"
+            />
+          </div>
+          <div
+            class="img-wrapper"
+          >
+            <div
+              style="display: block; overflow: hidden; position: relative; box-sizing: border-box; margin: 0px;"
+            >
+              <div
+                style="display: block; box-sizing: border-box; padding-top: 182.36024844720498%;"
+              />
+              <noscript />
+              <img
+                decoding="async"
+                src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+              />
+            </div>
+          </div>
+        </div>
+        <h5>
+          Get Started
+        </h5>
+        <h3
+          class="auth-image__heading"
+        >
+          Millions of people use this app to make their life better
+        </h3>
+        <button
+          class="btn btn--primary auth-image__next-btn"
+        >
+          Next
+        </button>
+      </div>
+      <div
+        class="auth-form__wrapper"
+      >
+        <div
+          class="wrapper"
+          data-testid="auth-form-wrapper"
+        >
+          <h1>
+            Hey,
+            <span
+              class="text-primary-yellow block"
+            >
+              Login Now.
+            </span>
+          </h1>
+          <div
+            class="breadcrumb"
+          >
+            If you are new
+             /
+            <button
+              class="btn btn--secondary btn--text inline-block"
+            >
+              Create New Account
+            </button>
+          </div>
+          <form
+            class="py-3 duration-200"
+            role="form"
+          >
+            <label
+              for="username"
+            >
+              Username
+              <input
+                class="input input--primary"
+                id="username"
+                placeholder="Username"
+                type="text"
+                value=""
+              />
+            </label>
+            <label
+              class="block mt-6 relative"
+              for="password"
+            >
+              Password
+              <input
+                class="input input--secondary pr-20"
+                id="password"
+                placeholder="Password"
+                type="password"
+                value=""
+              />
+              <span
+                class="password-toggle"
+              >
+                SHOW
+              </span>
+            </label>
+            <button
+              class="btn btn--primary mb-3 mt-12 button"
+              data-testid="sign-in"
+              type="submit"
+            >
+              Sign In
+            </button>
+            <button
+              class="btn btn--secondary button"
+              data-testid="sign-in-google"
+            >
+              Sign In with Google
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
