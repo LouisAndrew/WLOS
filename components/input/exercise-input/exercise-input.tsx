@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, useRef, useState } from 'react'
 import { RiCloseFill } from 'react-icons/ri'
 
 import { ExerciseModel, ExerciseModelWithId } from '@t/Exercise'
@@ -19,41 +19,76 @@ export type Props = {
    * Handler function to handle changes within the input
    */
   onChange?: (exercise: ExerciseModel) => void
-  /**
-   * Handler function to handle if the provided exercise from list should be removed
-   * ! Could only be called IF the `defaultExercise` prop has an `id` other than -1
-   */
-  onRemoveListedExercise?: () => void
-  /**
-   * Handler function if `SavedExerciseList` should be displayed
-   */
-  onShowSavedList?: () => void
 }
 
-const ExerciseInput: FC<Props> = ({ onChange }) => {
+const ExerciseInput: FC<Props> = ({ onChange, defaultExercise, isEditable }) => {
+  const [exerciseName, setExerciseName] = useState(defaultExercise?.name || '')
+  const exerciseSets = useRef(defaultExercise?.sets || { start: -1 })
+  const exerciseReps = useRef(defaultExercise?.reps || { start: -1 })
+
+  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (isEditable) {
+      setExerciseName(e.target.value.toUpperCase())
+    }
+  }
+
+  const handleSetsChange = (start: number, end?: number) => {
+    exerciseSets.current = {
+      start,
+      end,
+    }
+  }
+
+  const handleRepsChange = (start: number, end?: number) => {
+    exerciseReps.current = {
+      start,
+      end,
+    }
+  }
+
+  const getCurrentExerciseModel = (): ExerciseModel => {
+    return {
+      name: exerciseName,
+      reps: exerciseReps.current,
+      sets: exerciseSets.current,
+    }
+  }
+
+  const handleBlur = () => {
+    if (isEditable) {
+      onChange(getCurrentExerciseModel())
+    }
+  }
+
   return (
-    <div data-testid="exercise-input-wrapper" onBlur={() => onChange(mockModel)}>
+    <div data-testid="exercise-input-wrapper" onBlur={handleBlur}>
       <input
         className={styles['name-input']}
         placeholder="Exercise Name"
         type="text"
         aria-label="Exercise Name"
+        value={exerciseName}
+        onChange={handleNameChange}
       />
       <div className={styles.ranges}>
         <RangedInput
           maxDigit={1}
           testId="sets"
           placeholder="SETS"
-          isEditable={true}
-          onChange={(v) => console.log(v)}
+          isEditable={isEditable}
+          defaultStart={defaultExercise?.sets.start}
+          defaultEnd={defaultExercise?.sets.end}
+          onChange={handleSetsChange}
         />
         <RiCloseFill className={styles['ranges-separator']} />
         <RangedInput
           maxDigit={2}
           testId="reps"
           placeholder="REPS"
-          isEditable={true}
-          onChange={(v) => console.log(v)}
+          isEditable={isEditable}
+          defaultStart={defaultExercise?.reps.start}
+          defaultEnd={defaultExercise?.reps.end}
+          onChange={handleRepsChange}
         />
       </div>
     </div>

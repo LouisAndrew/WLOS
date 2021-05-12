@@ -1,7 +1,7 @@
 import { ExerciseModel, ExerciseModelWithId } from '@t/Exercise'
 
 export const mockModel: ExerciseModel = {
-  name: 'Push up',
+  name: 'PUSH UP',
   sets: {
     start: 3,
     end: 4,

@@ -6,7 +6,7 @@ import { changeEvent } from '../utils/changeEvent'
 
 const onChange = jest.fn()
 
-const Component = <ExerciseInput onChange={onChange} />
+const Component = <ExerciseInput onChange={onChange} isEditable={true} />
 describe('Exercise input', () => {
   afterEach(cleanup)
   it('matches the snapshot', () => {
@@ -25,8 +25,4 @@ describe('Exercise input', () => {
     expect(onChange).toBeCalled()
     expect(onChange).toBeCalledWith(mockModel)
   })
-
-  describe('choose an exercise from list', () => {})
-
-  describe('provided an exercise from list', () => {})
 })

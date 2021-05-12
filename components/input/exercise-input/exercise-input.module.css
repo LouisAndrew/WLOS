@@ -2,7 +2,7 @@
 }
 
 .name-input {
-  @apply text-2xl text-primary-yellow font-bold;
+  @apply text-2xl text-primary-yellow font-bold pl-2;
 }
 
 .ranges {
