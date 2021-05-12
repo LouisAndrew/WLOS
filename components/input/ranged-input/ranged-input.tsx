@@ -190,7 +190,7 @@ const RangedInput: FC<Props> = ({
   }
 
   const collapseUnecessary = () => {
-    if (end === start) {
+    if (end === start || end === -1) {
       setShouldEndRender(false)
       setShouldSeparatorRender(false)
     }
