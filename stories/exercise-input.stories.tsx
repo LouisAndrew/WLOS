@@ -17,4 +17,5 @@ export const Default = Template.bind({})
 export const WithDefaultExercise = Template.bind({})
 WithDefaultExercise.args = {
   defaultExercise: mockModelWithId,
+  isEditable: true,
 }

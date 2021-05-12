@@ -4,7 +4,6 @@ import { RiCloseFill } from 'react-icons/ri'
 import { ExerciseModel, ExerciseModelWithId } from '@t/Exercise'
 import { RangedInput } from '../ranged-input'
 import styles from './exercise-input.module.css'
-import { mockModel } from '@/mock/exercise'
 
 export type Props = {
   /**
@@ -16,12 +15,16 @@ export type Props = {
    */
   defaultExercise?: ExerciseModelWithId
   /**
+   * Additional styling classes.
+   */
+  className?: string
+  /**
    * Handler function to handle changes within the input
    */
   onChange?: (exercise: ExerciseModel) => void
 }
 
-const ExerciseInput: FC<Props> = ({ onChange, defaultExercise, isEditable }) => {
+const ExerciseInput: FC<Props> = ({ onChange, defaultExercise, isEditable, className }) => {
   const [exerciseName, setExerciseName] = useState(defaultExercise?.name || '')
   const exerciseSets = useRef(defaultExercise?.sets || { start: -1 })
   const exerciseReps = useRef(defaultExercise?.reps || { start: -1 })
@@ -61,7 +64,11 @@ const ExerciseInput: FC<Props> = ({ onChange, defaultExercise, isEditable }) => 
   }
 
   return (
-    <div data-testid="exercise-input-wrapper" onBlur={handleBlur}>
+    <div
+      data-testid="exercise-input-wrapper"
+      className={`${styles.wrapper} ${className}`}
+      onBlur={handleBlur}
+    >
       <input
         className={styles['name-input']}
         placeholder="Exercise Name"
