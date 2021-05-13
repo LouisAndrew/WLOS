@@ -25,8 +25,10 @@ export {{ {pascalCaseName} }}'''.format(pascalCaseName=pascalCaseName, name=name
 def testFileSnippet(name: str, path: str) -> str:
     pascalCaseName = pascalCase(name)
 
-    return '''import {{ render }} from '@testing-library/react'
+    return '''import {{ render, cleanup }} from '@testing-library/react'
 import {{ {pascalCaseName} }} from '{basePath}'
+
+afterEach(cleanup)
 
 describe('', () => {{
     it('', () => {{}})
