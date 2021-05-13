@@ -30,6 +30,8 @@ import {{ {pascalCaseName} }} from '{basePath}'
 
 afterEach(cleanup)
 
+const component = (args = {{}}) => render(<{pascalCaseName} {{...args}} />)
+
 describe('', () => {{
     it('', () => {{}})
 }})'''.format(pascalCaseName=pascalCaseName, basePath=getBasePath(path, True))

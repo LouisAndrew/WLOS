@@ -3,7 +3,7 @@ export enum Metric {
   LBS = 'LBS',
   BAND = 'BAND',
   BW = 'BW',
-  BW_KG = 'BW+KG',
-  BAND_KG = 'BAND+KG',
+  BW_KG = 'BW_KG',
+  BAND_KG = 'BAND_KG',
   TIME = 'TIME', // in seconds.
 }

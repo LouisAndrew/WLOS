@@ -4,6 +4,7 @@ import { Review } from '@t/Review'
 import { ExerciseSet } from '@t/ExerciseSet'
 
 import styles from './set-input.module.css'
+import { MetricInput } from './metric-input'
 
 export type Props = {
   /**
@@ -49,20 +50,22 @@ const SetInput: FC<Props> = ({
   inputIds,
   defaultRepsCount,
   defaultWeightValue,
+  defaultMetric,
   isEditable,
   onSetChange,
 }) => {
   const [repsCount, setRepsCount] = useState(defaultRepsCount || -1)
   const [weightValue, setWeightValue] = useState(defaultWeightValue || -1)
+  const [weightMetric, setWeightMetric] = useState(defaultMetric || Metric.KG)
 
   useEffect(() => {
     onSetChange?.({
-      weightMetric: Metric.KG,
+      weightMetric,
       setNumber,
       repsCount,
       weightValue,
     })
-  }, [repsCount, weightValue])
+  }, [repsCount, weightValue, weightMetric])
 
   return (
     <div data-testid="set-input-wrapper">
@@ -99,7 +102,7 @@ const SetInput: FC<Props> = ({
             }}
           />
         </label>
-        <label htmlFor={`${inputIds}-weight`}>
+        <label htmlFor={`${inputIds}-weight`} className="ml-4">
           WEIGHT
           <input
             data-char-count={weightValue.toString().length}
@@ -126,6 +129,11 @@ const SetInput: FC<Props> = ({
             }}
           />
         </label>
+        <MetricInput
+          defaultMetric={weightMetric}
+          onChange={(m) => setWeightMetric(m)}
+          isEditable={isEditable}
+        />
       </div>
     </div>
   )

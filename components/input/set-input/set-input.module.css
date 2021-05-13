@@ -6,11 +6,16 @@
 }
 
 .input-wrapper {
+  @apply flex items-center;
 }
 
 .input {
   width: calc(2 * theme('spacing.4'));
-  @apply text-base mr-3 ml-5;
+  @apply text-base mr-0 ml-5 font-bold;
+}
+
+.input[data-char-count='3'] {
+  width: calc(2.5 * theme('spacing.4'));
 }
 
 .input[data-char-count='4'] {

@@ -6,14 +6,14 @@ import {
   useProvideUserData,
 } from '@lib/provider/useProvideUserData'
 
-const UDContext = createContext<UD>(defaultUD)
+export const UDContext = createContext<UD>(defaultUD)
 
-const Provider = (hook: () => UD): FC => {
-  return ({ children }) => {
+const Provider = (hook: () => UD): FC<any> => {
+  return ({ children, ...rest }) => {
     const userData = hook()
-    return <UDContext.Provider value={userData}>{children}</UDContext.Provider>
+    return <UDContext.Provider value={{ ...userData, ...rest }}>{children}</UDContext.Provider>
   }
 }
 
 export default Provider(useProvideUserData)
-export const MockAuthProvider = Provider(useMockUserData)
+export const MockUserDataProvider = Provider(useMockUserData)

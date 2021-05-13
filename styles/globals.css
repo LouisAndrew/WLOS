@@ -134,3 +134,7 @@ button {
 .popup-content {
   @apply w-max bg-primary-gray border-none shadow-xl border-2 p-2;
 }
+
+[role='tooltip'].popup-content {
+  width: auto;
+}
