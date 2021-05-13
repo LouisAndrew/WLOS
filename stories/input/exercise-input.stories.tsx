@@ -5,7 +5,7 @@ import ExerciseInput, { Props } from '@c/input/exercise-input/exercise-input'
 import { mockModelWithId } from '@/mock/exercise'
 
 export default {
-  title: 'Components/Inputs/Exercise Input',
+  title: 'Components/Input/Exercise Input',
   component: ExerciseInput,
 }
 
