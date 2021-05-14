@@ -9,7 +9,7 @@ export default {
   component: ReviewSelect,
 }
 
-const Template: Story<Props> = (args) => <ReviewSelect {...args} />
+const Template: Story<Props> = (args) => <ReviewSelect isEditable={true} {...args} />
 
 export const Default = Template.bind({})
 export const Selected = Template.bind({})

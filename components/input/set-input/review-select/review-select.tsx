@@ -1,6 +1,6 @@
 import React, { FC, useEffect, useState } from 'react'
 import { startCase } from 'lodash'
-import { RiEmotionNormalFill, RiThumbDownFill, RiThumbUpFill } from 'react-icons/ri'
+import { RiEmotionNormalFill, RiQuestionFill, RiThumbDownFill, RiThumbUpFill } from 'react-icons/ri'
 import { IconType } from 'react-icons/lib'
 
 import classname from 'classnames/bind'
@@ -17,6 +17,10 @@ export type Props = {
    */
   defaultReview?: Review
   /**
+   * Sets if review is editable
+   */
+  isEditable?: boolean
+  /**
    * change function to be called when value on the component is called
    */
   onChange?: (review: Review) => void
@@ -28,15 +32,21 @@ const InputIcons: Record<Review, IconType> = {
   [Review.STAY]: RiEmotionNormalFill,
 }
 
-const ReviewSelect: FC<Props> = ({ onChange, defaultReview }) => {
+const ReviewSelect: FC<Props> = ({ onChange, defaultReview, isEditable }) => {
   const [review, setReview] = useState<Review | undefined>(defaultReview)
 
   useEffect(() => {
     onChange?.(review)
   }, [review])
 
+  const defaultIconClass = cx({
+    'input-icon': true,
+    'default-icon': true,
+  })
+
   return (
-    <div data-testid="review-select-wrapper" className={style.wrapper}>
+    <div data-testid="review-select-wrapper" className={style.wrapper} data-editable={isEditable}>
+      {!review && <RiQuestionFill className={defaultIconClass} />}
       {Object.values(Review).map((r) => {
         const Icon = InputIcons[r]
 

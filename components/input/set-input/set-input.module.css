@@ -2,7 +2,7 @@
 }
 
 .set-number-wrapper {
-  @apply font-display text-xl mb-1;
+  @apply font-display text-xl mb-1 flex items-center;
 }
 
 .input-wrapper {

@@ -5,6 +5,7 @@ import { ExerciseSet } from '@t/ExerciseSet'
 
 import styles from './set-input.module.css'
 import { MetricInput } from './metric-input'
+import { ReviewSelect } from './review-select'
 
 export type Props = {
   /**
@@ -51,12 +52,16 @@ const SetInput: FC<Props> = ({
   defaultRepsCount,
   defaultWeightValue,
   defaultMetric,
+  defaultReview,
   isEditable,
   onSetChange,
 }) => {
   const [repsCount, setRepsCount] = useState(defaultRepsCount || -1)
   const [weightValue, setWeightValue] = useState(defaultWeightValue || -1)
   const [weightMetric, setWeightMetric] = useState(defaultMetric || Metric.KG)
+  const [review, setReview] = useState<Review | undefined>(defaultReview)
+
+  const shouldRenderReviewSelect = () => repsCount !== -1 && weightValue !== -1
 
   useEffect(() => {
     onSetChange?.({
@@ -64,8 +69,9 @@ const SetInput: FC<Props> = ({
       setNumber,
       repsCount,
       weightValue,
+      review,
     })
-  }, [repsCount, weightValue, weightMetric])
+  }, [repsCount, weightValue, weightMetric, review])
 
   return (
     <div data-testid="set-input-wrapper">
@@ -74,6 +80,13 @@ const SetInput: FC<Props> = ({
         <span className="ml-3" data-testid="set-number">
           #{setNumber}
         </span>
+        {shouldRenderReviewSelect() && (
+          <ReviewSelect
+            defaultReview={review}
+            isEditable={isEditable}
+            onChange={(r) => setReview(r)}
+          />
+        )}
       </div>
       <div className={styles['input-wrapper']}>
         <label htmlFor={`${inputIds}-reps`}>

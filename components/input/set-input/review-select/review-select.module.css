@@ -1,13 +1,18 @@
 .wrapper {
-  @apply flex;
+  @apply flex ml-3 py-1 rounded;
 }
 
-.input-label {
+.wrapper[data-editable='true']:hover {
+  @apply bg-primary-gray;
+}
+
+.input-label,
+.wrapper[data-editable='true']:hover .default-icon {
   @apply px-0 w-0 overflow-hidden duration-200 opacity-0;
 }
 
 .input-label.active,
-.wrapper:hover .input-label {
+.wrapper[data-editable='true']:hover .input-label {
   @apply px-2 w-max opacity-100;
 }
 
@@ -18,7 +23,7 @@
 .input-icon {
   fill: transparent;
   stroke: theme('colors.primary-yellow');
-  @apply duration-200 h-5 w-5 cursor-pointer;
+  @apply duration-200 h-4 w-4 cursor-pointer;
 }
 
 .input-icon path:not([fill='none']) {
@@ -28,4 +33,10 @@
 .input:checked + .input-icon {
   stroke: transparent;
   fill: theme('colors.primary-yellow');
+}
+
+.default-icon {
+  stroke: transparent;
+  fill: theme('colors.primary-yellow');
+  @apply px-2 w-max;
 }
