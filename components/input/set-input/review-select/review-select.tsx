@@ -64,6 +64,7 @@ const ReviewSelect: FC<Props> = ({ onChange, defaultReview, isEditable }) => {
               checked={r === review}
               onClick={() => setReview(r)}
               onSelect={() => setReview(r)}
+              onChange={() => setReview(r)}
               name="review-select"
               className={style.input}
             />

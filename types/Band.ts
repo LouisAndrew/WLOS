@@ -13,4 +13,8 @@ export type Band = {
    * Metric of the weight
    */
   metric: Metric.KG | Metric.LBS
+  /**
+   * Color for the band
+   */
+  color: string
 }

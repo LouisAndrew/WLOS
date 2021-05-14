@@ -1,3 +1,4 @@
+import { colorCodes } from '@c/color-picker'
 import { Metric } from '@t/Metric'
 import { UserData } from '@t/UserData'
 
@@ -9,8 +10,21 @@ export const mockUserData: UserData = {
     bands: [
       {
         id: 1,
-        weight: 12,
+        weight: 10,
         metric: Metric.KG,
+        color: colorCodes.yellow,
+      },
+      {
+        id: 2,
+        weight: 20,
+        metric: Metric.KG,
+        color: colorCodes.blue,
+      },
+      {
+        id: 3,
+        weight: 30,
+        metric: Metric.KG,
+        color: colorCodes.red,
       },
     ],
   },
