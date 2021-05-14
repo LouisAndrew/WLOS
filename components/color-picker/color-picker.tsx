@@ -64,6 +64,7 @@ const ColorPicker: FC<Props> = ({ defaultSelected, onColorChange }) => {
             'color-selector__marker': true,
             'is-active': isColorActive,
           })
+
           return (
             <button
               data-testid={colorId}

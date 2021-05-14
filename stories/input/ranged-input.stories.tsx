@@ -4,7 +4,7 @@ import { Story } from '@storybook/react'
 import RangedInput, { Props } from '@c/input/ranged-input/ranged-input'
 
 export default {
-  title: 'Components/Inputs/Ranged Input',
+  title: 'Components/Input/Ranged Input',
   component: RangedInput,
 }
 

@@ -31,7 +31,7 @@ export type TemplateTable = Table & {
   name: string
   /**
    * color code of the template.
-   * todo: decide if this should be editable
+   * TODO: decide if this should be editable
    */
   color: string
 }
