@@ -18,5 +18,5 @@
 }
 
 .metric-select {
-  @apply py-0.5 px-1;
+  @apply px-1 my-0;
 }
