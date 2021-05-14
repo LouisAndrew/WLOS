@@ -3,6 +3,7 @@ import { Story } from '@storybook/react'
 
 import SetInput, { Props } from '@c/input/set-input/set-input'
 import { mockExerciseSet } from '@/mock/exercise-set'
+import { Metric } from '@t/Metric'
 
 export default {
   title: 'Components/Input/Set input',
@@ -16,8 +17,7 @@ Default.args = {
   setNumber: 1,
 }
 
-export const Filled = Template.bind({})
-Filled.args = {
+const args = {
   setNumber: 1,
   inputIds: '',
   defaultRepsCount: mockExerciseSet.repsCount,
@@ -26,4 +26,16 @@ Filled.args = {
   defaultReview: mockExerciseSet.review,
   isEditable: true,
   onSetChange: (e) => console.log(e),
+}
+
+export const Filled = Template.bind({})
+Filled.args = {
+  ...args,
+}
+
+export const FilledBand = Template.bind({})
+FilledBand.args = {
+  ...args,
+  defaultMetric: Metric.BAND,
+  defaultWeightValue: 12,
 }

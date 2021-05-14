@@ -35,7 +35,11 @@ const MetricInput: FC<Props> = ({ defaultMetric, isEditable, className, onChange
   return (
     <Popup
       trigger={
-        <div className={`${styles.wrapper} ${className}`} data-testid="metric-input-wrapper">
+        <div
+          className={`${styles.wrapper} ${className}`}
+          data-testid="metric-input-wrapper"
+          data-editable={isEditable}
+        >
           {renderMetricText(defaultMetric || Metric.KG)}
         </div>
       }

@@ -24,7 +24,7 @@
 }
 
 .weight-input:disabled {
-  @apply bg-secondary-gray  text-shade-gray cursor-not-allowed;
+  @apply bg-secondary-gray text-shade-gray cursor-not-allowed;
 }
 
 .weight-wrapper {

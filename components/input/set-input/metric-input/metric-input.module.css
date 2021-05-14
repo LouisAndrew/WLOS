@@ -1,6 +1,10 @@
 .wrapper {
   @apply w-max font-bold rounded px-2 py-0.5 duration-200
-   hover:bg-primary-gray cursor-pointer;
+   hover:bg-primary-gray;
+}
+
+.wrapper[data-editable='true'] {
+  @apply cursor-pointer;
 }
 
 .metric-select-item {

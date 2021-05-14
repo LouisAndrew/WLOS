@@ -31,7 +31,7 @@ export type Props = {
 const SEPARATOR = '000'
 const EMPTY_VALUE = -1
 
-const getBands = (value: number, bands: Band[]) => {
+export const getBands = (value: number, bands: Band[]) => {
   if (value === EMPTY_VALUE) {
     return []
   }
@@ -40,7 +40,7 @@ const getBands = (value: number, bands: Band[]) => {
   return bands.filter((band) => str.split('').includes(band.id.toString()))
 }
 
-const getAdditionalWeight = (value: number) => {
+export const getAdditionalWeight = (value: number) => {
   if (value === EMPTY_VALUE) {
     return EMPTY_VALUE
   }

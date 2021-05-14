@@ -1,3 +1,3 @@
-import BandWeightInput from './band-weight-input'
+import BandWeightInput, { getAdditionalWeight, getBands } from './band-weight-input'
 
-export { BandWeightInput }
+export { BandWeightInput, getAdditionalWeight, getBands }

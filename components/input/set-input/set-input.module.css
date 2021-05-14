@@ -36,3 +36,20 @@
 
 .reps-input {
 }
+
+.band-input-wrapper {
+  @apply flex flex-center duration-200 p-1 rounded hover:bg-primary-gray cursor-pointer;
+}
+
+.band-display-wrapper {
+  @apply flex;
+}
+
+.band-display-item {
+  margin: 0 0.125rem;
+  @apply flex flex-center h-4 w-4 rounded-full;
+}
+
+.additional-display-wrapper {
+  @apply ml-1 font-body text-base font-bold;
+}

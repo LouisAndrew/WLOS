@@ -6,6 +6,9 @@ import { ExerciseSet } from '@t/ExerciseSet'
 import styles from './set-input.module.css'
 import { MetricInput } from './metric-input'
 import { ReviewSelect } from './review-select'
+import Popup from 'reactjs-popup'
+import { BandWeightInput } from './band-weight-input'
+import SetInputBandDisplay from './set-input-band-display'
 
 export type Props = {
   /**
@@ -61,7 +64,31 @@ const SetInput: FC<Props> = ({
   const [weightMetric, setWeightMetric] = useState(defaultMetric || Metric.KG)
   const [review, setReview] = useState<Review | undefined>(defaultReview)
 
+  const prevMetric = useRef<Metric>(weightMetric)
+
   const shouldRenderReviewSelect = () => repsCount !== -1 && weightValue !== -1
+  const shouldRenderBandSelect = (m: Metric = weightMetric) =>
+    [Metric.BAND_KG, Metric.BAND].includes(m)
+
+  const changeMetric = (m: Metric) => {
+    prevMetric.current = weightMetric
+    setWeightMetric(m)
+  }
+
+  useEffect(() => {
+    const beforeIsBand = shouldRenderBandSelect(prevMetric.current)
+    const nowIsBand = shouldRenderBandSelect()
+
+    if (beforeIsBand && nowIsBand) {
+      return
+    }
+
+    if (!beforeIsBand && !nowIsBand) {
+      return
+    }
+
+    setWeightValue(-1)
+  }, [weightMetric])
 
   useEffect(() => {
     onSetChange?.({
@@ -115,36 +142,56 @@ const SetInput: FC<Props> = ({
             }}
           />
         </label>
-        <label htmlFor={`${inputIds}-weight`} className="ml-4">
-          WEIGHT
-          <input
-            data-char-count={weightValue.toString().length}
-            type="number"
-            className={styles['input']}
-            id={`${inputIds}-weight`}
-            value={weightValue === -1 ? '' : weightValue}
-            placeholder="##"
-            onChange={(e) => {
-              if (isEditable) {
-                setWeightValue((prev) => {
-                  if (e.target.value === '') {
-                    return -1
-                  }
+        {shouldRenderBandSelect() ? (
+          <Popup
+            // trigger={<SetInputBandDisplay weightValue={weightValue} />}
+            trigger={
+              <div className="pl-2 border-l-2 border-primary-gray">
+                <SetInputBandDisplay weightValue={weightValue} />
+              </div>
+            }
+            arrow={false}
+            position="bottom left"
+            disabled={!isEditable}
+          >
+            <BandWeightInput
+              metric={weightMetric as Metric.BAND | Metric.BAND_KG}
+              defaultWeightValue={weightValue}
+              onChange={(val) => setWeightValue(val === 0 ? -1 : val)}
+            />
+          </Popup>
+        ) : (
+          <label htmlFor={`${inputIds}-weight`} className="ml-4">
+            WEIGHT
+            <input
+              data-char-count={weightValue.toString().length}
+              type="number"
+              className={styles['input']}
+              id={`${inputIds}-weight`}
+              value={weightValue === -1 ? '' : weightValue}
+              placeholder="##"
+              onChange={(e) => {
+                if (isEditable) {
+                  setWeightValue((prev) => {
+                    if (e.target.value === '') {
+                      return -1
+                    }
 
-                  const val = parseFloat(e.target.value)
-                  if (Number.isNaN(val) || val < 1) {
-                    return prev
-                  }
+                    const val = parseFloat(e.target.value)
+                    if (Number.isNaN(val) || val < 1) {
+                      return prev
+                    }
 
-                  return val
-                })
-              }
-            }}
-          />
-        </label>
+                    return val
+                  })
+                }
+              }}
+            />
+          </label>
+        )}
         <MetricInput
           defaultMetric={weightMetric}
-          onChange={(m) => setWeightMetric(m)}
+          onChange={(m) => changeMetric(m)}
           isEditable={isEditable}
         />
       </div>
