@@ -26,15 +26,15 @@ def testFileSnippet(name: str, path: str) -> str:
     pascalCaseName = pascalCase(name)
 
     return '''import {{ render, cleanup }} from '@testing-library/react'
-import {{ {pascalCaseName} }} from '{basePath}'
+import {pascalCaseName}, {{ Props }} from '{basePath}'
 
 afterEach(cleanup)
 
-const component = (args = {{}}) => render(<{pascalCaseName} {{...args}} />)
+const component = (args: Partial<Props> = {{}}) => render(<{pascalCaseName} {{...args}} />)
 
 describe('', () => {{
     it('', () => {{}})
-}})'''.format(pascalCaseName=pascalCaseName, basePath=getBasePath(path, True))
+}})'''.format(pascalCaseName=pascalCaseName, basePath=getBasePath(path, True) + "/" + name)
 
 
 def storyFileSnippet(name: str, path: str) -> str:
