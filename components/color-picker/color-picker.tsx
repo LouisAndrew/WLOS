@@ -50,7 +50,7 @@ const ColorPicker: FC<Props> = ({ defaultSelected, onColorChange }) => {
 
   return (
     <div className={styles.container} data-testid="wrapper">
-      <h3 className="heading heading-3 pb-2">Colors</h3>
+      <h3 className="heading heading-3 pb-2">COLORS</h3>
       <div className={styles['color-selector__wrapper']}>
         {colorTable.map(([colorName, colorCode]) => {
           const isColorActive = selectedColor === colorCode
@@ -78,7 +78,7 @@ const ColorPicker: FC<Props> = ({ defaultSelected, onColorChange }) => {
           )
         })}
       </div>
-      <label htmlFor="custom-color" className="block body mt-3">
+      <label htmlFor="custom-color" className="block body mt-5">
         Custom color
         <div
           className={styles['custom-color__input-wrapper']}

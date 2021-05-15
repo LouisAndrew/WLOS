@@ -2,24 +2,24 @@
   @apply bg-primary-gray px-5 py-4;
 }
 
-.color-selector-wrapper {
+.color-selector__wrapper {
   @apply flex flex-wrap;
 }
 
 .color-selector {
-  @apply h-5 w-5 flex flex-center rounded-full mr-2 my-1 focus:outline-none flex-shrink-0;
+  @apply h-5 w-5 flex flex-center rounded mr-1 my-1 focus:outline-none flex-shrink-0;
 }
 
-.color-selector-marker {
+.color-selector__marker {
   /* background-color: #333; */
-  @apply duration-200 h-2 w-2 opacity-0 group-hover:opacity-100 rounded-full bg-bg-gray;
+  @apply duration-200 h-2 w-2 opacity-0 group-hover:opacity-100 rounded bg-bg-gray;
 }
 
-.color-selector.is-active .color-selector-marker {
+.color-selector__marker.is-active {
   @apply w-3 h-3 opacity-100;
 }
 
-.custom-color-preview {
+.custom-color__preview {
   @apply h-6 w-6 border-gray-500 border-2 rounded-full duration-200 mr-3 flex-shrink-0;
 }
 
