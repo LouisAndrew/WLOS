@@ -47,7 +47,7 @@
 
 .band-display-item {
   margin: 0 0.125rem;
-  @apply flex flex-center h-4 w-4 rounded-full;
+  @apply flex flex-center h-4 w-4 rounded;
 }
 
 .additional-display-wrapper {
