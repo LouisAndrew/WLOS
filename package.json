@@ -11,7 +11,8 @@
     "lint": "eslint --ext js,jsx,ts,tsx --fix",
     "test": "jest",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "script": "python3 script.py"
   },
   "dependencies": {
     "@supabase/supabase-js": "^1.11.6",

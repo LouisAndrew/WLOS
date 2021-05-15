@@ -167,7 +167,9 @@ def run():
     l = createList(componentPath, componentName,
                    withCss, withUnitTest, withStorybook)
     paths = list(createBaseFiles(l))
-    logger('created paths:' + ''.join("\n" + str(item) for item in paths))
+    paths.insert(0, "Created paths")
+    for item in paths:
+        logger(str(item))
 
 
 askInput()
