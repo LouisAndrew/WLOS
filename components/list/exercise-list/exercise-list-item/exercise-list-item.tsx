@@ -6,6 +6,8 @@ import { ExerciseModel, ExerciseModelWithId } from '@t/Exercise'
 import { ExerciseTable } from '@t/tables/Exercise'
 
 import style from './exercise-list-item.module.css'
+import Popup from 'reactjs-popup'
+import { RiInformationLine } from 'react-icons/ri'
 
 export type Props = {
   /**
@@ -22,11 +24,17 @@ export type Props = {
   onChange?: (exerciseModel: ExerciseModelWithId) => void
 }
 
+// Todo create list to show exercise(s)
+// todo create page to display exercise details
 const ExerciseListItem: FC<Props> = ({ defaultExercise, isEditable, onChange }) => {
   const { getSavedExercises } = useUserData()
   const savedExercises = useRef<ExerciseTable[]>(getSavedExercises())
   const [exercise, setExercise] = useState<ExerciseModelWithId | undefined>(defaultExercise)
   const [createNew, setCreateNew] = useState(false)
+  const [displayListPicker, setDisplayListPicker] = useState(false)
+  const [displayValidExercise, setDisplayValidExercise] = useState(false)
+
+  const [popupState, setPopupState] = useState({ LIST_POPUP: false, DETAILS_POPUP: false })
 
   const handleChangeExercise = (e: ExerciseModel) => {
     const { name } = e
@@ -43,14 +51,21 @@ const ExerciseListItem: FC<Props> = ({ defaultExercise, isEditable, onChange }) 
   }
 
   useEffect(() => {
-    if (exercise?.name && createNew) {
-      setCreateNew(false)
-    }
-
     if (exercise?.name) {
       onChange?.(exercise)
     }
-  }, [exercise])
+
+    if (exercise?.exerciseId === '-1' || (!exercise && createNew)) {
+      setDisplayListPicker(true)
+      setDisplayValidExercise(false)
+    } else {
+      setDisplayListPicker(false)
+    }
+
+    if (exercise && exercise.exerciseId !== '-1') {
+      setDisplayValidExercise(true)
+    }
+  }, [exercise, createNew])
 
   return (
     <div data-testid="exercise-list-item-wrapper" className={style.wrapper}>
@@ -66,7 +81,10 @@ const ExerciseListItem: FC<Props> = ({ defaultExercise, isEditable, onChange }) 
           {savedExercises && (
             <>
               <span className={style.separator}>OR</span>
-              <button className={`btn btn--primary btn--s ${style['list-button']}`}>
+              <button
+                className={`btn btn--primary btn--s ${style['list-button']}`}
+                onClick={() => setPopupState((prev) => ({ ...prev, LIST_POPUP: true }))}
+              >
                 PICK FROM LIST
               </button>
             </>
@@ -79,9 +97,60 @@ const ExerciseListItem: FC<Props> = ({ defaultExercise, isEditable, onChange }) 
             defaultExercise={exercise}
             onChange={handleChangeExercise}
           />
-          {createNew && <div className="">new</div>}
         </>
       )}
+      {displayListPicker && (
+        <Popup
+          trigger={
+            <button
+              onClick={() => setPopupState((prev) => ({ ...prev, LIST_POPUP: true }))}
+              className={`btn btn--ghost-yellow btn--xs ${style['list-more-button']}`}
+            >
+              MY LIST
+            </button>
+          }
+          arrow={false}
+          on="hover"
+          position="right center"
+          className="tooltip"
+          offsetX={8}
+        >
+          <figcaption>Show Exercises on my list</figcaption>
+        </Popup>
+      )}
+      {displayValidExercise && (
+        <Popup
+          trigger={
+            <button
+              onClick={() => setPopupState((prev) => ({ ...prev, DETAILS_POPUP: true }))}
+              className={`btn btn--xs btn--ghost-yellow ${style['list-more-button']}`}
+            >
+              DETAILS
+            </button>
+          }
+          arrow={false}
+          on="hover"
+          position="right center"
+          className="tooltip"
+          offsetX={8}
+        >
+          <figcaption>Show Exercise Details</figcaption>
+        </Popup>
+      )}
+      <Popup
+        open={popupState.DETAILS_POPUP}
+        onClose={() => setPopupState((prev) => ({ ...prev, DETAILS_POPUP: false }))}
+        modal
+      >
+        <h3>Exercsise Detail</h3>
+      </Popup>
+      <Popup
+        open={popupState.LIST_POPUP}
+        onClose={() => setPopupState((prev) => ({ ...prev, LIST_POPUP: false }))}
+        modal
+      >
+        <h3>List</h3>
+      </Popup>
     </div>
   )
 }

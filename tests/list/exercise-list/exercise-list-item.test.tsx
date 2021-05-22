@@ -58,6 +58,13 @@ describe('Exercise List Item', () => {
   )
 })
 
+it('Hides the button to show exercise lists when a known/saved exercise is inputted', () => {
+  const { getByTestId: t, getByPlaceholderText: p, queryByRole: qr } = component()
+  setup(t, p, mockModel)
+
+  expect(qr('button', { name: 'MY LIST' })).not.toBeInTheDocument()
+})
+
 describe('Saved exercises is empty', () => {
   beforeEach(() => {
     cleanup()
@@ -70,5 +77,12 @@ describe('Saved exercises is empty', () => {
     setup(t, p, mockModel)
     expect(onChange).toBeCalled()
     expect(onChange).toBeCalledWith({ ...mockModel, exerciseId: '-1' })
+  })
+
+  it('Displays a button to show exercise lists when an unknown exercise is inputted', () => {
+    const { getByTestId: t, getByPlaceholderText: p, getByRole: r } = component()
+    setup(t, p, mockModel)
+
+    expect(r('button', { name: 'MY LIST' })).toBeInTheDocument()
   })
 })

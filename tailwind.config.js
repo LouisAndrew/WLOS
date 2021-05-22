@@ -26,7 +26,8 @@ module.exports = {
       height: ['hover', 'focus', 'group-hover'],
       width: ['hover', 'focus', 'group-hover'],
       filter: ['hover'],
-      brightness: ['hover']
+      brightness: ['hover'],
+      fill: ['hover']
     },
   },
   plugins: [
