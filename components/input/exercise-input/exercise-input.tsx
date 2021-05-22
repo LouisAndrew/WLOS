@@ -1,4 +1,4 @@
-import React, { FC, useRef, useState } from 'react'
+import React, { FC, useEffect, useRef, useState } from 'react'
 import { RiCloseFill } from 'react-icons/ri'
 
 import { ExerciseModel, ExerciseModelWithId } from '@t/Exercise'
@@ -40,6 +40,8 @@ const ExerciseInput: FC<Props> = ({ onChange, defaultExercise, isEditable, class
       start,
       end,
     }
+
+    submitChanges()
   }
 
   const handleRepsChange = (start: number, end?: number) => {
@@ -47,6 +49,8 @@ const ExerciseInput: FC<Props> = ({ onChange, defaultExercise, isEditable, class
       start,
       end,
     }
+
+    submitChanges()
   }
 
   const getCurrentExerciseModel = (): ExerciseModel => {
@@ -57,11 +61,18 @@ const ExerciseInput: FC<Props> = ({ onChange, defaultExercise, isEditable, class
     }
   }
 
-  const handleBlur = () => {
+  const submitChanges = () => {
     if (isEditable) {
       onChange(getCurrentExerciseModel())
     }
   }
+
+  const handleBlur = () => submitChanges()
+
+  // using use effect here as calling `submitChanges` in `handleNameChange` is not reliable
+  useEffect(() => {
+    submitChanges()
+  }, [exerciseName])
 
   return (
     <div

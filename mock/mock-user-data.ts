@@ -1,6 +1,7 @@
 import { colorCodes } from '@c/color-picker'
 import { Metric } from '@t/Metric'
 import { UserData } from '@t/UserData'
+import { mockExerciseTable, mockExerciseTable2 } from './exercise'
 
 export const mockUserData: UserData = {
   name: 'John Doe',
@@ -30,5 +31,5 @@ export const mockUserData: UserData = {
   },
   savedTemplates: [], // TODO: add saved templates
   savedLogs: [], // TODO: add saved logs
-  savedExercises: [], // TODO: add saved exercises
+  savedExercises: [mockExerciseTable, mockExerciseTable2], // TODO: add saved exercises
 }

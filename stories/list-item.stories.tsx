@@ -5,7 +5,7 @@ import ListItem, { Props } from '@c/list-item/list-item'
 import { colorCodes } from '@c/color-picker'
 
 export default {
-  title: 'Components/List Item',
+  title: 'Components/List/List Item',
   component: ListItem,
 }
 

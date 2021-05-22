@@ -6,7 +6,7 @@ import ListIcon, { Props } from '@c/list-item/list-icon/list-icon'
 import { colorCodes } from '@c/color-picker'
 
 export default {
-  title: 'Components/List Item/List Icon',
+  title: 'Components/List/List Item/List Icon',
   component: ListIcon,
 }
 

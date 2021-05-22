@@ -49,6 +49,11 @@
     letter-spacing: 0.4em;
     @apply text-shade-gray text-sm;
   }
+
+  figcaption {
+    font-size: 0.5rem;
+    text-transform: uppercase;
+  }
 }
 
 @layer components {
@@ -62,15 +67,15 @@
 
   .btn {
     @apply font-display font-bold text-center px-3 py-1 rounded text-sm
-      duration-200 border-2 border-transparent flex;
+      duration-200 border-2 border-transparent flex whitespace-nowrap;
   }
 
   .btn--primary {
-    @apply bg-primary-yellow text-bg-gray hover:filter hover:brightness-90;
+    @apply bg-primary-yellow text-bg-gray hover:filter border-primary-yellow hover:brightness-75;
   }
 
   .btn--secondary {
-    @apply text-primary-yellow border-primary-yellow;
+    @apply text-primary-yellow border-primary-yellow hover:bg-primary-yellow hover:text-bg-gray;
   }
 
   .btn--ghost {
@@ -83,6 +88,27 @@
 
   .btn--text {
     @apply border-transparent py-0 bg-transparent;
+  }
+
+  .btn--s {
+    @apply text-xs;
+  }
+
+  .btn--xs {
+    font-size: 0.6rem;
+    @apply px-2 py-0.5;
+  }
+
+  .btn--icon {
+    @apply p-0.5 flex-center;
+  }
+
+  .btn--icon svg {
+    @apply h-5 w-5 duration-200;
+  }
+
+  .btn--ghost-yellow.btn--icon:hover svg {
+    fill: black;
   }
 
   .input {
@@ -99,6 +125,9 @@
 }
 
 * {
+  --bg-transparent-dark: rgba(0, 0, 0, 0.3);
+  --bg-blur: blur(2px);
+
   letter-spacing: 2px;
   @apply text-white;
 }
@@ -132,7 +161,13 @@ button {
 }
 
 .popup-content {
-  @apply w-max bg-primary-gray border-none shadow-xl border-2 p-2;
+  @apply w-max bg-primary-gray border-none shadow-xl border-2 p-2 rounded;
+}
+
+.popup-overlay,
+.tooltip-content {
+  background-color: var(--bg-transparent-dark);
+  backdrop-filter: var(--bg-blur);
 }
 
 [role='tooltip'].popup-content {
