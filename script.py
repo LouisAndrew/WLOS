@@ -62,7 +62,6 @@ export const Default = Template.bind({{}})'''.format(pascalCaseName=pascalCaseNa
 def getBasePath(path: str, absolute: bool) -> str:
 
     def reducer(l: list) -> str:
-        print(l)
         return reduce(lambda a, b: a + "/" + b, l)
 
     basePath = path.split('/')

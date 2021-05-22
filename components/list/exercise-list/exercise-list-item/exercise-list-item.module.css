@@ -1,0 +1,10 @@
+.wrapper {
+  @apply flex flex-center w-min bg-primary-gray p-2 rounded;
+}
+
+.separator {
+  @apply text-xs px-5 font-bold;
+}
+
+.list-button {
+}
