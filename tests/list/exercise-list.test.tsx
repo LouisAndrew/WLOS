@@ -3,8 +3,10 @@ import ExerciseList, { Props } from '@c/list/exercise-list/exercise-list'
 
 afterEach(cleanup)
 
-const component = (args: Partial<Props> = {}) => render(<ExerciseList {...args} />)
+const component = (args: Partial<Props> = {}) => render(<ExerciseList exercises={[]} {...args} />)
 
-describe('', () => {
-    it('', () => {})
+describe('Exercise List component', () => {
+  it('renders the component', () => {
+    expect(component().getByTestId('exercise-list-wrapper')).toBeInTheDocument()
+  })
 })

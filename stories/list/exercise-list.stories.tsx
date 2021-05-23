@@ -16,9 +16,11 @@ const Template: Story<Props> = (args) => <ExerciseList {...args} />
 export const Default = Template.bind({})
 Default.args = {
   exercises: [],
+  isEditable: true,
 }
 
 export const Filled = Template.bind({})
 Filled.args = {
   exercises: mockExercises,
+  isEditable: true,
 }

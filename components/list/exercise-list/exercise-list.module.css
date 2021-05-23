@@ -1,0 +1,14 @@
+.exercise-list-item {
+  @apply flex items-center bg-primary-gray rounded my-1;
+}
+
+.drag-handle-btn {
+  @apply hover:bg-bg-gray mx-3;
+}
+.drag-handle-btn svg {
+  fill: #fff;
+}
+
+.remove-btn {
+  @apply self-start mt-3 hover:bg-red-300;
+}

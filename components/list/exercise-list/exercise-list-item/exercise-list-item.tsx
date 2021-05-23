@@ -7,6 +7,7 @@ import { ExerciseTable } from '@t/tables/Exercise'
 
 import style from './exercise-list-item.module.css'
 import Popup from 'reactjs-popup'
+import { Tooltip } from '@c/tooltip'
 
 export type Props = {
   /**
@@ -18,14 +19,33 @@ export type Props = {
    */
   isEditable?: boolean
   /**
+   * Additional class names for styling.
+   */
+  className?: string
+  /**
+   * Inline styles for custom styling
+   */
+  customStyle?: React.CSSProperties
+  /**
    * Handler function to handle changes within the component.
    */
   onChange?: (exerciseModel: ExerciseModelWithId) => void
+  /**
+   * Handle function to handle when new exercise is created
+   */
+  onNewExercise?: () => void
 }
 
 // Todo create list to show exercise(s)
 // todo create page to display exercise details
-const ExerciseListItem: FC<Props> = ({ defaultExercise, isEditable, onChange }) => {
+const ExerciseListItem: FC<Props> = ({
+  defaultExercise,
+  isEditable,
+  className,
+  customStyle,
+  onChange,
+  onNewExercise,
+}) => {
   const { getSavedExercises } = useUserData()
   const savedExercises = useRef<ExerciseTable[]>(getSavedExercises())
   const [exercise, setExercise] = useState<ExerciseModelWithId | undefined>(defaultExercise)
@@ -67,13 +87,20 @@ const ExerciseListItem: FC<Props> = ({ defaultExercise, isEditable, onChange }) 
   }, [exercise, createNew])
 
   return (
-    <div data-testid="exercise-list-item-wrapper" className={style.wrapper}>
+    <div
+      data-testid="exercise-list-item-wrapper"
+      className={`${style.wrapper} ${className}`}
+      style={customStyle}
+    >
       {!createNew && !exercise ? (
         <>
           <button
             data-testid="new-exercise"
             className={`btn btn--secondary btn--s`}
-            onClick={() => setCreateNew(true)}
+            onClick={() => {
+              setCreateNew(true)
+              onNewExercise?.()
+            }}
           >
             CREATE NEW EXERCISE
           </button>
@@ -99,7 +126,7 @@ const ExerciseListItem: FC<Props> = ({ defaultExercise, isEditable, onChange }) 
         </>
       )}
       {displayListPicker && (
-        <Popup
+        <Tooltip
           trigger={
             <button
               onClick={() => setPopupState((prev) => ({ ...prev, LIST_POPUP: true }))}
@@ -108,17 +135,11 @@ const ExerciseListItem: FC<Props> = ({ defaultExercise, isEditable, onChange }) 
               MY LIST
             </button>
           }
-          arrow={false}
-          on="hover"
-          position="right center"
-          className="tooltip"
-          offsetX={8}
-        >
-          <figcaption>Show Exercises on my list</figcaption>
-        </Popup>
+          content="Show Exercises on my list"
+        />
       )}
       {displayValidExercise && (
-        <Popup
+        <Tooltip
           trigger={
             <button
               onClick={() => setPopupState((prev) => ({ ...prev, DETAILS_POPUP: true }))}
@@ -127,14 +148,8 @@ const ExerciseListItem: FC<Props> = ({ defaultExercise, isEditable, onChange }) 
               DETAILS
             </button>
           }
-          arrow={false}
-          on="hover"
-          position="right center"
-          className="tooltip"
-          offsetX={8}
-        >
-          <figcaption>Show Exercise Details</figcaption>
-        </Popup>
+          content="Show Exercise Details"
+        />
       )}
       <Popup
         open={popupState.DETAILS_POPUP}
