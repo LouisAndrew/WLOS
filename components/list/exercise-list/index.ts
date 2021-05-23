@@ -1,3 +1,3 @@
-import { ExerciseListItem } from './exercise-list-item'
+import ExerciseList from './exercise-list'
 
-export { ExerciseListItem }
+export { ExerciseList }

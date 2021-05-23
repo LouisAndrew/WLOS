@@ -12,6 +12,17 @@ export const mockModel: ExerciseModel = {
   },
 }
 
+export const mockModel2 = {
+  name: 'PULL UP',
+  sets: {
+    start: 2,
+    end: 3,
+  },
+  reps: {
+    start: 19,
+  },
+}
+
 export const mockModelWithId: ExerciseModelWithId = {
   ...mockModel,
   exerciseId: '0',
@@ -25,7 +36,7 @@ export const mockExerciseTable: ExerciseTable = {
 }
 
 export const mockExerciseTable2: ExerciseTable = {
-  name: 'PULL UP',
+  name: mockModel2.name,
   tags: [],
   created_by: 0,
   id: 1,

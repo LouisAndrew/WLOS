@@ -7,7 +7,6 @@ import { ExerciseTable } from '@t/tables/Exercise'
 
 import style from './exercise-list-item.module.css'
 import Popup from 'reactjs-popup'
-import { RiInformationLine } from 'react-icons/ri'
 
 export type Props = {
   /**
