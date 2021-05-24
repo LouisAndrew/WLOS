@@ -1,5 +1,17 @@
+.exercise-list {
+}
+
+.exercise-list.is-dragging-over {
+  @apply bg-secondary-gray border-2 border-primary-yellow rounded;
+}
+
 .exercise-list-item {
   @apply flex items-center bg-primary-gray rounded my-1;
+}
+
+.exercise-list-item.is-dragging {
+  backdrop-filter: blur(2px);
+  @apply opacity-75;
 }
 
 .drag-handle-btn {

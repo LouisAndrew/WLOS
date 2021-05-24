@@ -98,8 +98,10 @@ const ExerciseListItem: FC<Props> = ({
             data-testid="new-exercise"
             className={`btn btn--secondary btn--s`}
             onClick={() => {
-              setCreateNew(true)
-              onNewExercise?.()
+              try {
+                onNewExercise?.()
+                setCreateNew(true)
+              } catch (e) {}
             }}
           >
             CREATE NEW EXERCISE

@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react'
+import React, { FC, useEffect, useState } from 'react'
 import { DragDropContext, Draggable, Droppable, DropResult } from 'react-beautiful-dnd'
 import uniqid from 'uniqid'
 import { BiGridVertical } from 'react-icons/bi'
@@ -8,8 +8,10 @@ import { ExerciseModelWithId } from '@t/Exercise'
 
 import style from './exercise-list.module.css'
 import { ExerciseListItem } from './exercise-list-item'
-import Popup from 'reactjs-popup'
 import { Tooltip } from '@c/tooltip'
+import { isEqual } from 'lodash'
+
+const cx = classname.bind(style)
 
 export type Props = {
   /**
@@ -51,11 +53,7 @@ const defaultExercise: ExerciseModelWithId = {
   exerciseId: '-1',
 }
 
-// todo create unit test
-// todo handle error if exercise name is not filled
-// todo handle chanegs on every exerciseinput
-// todo change styling when a draggable is being dragged.
-const ExerciseList: FC<Props> = ({ exercises, isEditable }) => {
+const ExerciseList: FC<Props> = ({ exercises, isEditable, onChange }) => {
   const [exerciseArray, setExerciseArray] = useState<ExerciseArrayItem[]>(
     exercises.map((e) => ({ ...e, listId: uniqid() }))
   )
@@ -74,6 +72,12 @@ const ExerciseList: FC<Props> = ({ exercises, isEditable }) => {
   }
 
   const handleNewExercise = () => {
+    // check if adding new exercise is allowed
+    const isNewAllowed = exerciseArray.every((e) => e.name !== '')
+    if (!isNewAllowed) {
+      throw 'Input exercise name!'
+    }
+
     const listId = nextKey
     setIdList([...idList, listId])
     setExerciseArray([...exerciseArray, { ...defaultExercise, listId }])
@@ -85,54 +89,86 @@ const ExerciseList: FC<Props> = ({ exercises, isEditable }) => {
     setIdList(idList.filter((id) => id !== listId))
   }
 
+  const handleChangeExercise = (listId: string, e: ExerciseModelWithId) => {
+    if (isEqual({ ...e, listId }, getItem(listId, exerciseArray))) {
+      return
+    }
+    setExerciseArray(
+      exerciseArray.map((exercise) => (exercise.listId === listId ? { ...e, listId } : exercise))
+    )
+  }
+
+  useEffect(() => {
+    const withoutListIds = exerciseArray.map((e) => {
+      const { listId, ...exerciseData } = e
+      return exerciseData
+    })
+
+    onChange?.(withoutListIds)
+  }, [exerciseArray])
+
   return (
     <DragDropContext onDragEnd={handleDragEnd}>
       <div data-testid="exercise-list-wrapper">
         <Droppable droppableId="exercise-list">
           {(provided, snapshot) => (
-            <div ref={provided.innerRef} {...provided.droppableProps}>
-              {idList.map((id, index) => (
-                <Draggable key={id} draggableId={id} index={index}>
-                  {(provided) => (
-                    <div
-                      className={style['exercise-list-item']}
-                      ref={provided.innerRef}
-                      {...provided.draggableProps}
-                    >
-                      {isEditable && (
-                        <Tooltip
-                          trigger={
-                            <button
-                              className={`btn btn--icon btn--ghost ${style['drag-handle-btn']}`}
-                              {...provided.dragHandleProps}
-                            >
-                              <BiGridVertical />
-                            </button>
-                          }
-                          content="Drag to reorder exercise"
+            <>
+              <div
+                className={cx({
+                  'exercise-list': true,
+                  'is-dragging-over': snapshot.isDraggingOver,
+                })}
+                ref={provided.innerRef}
+                {...provided.droppableProps}
+              >
+                {idList.map((id, index) => (
+                  <Draggable key={id} draggableId={id} index={index}>
+                    {(provided, snapshot) => (
+                      <div
+                        // className={style['exercise-list-item']}
+                        className={cx({
+                          'exercise-list-item': true,
+                          'is-dragging': snapshot.isDragging,
+                        })}
+                        ref={provided.innerRef}
+                        {...provided.draggableProps}
+                      >
+                        {isEditable && (
+                          <Tooltip
+                            trigger={
+                              <button
+                                className={`btn btn--icon btn--ghost ${style['drag-handle-btn']}`}
+                                {...provided.dragHandleProps}
+                              >
+                                <BiGridVertical />
+                              </button>
+                            }
+                            content="Drag to reorder exercise"
+                          />
+                        )}
+                        <ExerciseListItem
+                          defaultExercise={getItem(id, exerciseArray)}
+                          isEditable={isEditable}
+                          onChange={(e) => handleChangeExercise(id, e)}
                         />
-                      )}
-                      <ExerciseListItem
-                        defaultExercise={getItem(id, exerciseArray)}
-                        isEditable={isEditable}
-                      />
-                      {isEditable && (
-                        <Tooltip
-                          trigger={
-                            <button
-                              onClick={() => handleRemoveExercise(id)}
-                              className={`btn btn--ghost-yellow btn--xs ${style['remove-btn']}`}
-                            >
-                              REMOVE
-                            </button>
-                          }
-                          content="remove exercise from list"
-                        />
-                      )}
-                    </div>
-                  )}
-                </Draggable>
-              ))}
+                        {isEditable && (
+                          <Tooltip
+                            trigger={
+                              <button
+                                onClick={() => handleRemoveExercise(id)}
+                                className={`btn btn--ghost-yellow btn--xs ${style['remove-btn']}`}
+                              >
+                                REMOVE
+                              </button>
+                            }
+                            content="remove exercise from list"
+                          />
+                        )}
+                      </div>
+                    )}
+                  </Draggable>
+                ))}
+              </div>
               {isEditable && (
                 <ExerciseListItem
                   className="mt-2 duration-200"
@@ -144,7 +180,7 @@ const ExerciseList: FC<Props> = ({ exercises, isEditable }) => {
                   onNewExercise={handleNewExercise}
                 />
               )}
-            </div>
+            </>
           )}
         </Droppable>
       </div>

@@ -9,6 +9,7 @@ export const mockModel: ExerciseModel = {
   },
   reps: {
     start: 12,
+    end: undefined,
   },
 }
 
@@ -20,6 +21,7 @@ export const mockModel2 = {
   },
   reps: {
     start: 19,
+    end: undefined,
   },
 }
 
