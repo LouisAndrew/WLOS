@@ -125,7 +125,6 @@ const ExerciseList: FC<Props> = ({ exercises, isEditable, onChange }) => {
                   <Draggable key={id} draggableId={id} index={index}>
                     {(provided, snapshot) => (
                       <div
-                        // className={style['exercise-list-item']}
                         className={cx({
                           'exercise-list-item': true,
                           'is-dragging': snapshot.isDragging,
@@ -168,6 +167,7 @@ const ExerciseList: FC<Props> = ({ exercises, isEditable, onChange }) => {
                     )}
                   </Draggable>
                 ))}
+                {provided.placeholder}
               </div>
               {isEditable && (
                 <ExerciseListItem
