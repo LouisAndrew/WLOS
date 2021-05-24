@@ -6,6 +6,7 @@ import ExerciseListItem, {
 } from '@c/list/exercise-list/exercise-list-item/exercise-list-item'
 import { MockUserDataProvider } from '@lib/context/UserDataContext'
 import { UD } from '@lib/provider/useProvideUserData'
+import { mockModelWithId } from '@/mock/exercise'
 
 export default {
   title: 'Components/List/Exercise list/Exercise list item',
@@ -19,3 +20,7 @@ const Template: Story<Props & { parentArgs: Partial<UD> }> = ({ parentArgs = {},
 )
 
 export const Default = Template.bind({})
+export const Filled = Template.bind({})
+Filled.args = {
+  defaultExercise: mockModelWithId,
+}
