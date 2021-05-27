@@ -1,4 +1,5 @@
 import React, { FC, useRef, useState, useEffect } from 'react'
+import classname from 'classnames/bind'
 
 import { ExerciseInput } from '@c/input/exercise-input'
 import { useUserData } from '@h/useUserData'
@@ -11,6 +12,7 @@ import { Tooltip } from '@c/tooltip'
 import { SavedExerciseList } from '@c/list/saved-exercise-list'
 import { defaultRange } from '@t/Range'
 
+const cx = classname.bind(style)
 export type Props = {
   /**
    * Default value of the exercise
@@ -116,17 +118,22 @@ const ExerciseListItem: FC<Props> = ({
     }
   }, [exercise, createNew])
 
+  const wrapperClass = cx({
+    wrapper: true,
+    buttons: !createNew && !exercise,
+  })
+
   return (
     <div
       data-testid="exercise-list-item-wrapper"
-      className={`${style.wrapper} ${className}`}
+      className={`${wrapperClass} ${className}`}
       style={customStyle}
     >
       {!createNew && !exercise ? (
         <>
           <button
             data-testid="new-exercise"
-            className={`btn btn--secondary btn--s`}
+            className={`btn btn--s btn--secondary btn--s`}
             onClick={() => {
               onNewExercise?.()
               handleNewExercise()
@@ -138,7 +145,7 @@ const ExerciseListItem: FC<Props> = ({
             <>
               <span className={style.separator}>OR</span>
               <button
-                className={`btn btn--primary btn--s ${style['list-button']}`}
+                className={`btn btn--s btn--primary btn--s ${style['list-button']}`}
                 onClick={() => setPopupState((prev) => ({ ...prev, LIST_POPUP: true }))}
               >
                 PICK FROM LIST

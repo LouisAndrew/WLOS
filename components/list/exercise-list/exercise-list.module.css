@@ -2,11 +2,15 @@
 }
 
 .exercise-list.is-dragging-over {
+  max-width: calc(theme('space.96') + theme('space.9'));
   @apply bg-secondary-gray border-2 border-primary-yellow rounded;
 }
 
 .exercise-list-item {
-  @apply flex items-center bg-primary-gray rounded my-1;
+  grid-template-columns: auto 1fr auto;
+  grid-template-rows: auto;
+  max-width: calc(theme('space.96') + theme('space.9'));
+  @apply grid items-center bg-primary-gray rounded my-1;
 }
 
 .exercise-list-item.is-dragging {
@@ -15,12 +19,21 @@
 }
 
 .drag-handle-btn {
-  @apply hover:bg-bg-gray mx-3;
+  @apply hover:bg-bg-gray mx-1 col-start-1 col-end-2;
 }
 .drag-handle-btn svg {
   fill: #fff;
 }
 
 .remove-btn {
-  @apply self-start mt-3 hover:bg-red-300;
+  @apply hover:bg-bg-gray px-0 col-start-3 col-end-4 mr-2 self-start mt-2;
+}
+
+.remove-btn svg {
+  height: 1.15rem;
+  width: 1.15rem;
+}
+
+.remove-btn:hover svg {
+  fill: theme('colors.red.400');
 }

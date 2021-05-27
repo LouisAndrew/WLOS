@@ -86,14 +86,16 @@ const ExerciseInput: FC<Props> = ({ onChange, defaultExercise, isEditable, class
       className={`${styles.wrapper} ${className}`}
       onBlur={handleBlur}
     >
-      <input
-        className={styles['name-input']}
-        placeholder="Exercise Name"
-        type="text"
-        aria-label="Exercise Name"
-        value={exerciseName}
-        onChange={handleNameChange}
-      />
+      <span className="w-full block">
+        <input
+          className={styles['name-input']}
+          placeholder="Exercise Name"
+          type="text"
+          aria-label="Exercise Name"
+          value={exerciseName}
+          onChange={handleNameChange}
+        />
+      </span>
       <div className={styles.ranges}>
         <RangedInput
           maxDigit={1}

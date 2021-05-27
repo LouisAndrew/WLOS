@@ -2,6 +2,7 @@ import React, { FC, useEffect, useState } from 'react'
 import { DragDropContext, Draggable, Droppable, DropResult } from 'react-beautiful-dnd'
 import uniqid from 'uniqid'
 import { BiGridVertical } from 'react-icons/bi'
+import { RiCloseFill } from 'react-icons/ri'
 import classname from 'classnames/bind'
 
 import { ExerciseModelWithId } from '@t/Exercise'
@@ -160,7 +161,7 @@ const ExerciseList: FC<Props> = ({ exercises, isEditable, onChange }) => {
                                 onClick={() => handleRemoveExercise(id)}
                                 className={`btn btn--ghost-yellow btn--xs ${style['remove-btn']}`}
                               >
-                                REMOVE
+                                <RiCloseFill />
                               </button>
                             }
                             content="remove exercise from list"
