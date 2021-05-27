@@ -2,15 +2,19 @@
 }
 
 .exercise-list.is-dragging-over {
-  max-width: calc(theme('space.96') + theme('space.9'));
   @apply bg-secondary-gray border-2 border-primary-yellow rounded;
+  @screen sm {
+    max-width: calc(theme('space.96') + theme('space.9'));
+  }
 }
 
 .exercise-list-item {
   grid-template-columns: auto 1fr auto;
   grid-template-rows: auto;
-  max-width: calc(theme('space.96') + theme('space.9'));
   @apply grid items-center bg-primary-gray rounded my-1;
+  @screen sm {
+    max-width: calc(theme('space.96') + theme('space.9'));
+  }
 }
 
 .exercise-list-item.is-dragging {
