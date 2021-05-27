@@ -1,12 +1,13 @@
 .wrapper {
-  @apply flex  flex-col items-center;
+  @apply flex flex-col items-center;
 }
 
 .input-group {
+  @apply flex flex-nowrap;
 }
 
 .input {
-  @apply text-xl text-center font-display;
+  @apply text-lg text-center font-display;
 }
 
 .input.error {

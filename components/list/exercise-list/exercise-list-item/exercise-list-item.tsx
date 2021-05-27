@@ -1,4 +1,5 @@
 import React, { FC, useRef, useState, useEffect } from 'react'
+import classname from 'classnames/bind'
 
 import { ExerciseInput } from '@c/input/exercise-input'
 import { useUserData } from '@h/useUserData'
@@ -8,7 +9,10 @@ import { ExerciseTable } from '@t/tables/Exercise'
 import style from './exercise-list-item.module.css'
 import Popup from 'reactjs-popup'
 import { Tooltip } from '@c/tooltip'
+import { SavedExerciseList } from '@c/list/saved-exercise-list'
+import { defaultRange } from '@t/Range'
 
+const cx = classname.bind(style)
 export type Props = {
   /**
    * Default value of the exercise
@@ -33,7 +37,7 @@ export type Props = {
   /**
    * Handle function to handle when new exercise is created
    */
-  onNewExercise?: () => void
+  onNewExercise?: (exerciseTableData?: { name: string; id: number }) => void
 }
 
 // Todo create list to show exercise(s)
@@ -69,6 +73,34 @@ const ExerciseListItem: FC<Props> = ({
     })
   }
 
+  const handleSelectExerciseFromList = async ({ name, id }: ExerciseTable) => {
+    if (!createNew && !exercise) {
+      onNewExercise?.({ name, id })
+    }
+
+    setExercise((prev) => ({
+      sets: prev?.sets || defaultRange,
+      reps: prev?.sets || defaultRange,
+      exerciseId: id.toString(),
+      name,
+    }))
+    setPopupState((prev) => ({
+      ...prev,
+      LIST_POPUP: false,
+    }))
+  }
+
+  // * function is going to be called only if exercise-list-item is not part of exercise-list
+  const handleNewExercise = () => {
+    setCreateNew(true)
+    setExercise({
+      name: '',
+      exerciseId: '-1',
+      sets: defaultRange,
+      reps: defaultRange,
+    })
+  }
+
   useEffect(() => {
     if (exercise?.name) {
       onChange?.(exercise)
@@ -86,22 +118,25 @@ const ExerciseListItem: FC<Props> = ({
     }
   }, [exercise, createNew])
 
+  const wrapperClass = cx({
+    wrapper: true,
+    buttons: !createNew && !exercise,
+  })
+
   return (
     <div
       data-testid="exercise-list-item-wrapper"
-      className={`${style.wrapper} ${className}`}
+      className={`${wrapperClass} ${className}`}
       style={customStyle}
     >
       {!createNew && !exercise ? (
         <>
           <button
             data-testid="new-exercise"
-            className={`btn btn--secondary btn--s`}
+            className={`btn btn--s btn--secondary btn--s`}
             onClick={() => {
-              try {
-                onNewExercise?.()
-                setCreateNew(true)
-              } catch (e) {}
+              onNewExercise?.()
+              handleNewExercise()
             }}
           >
             CREATE NEW EXERCISE
@@ -110,7 +145,7 @@ const ExerciseListItem: FC<Props> = ({
             <>
               <span className={style.separator}>OR</span>
               <button
-                className={`btn btn--primary btn--s ${style['list-button']}`}
+                className={`btn btn--s btn--primary btn--s ${style['list-button']}`}
                 onClick={() => setPopupState((prev) => ({ ...prev, LIST_POPUP: true }))}
               >
                 PICK FROM LIST
@@ -165,7 +200,7 @@ const ExerciseListItem: FC<Props> = ({
         onClose={() => setPopupState((prev) => ({ ...prev, LIST_POPUP: false }))}
         modal
       >
-        <h3>List</h3>
+        <SavedExerciseList onSelect={handleSelectExerciseFromList} />
       </Popup>
     </div>
   )

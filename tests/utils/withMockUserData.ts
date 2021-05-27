@@ -10,11 +10,14 @@ export const withMockUserData = ({
   getSavedExercises = defaultUD.getSavedExercises,
   getUserBands = defaultUD.getUserBands,
 }: OptionalUD) => {
-  useUserData.mockImplementationOnce(() => ({
+  const implementationData = {
     getFullData,
     getSavedTemplates,
     getSavedLogs,
     getSavedExercises,
     getUserBands,
-  }))
+  }
+
+  useUserData.mockImplementationOnce(() => implementationData)
+  return implementationData
 }

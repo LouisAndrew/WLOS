@@ -2,6 +2,7 @@ import React, { FC, useEffect, useState } from 'react'
 import { DragDropContext, Draggable, Droppable, DropResult } from 'react-beautiful-dnd'
 import uniqid from 'uniqid'
 import { BiGridVertical } from 'react-icons/bi'
+import { RiCloseFill } from 'react-icons/ri'
 import classname from 'classnames/bind'
 
 import { ExerciseModelWithId } from '@t/Exercise'
@@ -10,6 +11,7 @@ import style from './exercise-list.module.css'
 import { ExerciseListItem } from './exercise-list-item'
 import { Tooltip } from '@c/tooltip'
 import { isEqual } from 'lodash'
+import { ExerciseTable } from '@t/tables/Exercise'
 
 const cx = classname.bind(style)
 
@@ -46,9 +48,11 @@ const defaultExercise: ExerciseModelWithId = {
   name: '',
   reps: {
     start: -1,
+    end: undefined,
   },
   sets: {
     start: -1,
+    end: undefined,
   },
   exerciseId: '-1',
 }
@@ -71,7 +75,7 @@ const ExerciseList: FC<Props> = ({ exercises, isEditable, onChange }) => {
     setIdList(array)
   }
 
-  const handleNewExercise = () => {
+  const handleNewExercise = (exerciseData: { name?: string; id?: number } = {}) => {
     // check if adding new exercise is allowed
     const isNewAllowed = exerciseArray.every((e) => e.name !== '')
     if (!isNewAllowed) {
@@ -80,7 +84,7 @@ const ExerciseList: FC<Props> = ({ exercises, isEditable, onChange }) => {
 
     const listId = nextKey
     setIdList([...idList, listId])
-    setExerciseArray([...exerciseArray, { ...defaultExercise, listId }])
+    setExerciseArray([...exerciseArray, { ...defaultExercise, ...exerciseData, listId }])
     setNextKey(uniqid())
   }
 
@@ -157,7 +161,7 @@ const ExerciseList: FC<Props> = ({ exercises, isEditable, onChange }) => {
                                 onClick={() => handleRemoveExercise(id)}
                                 className={`btn btn--ghost-yellow btn--xs ${style['remove-btn']}`}
                               >
-                                REMOVE
+                                <RiCloseFill />
                               </button>
                             }
                             content="remove exercise from list"

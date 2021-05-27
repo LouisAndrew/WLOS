@@ -8,3 +8,8 @@ export type Range = {
    */
   end?: number
 }
+
+export const defaultRange: Range = {
+  start: -1,
+  end: undefined,
+}
