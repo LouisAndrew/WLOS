@@ -74,6 +74,12 @@ const ExerciseInput: FC<Props> = ({ onChange, defaultExercise, isEditable, class
     submitChanges()
   }, [exerciseName])
 
+  useEffect(() => {
+    if (defaultExercise?.name !== exerciseName) {
+      setExerciseName(defaultExercise?.name || '')
+    }
+  }, [defaultExercise])
+
   return (
     <div
       data-testid="exercise-input-wrapper"

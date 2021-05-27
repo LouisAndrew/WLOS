@@ -10,6 +10,7 @@ import style from './exercise-list.module.css'
 import { ExerciseListItem } from './exercise-list-item'
 import { Tooltip } from '@c/tooltip'
 import { isEqual } from 'lodash'
+import { ExerciseTable } from '@t/tables/Exercise'
 
 const cx = classname.bind(style)
 
@@ -46,9 +47,11 @@ const defaultExercise: ExerciseModelWithId = {
   name: '',
   reps: {
     start: -1,
+    end: undefined,
   },
   sets: {
     start: -1,
+    end: undefined,
   },
   exerciseId: '-1',
 }
@@ -71,7 +74,7 @@ const ExerciseList: FC<Props> = ({ exercises, isEditable, onChange }) => {
     setIdList(array)
   }
 
-  const handleNewExercise = () => {
+  const handleNewExercise = (exerciseData: { name?: string; id?: number } = {}) => {
     // check if adding new exercise is allowed
     const isNewAllowed = exerciseArray.every((e) => e.name !== '')
     if (!isNewAllowed) {
@@ -80,7 +83,7 @@ const ExerciseList: FC<Props> = ({ exercises, isEditable, onChange }) => {
 
     const listId = nextKey
     setIdList([...idList, listId])
-    setExerciseArray([...exerciseArray, { ...defaultExercise, listId }])
+    setExerciseArray([...exerciseArray, { ...defaultExercise, ...exerciseData, listId }])
     setNextKey(uniqid())
   }
 

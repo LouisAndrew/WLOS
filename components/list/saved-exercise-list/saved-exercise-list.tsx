@@ -25,7 +25,7 @@ const SavedExerciseList: FC<Props> = ({ onSelect }) => {
 
           return (
             <button
-              id={`${id}-saved-list`}
+              key={`${id}-saved-list`}
               onClick={() => onSelect?.(exercise)}
               className={style['saved-list-btn']}
             >
