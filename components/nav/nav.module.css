@@ -9,7 +9,7 @@
 }
 
 .link_list {
-  @apply block mb-auto;
+  @apply block mb-auto pl-0;
 }
 
 .link_list li {
@@ -37,8 +37,12 @@
 }
 
 .expand_btn {
-  @apply rounded-sm hidden sm:block;
+  @apply rounded hidden sm:flex flex-center h-7 w-7;
 }
 .close_btn {
   @apply block sm:hidden;
+}
+
+.expand_btn svg {
+  @apply h-6 w-6;
 }
