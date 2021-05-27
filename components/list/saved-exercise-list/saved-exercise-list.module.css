@@ -1,0 +1,13 @@
+.wrapper {
+  @apply bg-primary-gray p-5;
+}
+
+.saved-list-wrapper {
+  @apply mt-3;
+}
+
+.saved-list-btn {
+  @apply flex mx-0 font-display font-bold duration-200
+   px-2 py-1 rounded cursor-pointer
+   hover:bg-bg-gray;
+}

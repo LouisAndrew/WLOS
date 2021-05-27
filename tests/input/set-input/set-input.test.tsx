@@ -37,11 +37,9 @@ describe('Set input component', () => {
 
       expect(l('REPS').getAttribute('value')).toContain(mockExerciseSet.repsCount)
       expect(l('WEIGHT').getAttribute('value')).toContain(mockExerciseSet.weightValue)
-      // TODO: create metric picker.
       expect(t('metric-input-wrapper').textContent.toLowerCase()).toContain(
         mockExerciseSet.weightMetric.toLowerCase()
       )
-      // TODO: create set review.
       // expect(t('set-review').getAttribute('--value')).toBe(mockExerciseSet.review)
     })
   })

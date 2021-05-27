@@ -31,5 +31,5 @@ export const mockUserData: UserData = {
   },
   savedTemplates: [], // TODO: add saved templates
   savedLogs: [], // TODO: add saved logs
-  savedExercises: [mockExerciseTable, mockExerciseTable2], // TODO: add saved exercises
+  savedExercises: [mockExerciseTable, mockExerciseTable2],
 }
