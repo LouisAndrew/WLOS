@@ -147,7 +147,7 @@ button {
 .h-full-screen {
   --custom-height: calc(var(--vh, 1vh) * 100);
   height: var(--custom-height);
-  overflow-y: scroll;
+  overflow-y: hidden;
 
   @media (min-width: 640px) {
     height: 100vh;
