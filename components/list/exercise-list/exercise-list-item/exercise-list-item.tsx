@@ -189,6 +189,7 @@ const ExerciseListItem: FC<Props> = ({
         open={popupState.DETAILS_POPUP}
         onClose={() => setPopupState((prev) => ({ ...prev, DETAILS_POPUP: false }))}
         modal
+        className="modal"
       >
         <h3>Exercsise Detail</h3>
       </Popup>
@@ -196,6 +197,7 @@ const ExerciseListItem: FC<Props> = ({
         open={popupState.LIST_POPUP}
         onClose={() => setPopupState((prev) => ({ ...prev, LIST_POPUP: false }))}
         modal
+        className="modal"
       >
         <SavedExerciseList onSelect={handleSelectExerciseFromList} />
       </Popup>

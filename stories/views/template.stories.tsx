@@ -2,7 +2,7 @@ import React from 'react'
 import { Story } from '@storybook/react'
 
 import Template, { PageState, Props } from '@v/template/template'
-import { filledTemplateTableWithData } from '@/mock/workout-template'
+import { defaultTemplateTableWithData, filledTemplateTableWithData } from '@/mock/workout-template'
 
 export default {
   title: 'Views/Template',
@@ -17,8 +17,8 @@ const T: Story<Props> = (args) => (
 
 export const Default = T.bind({})
 Default.args = {
-  isEditable: true,
   defaultState: PageState.CREATE,
+  template: defaultTemplateTableWithData,
 }
 export const Filled = T.bind({})
 Filled.args = {

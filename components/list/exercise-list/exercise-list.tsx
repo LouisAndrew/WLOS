@@ -106,13 +106,16 @@ const ExerciseList: FC<Props> = ({ exercises, isEditable, onChange }) => {
   }
 
   useEffect(() => {
-    const withoutListIds = exerciseArray.map((e) => {
-      const { listId, ...exerciseData } = e
-      return exerciseData
-    })
+    const sorted = idList
+      .map((id) => exerciseArray.find((e) => e.listId === id))
+      .filter((e) => !!e)
+      .map((e) => {
+        const { listId, ...exerciseData } = e
+        return exerciseData
+      })
 
-    onChange?.(withoutListIds)
-  }, [exerciseArray])
+    onChange?.(sorted)
+  }, [exerciseArray, idList])
 
   return (
     <DragDropContext onDragEnd={handleDragEnd}>

@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useRef, useState } from 'react'
 
 import { ExerciseList } from '@c/list/exercise-list'
-import { stringToRange } from '@lib/range-helper'
+import { rangeToString, stringToRange } from '@lib/range-helper'
 import { TemplateTableWithData } from '@t/tables/Template'
 import { defaultTemplateTableWithData } from '@/mock/workout-template'
 
@@ -12,12 +12,14 @@ import Popup from 'reactjs-popup'
 import { ColorPicker } from '@c/color-picker'
 import { ExerciseModelWithId } from '@t/Exercise'
 import { isExerciseListEqual } from '@lib/exercise-list-comparator'
+import { SaveChangesModal } from '@c/modals'
+import ConfirmDeleteModal from '@c/modals/confirm-delete-modal'
 
 export type Props = {
   /**
    * Workout template to be shown.
    */
-  template?: TemplateTableWithData
+  template: TemplateTableWithData
   /**
    * Sets default state of the view component.
    */
@@ -43,8 +45,9 @@ const checkIfEditable = (state: PageState) => state === PageState.EDIT || state 
 // todo 3 states: create / edit, view [x]
 // todo change color [x]
 // todo change template name [x]
-// todo render save button conditionally []
-// todo option to delete template []
+// todo render save button conditionally [x]
+// todo option to delete template [x]
+// todo [] create unit test
 const Template: FC<Props> = ({ template, defaultState }) => {
   const currentTemplate = useRef<TemplateTableWithData>(template || defaultTemplateTableWithData)
   const getCurrentTemplate = () => currentTemplate.current
@@ -57,6 +60,9 @@ const Template: FC<Props> = ({ template, defaultState }) => {
   const [pageState, setPageState] = useState<PageState>(defaultState)
   const [isEditable, setIsEditable] = useState(false)
   const [isTemplateChanged, setIsTemplateChanged] = useState(false)
+  const [popupStates, setPopupStates] = useState({ SAVE_CHANGES: false, CONFIRM_DELETE: false })
+
+  const tempState = useRef<PageState>()
 
   const handleChangeTemplateName = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (isEditable) {
@@ -72,12 +78,44 @@ const Template: FC<Props> = ({ template, defaultState }) => {
 
   const handleChangePageState = (newState: PageState) => {
     // * ask if the changes should be applied
+    if (pageState === PageState.EDIT && isTemplateChanged) {
+      setPopupStates((prev) => ({
+        ...prev,
+        SAVE_CHANGES: true,
+      }))
+      tempState.current = newState
+      return
+    }
+
+    if (newState === PageState.DELETE) {
+      console.log({ pageState })
+      tempState.current = pageState
+      setPopupStates((prev) => ({
+        ...prev,
+        CONFIRM_DELETE: true,
+      }))
+    }
+
     setPageState(newState)
   }
 
   const handleTemplateChange = (exercises: ExerciseModelWithId[]) => {
     setIsTemplateChanged(!isExerciseListEqual(getExercises(true), exercises))
-    console.log({ e: getExercises(true), exercises })
+    setCurrentTemplate({
+      exercises: exercises.map((e, i) => {
+        const { name, exerciseId, sets, reps } = e
+        return {
+          exerciseData: {
+            name,
+            id: parseInt(exerciseId, 10),
+            tags: [],
+          },
+          reps: rangeToString(reps),
+          sets: rangeToString(sets),
+          order: i,
+        }
+      }),
+    })
   }
 
   const getExercises = (getDefault: boolean = false) => {
@@ -98,6 +136,27 @@ const Template: FC<Props> = ({ template, defaultState }) => {
           exerciseId: id.toString(),
         }
       })
+  }
+
+  // todo [] create handler when user wants to save the template
+  const saveTemplate = () => {}
+
+  const discardChanges = () => {
+    setCurrentTemplate(template)
+    setTemplateName(template.name)
+    setTemplateColor(template.color)
+    goToNextState()
+  }
+
+  // todo [] create handler when user wants to delete the template
+  const deleteTemplate = () => {}
+
+  const goToNextState = () => {
+    const value = tempState.current
+    console.log(value)
+    setPageState(value)
+    tempState.current = null
+    setPopupStates((prev) => ({ ...prev, SAVE_CHANGES: false, CONFIRM_DELETE: false }))
   }
 
   useEffect(() => {
@@ -139,6 +198,7 @@ const Template: FC<Props> = ({ template, defaultState }) => {
           arrow={false}
           offsetY={8}
           position="bottom right"
+          disabled={pageState === PageState.CREATE}
         >
           <>
             {Object.keys(PageState)
@@ -193,6 +253,7 @@ const Template: FC<Props> = ({ template, defaultState }) => {
           exercises={getExercises()}
           isEditable={isEditable}
           onChange={handleTemplateChange}
+          key={pageState}
         />
       </div>
       {isTemplateChanged && (
@@ -201,6 +262,40 @@ const Template: FC<Props> = ({ template, defaultState }) => {
           SAVE CHANGES
         </button>
       )}
+      <Popup
+        open={popupStates.SAVE_CHANGES}
+        onClose={() => setPopupStates((prev) => ({ ...prev, SAVE_CHANGES: false }))}
+        modal
+        className="modal"
+      >
+        <SaveChangesModal
+          onSaveClick={() => {
+            saveTemplate()
+            goToNextState()
+          }}
+          onDiscardClick={discardChanges}
+        />
+      </Popup>
+      <Popup
+        open={popupStates.CONFIRM_DELETE}
+        onClose={() => {
+          if (pageState === PageState.DELETE) {
+            setPopupStates((prev) => ({ ...prev, CONFIRM_DELETE: false }))
+            goToNextState()
+          }
+        }}
+        modal
+        className="modal"
+      >
+        <ConfirmDeleteModal
+          onCancel={() => {
+            setPopupStates((prev) => ({ ...prev, CONFIRM_DELETE: false }))
+            goToNextState()
+          }}
+          onDelete={deleteTemplate}
+          deletedItemName="template"
+        />
+      </Popup>
     </div>
   )
 }

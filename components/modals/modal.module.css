@@ -1,0 +1,38 @@
+.wrapper {
+  @apply p-8 w-64 flex flex-col sm:w-80 md:w-96;
+}
+
+.icon {
+  @apply h-6 w-6 mb-3;
+}
+
+.icon.yellow {
+  fill: theme('colors.primary-yellow');
+}
+
+.icon.red {
+  fill: theme('colors.red.400');
+}
+
+.icon.white {
+  fill: #fff;
+}
+
+.button-group {
+  @apply flex flex-col items-start mt-3 md:flex-row;
+}
+
+.secondary.single {
+}
+
+.primary {
+  @apply ml-0 mt-2 md:ml-2 md:mt-0;
+}
+
+.primary.single {
+  @apply m-0;
+}
+
+.confirm-delete-modal button[data-buttontype='primary'] {
+  @apply bg-red-400 border-red-400 text-white;
+}
