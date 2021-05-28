@@ -142,15 +142,12 @@ const ExerciseListItem: FC<Props> = ({
             CREATE NEW EXERCISE
           </button>
           {savedExercises && (
-            <>
-              <span className={style.separator}>OR</span>
-              <button
-                className={`btn btn--s btn--primary btn--s ${style['list-button']}`}
-                onClick={() => setPopupState((prev) => ({ ...prev, LIST_POPUP: true }))}
-              >
-                PICK FROM LIST
-              </button>
-            </>
+            <button
+              className={`btn btn--s btn--primary btn--s ${style['list-button']}`}
+              onClick={() => setPopupState((prev) => ({ ...prev, LIST_POPUP: true }))}
+            >
+              PICK FROM LIST
+            </button>
           )}
         </>
       ) : (

@@ -14,9 +14,13 @@ export type Props = {
    * function to handle when a color button is clicked or when the custom color input is filled
    */
   onColorChange: (colorCode: string) => void
+  /**
+   * Additional classname for custom styling.
+   */
+  className?: string
 }
 
-const ColorPicker: FC<Props> = ({ defaultSelected, onColorChange }) => {
+const ColorPicker: FC<Props> = ({ defaultSelected, className, onColorChange }) => {
   const checkIfColorCustomed = (color: string) =>
     colorTable.findIndex(([_, colorCode]) => colorCode === color) === -1
 
@@ -49,8 +53,13 @@ const ColorPicker: FC<Props> = ({ defaultSelected, onColorChange }) => {
   })
 
   return (
-    <div className={styles.container} data-testid="wrapper">
-      <h3 className="heading heading-3 pb-2">COLORS</h3>
+    <div className={`${styles.container} ${className}`} data-testid="wrapper">
+      <h3 className="font-body font-medium text-lg">
+        <span role="img" className="block">
+          🎨{' '}
+        </span>
+        PICK A COLOR
+      </h3>
       <div className={styles['color-selector__wrapper']}>
         {colorTable.map(([colorName, colorCode]) => {
           const isColorActive = selectedColor === colorCode
@@ -79,7 +88,7 @@ const ColorPicker: FC<Props> = ({ defaultSelected, onColorChange }) => {
         })}
       </div>
       <label htmlFor="custom-color" className="block body mt-5">
-        Custom color
+        <span className="sr-only">Custom color</span>
         <div
           className={styles['custom-color__input-wrapper']}
           style={{ borderColor: selectedColor }}
@@ -89,14 +98,16 @@ const ColorPicker: FC<Props> = ({ defaultSelected, onColorChange }) => {
             className={customColorPreviewClass}
             style={{ backgroundColor: selectedColor, borderColor: selectedColor }}
           />
-          <input
-            type="text"
-            id="custom-color"
-            onChange={handleChangeCustomColor}
-            placeholder="#"
-            value={selectedColor}
-            className={styles['custom-color__input']}
-          />
+          <span className="w-full">
+            <input
+              type="text"
+              id="custom-color"
+              onChange={handleChangeCustomColor}
+              placeholder="#"
+              value={selectedColor}
+              className={styles['custom-color__input']}
+            />
+          </span>
         </div>
       </label>
     </div>

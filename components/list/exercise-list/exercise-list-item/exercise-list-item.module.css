@@ -1,23 +1,13 @@
 .wrapper {
-  @apply flex items-start w-min bg-primary-gray p-2 rounded flex-col-reverse pb-4 col-start-2 col-end-3;
+  @apply flex items-start w-full bg-primary-gray p-2 rounded flex-col-reverse pb-4 col-start-2 col-end-3;
 }
 
 .wrapper.buttons {
-  @apply bg-transparent flex-col mx-auto flex-center py-2;
-  @screen sm {
-    @apply ml-0 flex-row;
-  }
-}
-
-.separator {
-  @apply text-xs px-5 font-light self-center;
-}
-
-.wrapper.buttons .separator {
-  @apply my-2;
+  @apply bg-transparent flex-col items-start py-2 w-min pl-0 sm:flex-row;
 }
 
 .list-button {
+  @apply mt-2 ml-0 sm:mt-0 sm:ml-2;
 }
 
 .list-more-button {

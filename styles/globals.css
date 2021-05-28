@@ -133,7 +133,7 @@
 }
 
 body {
-  @apply overflow-y-hidden;
+  /* @apply overflow-y-hidden; */
 }
 
 button {
@@ -180,10 +180,10 @@ button {
 
 .popup-content {
   -webkit-animation: anvil 0.3s cubic-bezier(0.38, 0.1, 0.36, 0.9) forwards;
-  @apply w-max bg-primary-gray border-none shadow-xl border-2 p-2 rounded;
+  @apply w-max bg-secondary-gray border-none shadow-xl border-2 p-2 rounded;
 }
 
-.popup-overlay,
+.modal-overlay,
 .tooltip-content {
   background-color: var(--bg-transparent-dark);
   backdrop-filter: var(--bg-blur);

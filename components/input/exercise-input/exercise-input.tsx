@@ -29,6 +29,8 @@ const ExerciseInput: FC<Props> = ({ onChange, defaultExercise, isEditable, class
   const exerciseSets = useRef(defaultExercise?.sets || { start: -1 })
   const exerciseReps = useRef(defaultExercise?.reps || { start: -1 })
 
+  const inputRef = useRef<HTMLInputElement>()
+
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (isEditable) {
       setExerciseName(e.target.value.toUpperCase())
@@ -51,6 +53,12 @@ const ExerciseInput: FC<Props> = ({ onChange, defaultExercise, isEditable, class
     }
 
     submitChanges()
+  }
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter' || e.key === 'Escape') {
+      inputRef.current?.blur()
+    }
   }
 
   const getCurrentExerciseModel = (): ExerciseModel => {
@@ -88,12 +96,14 @@ const ExerciseInput: FC<Props> = ({ onChange, defaultExercise, isEditable, class
     >
       <span className="w-full block">
         <input
+          ref={inputRef}
           className={styles['name-input']}
           placeholder="Exercise Name"
           type="text"
           aria-label="Exercise Name"
           value={exerciseName}
           onChange={handleNameChange}
+          onKeyDown={handleKeyDown}
         />
       </span>
       <div className={styles.ranges}>

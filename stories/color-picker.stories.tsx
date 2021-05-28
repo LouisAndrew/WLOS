@@ -10,7 +10,11 @@ export default {
 
 const onColorChange = (value: string) => console.log(value)
 
-const Template: Story<Props> = (args) => <ColorPicker {...args} />
+const Template: Story<Props> = (args) => (
+  <div className="popup-content w-48">
+    <ColorPicker {...args} />
+  </div>
+)
 
 export const Default = Template.bind({})
 Default.args = {
