@@ -142,15 +142,12 @@ const ExerciseListItem: FC<Props> = ({
             CREATE NEW EXERCISE
           </button>
           {savedExercises && (
-            <>
-              <span className={style.separator}>OR</span>
-              <button
-                className={`btn btn--s btn--primary btn--s ${style['list-button']}`}
-                onClick={() => setPopupState((prev) => ({ ...prev, LIST_POPUP: true }))}
-              >
-                PICK FROM LIST
-              </button>
-            </>
+            <button
+              className={`btn btn--s btn--primary btn--s ${style['list-button']}`}
+              onClick={() => setPopupState((prev) => ({ ...prev, LIST_POPUP: true }))}
+            >
+              PICK FROM LIST
+            </button>
           )}
         </>
       ) : (
@@ -192,6 +189,7 @@ const ExerciseListItem: FC<Props> = ({
         open={popupState.DETAILS_POPUP}
         onClose={() => setPopupState((prev) => ({ ...prev, DETAILS_POPUP: false }))}
         modal
+        className="modal"
       >
         <h3>Exercsise Detail</h3>
       </Popup>
@@ -199,6 +197,7 @@ const ExerciseListItem: FC<Props> = ({
         open={popupState.LIST_POPUP}
         onClose={() => setPopupState((prev) => ({ ...prev, LIST_POPUP: false }))}
         modal
+        className="modal"
       >
         <SavedExerciseList onSelect={handleSelectExerciseFromList} />
       </Popup>

@@ -57,11 +57,14 @@ const defaultExercise: ExerciseModelWithId = {
   exerciseId: '-1',
 }
 
+const createUniq = (exercises: ExerciseModelWithId[]) =>
+  exercises.map((e) => ({ ...e, listId: uniqid() }))
+
+const getIds = (exerciseArr: ExerciseArrayItem[]) => exerciseArr.map((item) => item.listId)
+
 const ExerciseList: FC<Props> = ({ exercises, isEditable, onChange }) => {
-  const [exerciseArray, setExerciseArray] = useState<ExerciseArrayItem[]>(
-    exercises.map((e) => ({ ...e, listId: uniqid() }))
-  )
-  const [idList, setIdList] = useState<string[]>(exerciseArray.map((item) => item.listId))
+  const [exerciseArray, setExerciseArray] = useState<ExerciseArrayItem[]>(createUniq(exercises))
+  const [idList, setIdList] = useState<string[]>(getIds(exerciseArray))
   const [nextKey, setNextKey] = useState(uniqid())
 
   const handleDragEnd = (result: DropResult) => {
@@ -103,13 +106,16 @@ const ExerciseList: FC<Props> = ({ exercises, isEditable, onChange }) => {
   }
 
   useEffect(() => {
-    const withoutListIds = exerciseArray.map((e) => {
-      const { listId, ...exerciseData } = e
-      return exerciseData
-    })
+    const sorted = idList
+      .map((id) => exerciseArray.find((e) => e.listId === id))
+      .filter((e) => !!e)
+      .map((e) => {
+        const { listId, ...exerciseData } = e
+        return exerciseData
+      })
 
-    onChange?.(withoutListIds)
-  }, [exerciseArray])
+    onChange?.(sorted)
+  }, [exerciseArray, idList])
 
   return (
     <DragDropContext onDragEnd={handleDragEnd}>

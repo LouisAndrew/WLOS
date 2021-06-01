@@ -1,0 +1,50 @@
+.wrapper {
+  @apply container my-4 sm:px-3 md:px-24 lg:px-32 xl:px-72 flex flex-col;
+}
+
+.header {
+  @apply mb-3 flex flex-col;
+}
+
+.page-state {
+  line-height: theme('fontSize.xs');
+  @apply self-end py-1 mb-3 flex align-middle flex-center;
+}
+
+.page-state svg {
+  @apply h-3 w-3 ml-1;
+}
+
+.button-group {
+  @apply ml-3 flex;
+}
+
+.button-group button {
+  font-size: 0.55rem;
+  line-height: 0.55rem;
+  @apply text-muted mb-1 py-1;
+}
+
+.name-wrapper {
+  @apply flex items-center;
+}
+
+.color-indicator {
+  @apply w-1 h-10 block mr-4 flex-shrink-0;
+}
+
+.name-input-label {
+  @apply text-xs block text-muted;
+}
+
+.name-input-label input {
+  @apply text-2xl font-display font-bold block text-white;
+}
+
+.exercise-text {
+  @apply font-display mt-3 mb-3 text-xs font-semibold block tracking-extrawide text-muted;
+}
+
+.save-button {
+  @apply flex flex-center w-max self-end mt-3;
+}

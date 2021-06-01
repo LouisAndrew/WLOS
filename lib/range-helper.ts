@@ -8,7 +8,7 @@ export const rangeToString = (range: Range) => {
 }
 export const stringToRange = (text: string): Range => {
   if (!text.includes('-')) {
-    return { start: parseInt(text) }
+    return { start: parseInt(text), end: undefined }
   }
 
   const [startStr, endStr] = text.split('-')

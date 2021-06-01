@@ -96,6 +96,10 @@ const RangedInput: FC<Props> = ({
           separatorInput.current?.focus()
         }
       }
+
+      if (e.key === 'Escape') {
+        startInput.current?.blur()
+      }
     }
   }
 
@@ -133,6 +137,14 @@ const RangedInput: FC<Props> = ({
         }
 
         startInput.current?.focus()
+      }
+
+      if (e.key === 'Tab' && start !== -1) {
+        setIsSeparatorFilled(true)
+      }
+
+      if (e.key === 'Escape') {
+        separatorInput.current?.blur()
       }
     }
   }
@@ -180,6 +192,10 @@ const RangedInput: FC<Props> = ({
         if (end !== -1 && start !== -1 && isSeparatorFilled) {
           endInput.current?.blur()
         }
+      }
+
+      if (e.key === 'Escape') {
+        endInput.current?.blur()
       }
     }
   }

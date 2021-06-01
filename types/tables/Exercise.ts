@@ -13,7 +13,7 @@ export type ExerciseTable = Table & {
   /**
    * id of the exercise-creator or his/her user-data-table
    */
-  created_by: number | UserDataTable
+  created_by?: number | UserDataTable
 }
 
 export type SavedExercisesTable = Table & {

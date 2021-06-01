@@ -14,7 +14,7 @@ module.exports = {
         'secondary-yellow': '#F2E889',
         'shade-yellow' :'#FFF8B7',
         'shade-gray': '#848484',
-      
+        'muted': '#adacac'
       },
       fontFamily: {
         body: ['Raleway', 'Arial', 'sans-serif'],
