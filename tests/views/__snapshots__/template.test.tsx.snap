@@ -1,0 +1,282 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Template page matches the snapshot 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div
+      aria-atomic="true"
+      aria-live="assertive"
+      id="rbd-announcement-0"
+      style="position: absolute; width: 1px; height: 1px; margin: -1px; border: 0px; padding: 0px; overflow: hidden; clip-path: inset(100%);"
+    />
+    <div>
+      <div
+        class="wrapper"
+        data-testid="template-wrapper"
+      >
+        <div
+          class="header"
+        >
+          <button
+            aria-describedby="popup-10"
+            class="btn btn--xs btn--ghost page-state"
+            data-testid="change-state-btn"
+          >
+            EDITING
+            <svg
+              fill="currentColor"
+              height="1em"
+              stroke="currentColor"
+              stroke-width="0"
+              viewBox="0 0 24 24"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g>
+                <path
+                  d="M0 0h24v24H0z"
+                  fill="none"
+                />
+                <path
+                  d="M17.849 11.808l-.707-.707-9.9 9.9H3v-4.243L14.313 5.444l5.657 5.657a1 1 0 0 1 0 1.414l-7.07 7.071-1.415-1.414 6.364-6.364zm-2.121-2.121l-1.415-1.414L5 17.586v1.415h1.414l9.314-9.314zm2.828-7.071l2.829 2.828a1 1 0 0 1 0 1.414L19.97 8.273 15.728 4.03l1.414-1.414a1 1 0 0 1 1.414 0z"
+                />
+              </g>
+            </svg>
+          </button>
+          <div
+            class="name-wrapper"
+          >
+            <div
+              aria-label="Template Color"
+              class="color-indicator"
+              data-testid="color-indicator"
+              style="background-color: rgb(14, 14, 14);"
+            />
+            <label
+              class="name-input-label"
+            >
+              TEMPLATE NAME
+              <input
+                placeholder="ENTER NAME"
+                type="text"
+                value=""
+              />
+            </label>
+          </div>
+          <div
+            class="button-group"
+          >
+            <button
+              aria-describedby="popup-14"
+              class="btn btn--ghost btn--xs"
+            >
+              CHANGE COLOR
+            </button>
+          </div>
+        </div>
+        <div>
+          <span
+            class="exercise-text"
+          >
+            ADD EXERCISES TO TEMPLATE
+          </span>
+          <div
+            data-testid="exercise-list-wrapper"
+          >
+            <div
+              class="exercise-list"
+              data-rbd-droppable-context-id="1"
+              data-rbd-droppable-id="exercise-list"
+            />
+            <div
+              class="wrapper buttons mt-2 duration-200"
+              data-testid="exercise-list-item-wrapper"
+              style="opacity: 1; transform: scale(1);"
+            >
+              <button
+                class="btn btn--s btn--secondary btn--s"
+                data-testid="new-exercise"
+              >
+                CREATE NEW EXERCISE
+              </button>
+              <button
+                class="btn btn--s btn--primary btn--s list-button"
+              >
+                PICK FROM LIST
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      aria-atomic="true"
+      aria-live="assertive"
+      id="rbd-announcement-1"
+      style="position: absolute; width: 1px; height: 1px; margin: -1px; border: 0px; padding: 0px; overflow: hidden; clip-path: inset(100%);"
+    />
+    <div
+      id="rbd-hidden-text-1-hidden-text-2"
+      style="display: none;"
+    >
+      
+  Press space bar to start a drag.
+  When dragging you can use the arrow keys to move the item around and escape to cancel.
+  Some screen readers may require you to be in focus mode or to use your pass through key
+
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="wrapper"
+      data-testid="template-wrapper"
+    >
+      <div
+        class="header"
+      >
+        <button
+          aria-describedby="popup-10"
+          class="btn btn--xs btn--ghost page-state"
+          data-testid="change-state-btn"
+        >
+          EDITING
+          <svg
+            fill="currentColor"
+            height="1em"
+            stroke="currentColor"
+            stroke-width="0"
+            viewBox="0 0 24 24"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <g>
+              <path
+                d="M0 0h24v24H0z"
+                fill="none"
+              />
+              <path
+                d="M17.849 11.808l-.707-.707-9.9 9.9H3v-4.243L14.313 5.444l5.657 5.657a1 1 0 0 1 0 1.414l-7.07 7.071-1.415-1.414 6.364-6.364zm-2.121-2.121l-1.415-1.414L5 17.586v1.415h1.414l9.314-9.314zm2.828-7.071l2.829 2.828a1 1 0 0 1 0 1.414L19.97 8.273 15.728 4.03l1.414-1.414a1 1 0 0 1 1.414 0z"
+              />
+            </g>
+          </svg>
+        </button>
+        <div
+          class="name-wrapper"
+        >
+          <div
+            aria-label="Template Color"
+            class="color-indicator"
+            data-testid="color-indicator"
+            style="background-color: rgb(14, 14, 14);"
+          />
+          <label
+            class="name-input-label"
+          >
+            TEMPLATE NAME
+            <input
+              placeholder="ENTER NAME"
+              type="text"
+              value=""
+            />
+          </label>
+        </div>
+        <div
+          class="button-group"
+        >
+          <button
+            aria-describedby="popup-14"
+            class="btn btn--ghost btn--xs"
+          >
+            CHANGE COLOR
+          </button>
+        </div>
+      </div>
+      <div>
+        <span
+          class="exercise-text"
+        >
+          ADD EXERCISES TO TEMPLATE
+        </span>
+        <div
+          data-testid="exercise-list-wrapper"
+        >
+          <div
+            class="exercise-list"
+            data-rbd-droppable-context-id="1"
+            data-rbd-droppable-id="exercise-list"
+          />
+          <div
+            class="wrapper buttons mt-2 duration-200"
+            data-testid="exercise-list-item-wrapper"
+            style="opacity: 1; transform: scale(1);"
+          >
+            <button
+              class="btn btn--s btn--secondary btn--s"
+              data-testid="new-exercise"
+            >
+              CREATE NEW EXERCISE
+            </button>
+            <button
+              class="btn btn--s btn--primary btn--s list-button"
+            >
+              PICK FROM LIST
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;

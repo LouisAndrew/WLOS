@@ -53,7 +53,7 @@ const ColorPicker: FC<Props> = ({ defaultSelected, className, onColorChange }) =
   })
 
   return (
-    <div className={`${styles.container} ${className}`} data-testid="wrapper">
+    <div className={`${styles.container} ${className}`} data-testid="color-picker-wrapper">
       <h3 className="font-body font-medium text-lg">
         <span role="img" className="block">
           🎨{' '}
@@ -81,6 +81,7 @@ const ColorPicker: FC<Props> = ({ defaultSelected, className, onColorChange }) =
               style={{ backgroundColor: colorCode }}
               className={colorSelectorClass}
               onClick={() => setSelectedColor(colorCode)}
+              aria-label={colorCode}
             >
               <div className={colorSelectorMarkerClass} />
             </button>

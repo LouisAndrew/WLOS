@@ -24,6 +24,14 @@ export type Props = {
    * Sets default state of the view component.
    */
   defaultState?: PageState
+  /**
+   * Handler function to be called when save button is clicked.
+   */
+  handleSave?: (template: TemplateTableWithData, withCallback?: boolean) => Promise<void>
+  /**
+   * Hanlder function to be called when user deletes the template.
+   */
+  handleDelete?: (templateId: number) => Promise<void>
 }
 
 export enum PageState {
@@ -48,7 +56,9 @@ const checkIfEditable = (state: PageState) => state === PageState.EDIT || state 
 // todo render save button conditionally [x]
 // todo option to delete template [x]
 // todo [] create unit test
-const Template: FC<Props> = ({ template, defaultState }) => {
+// todo [] create handler when user wants to delete the template
+// todo [] create handler when user wants to save the template
+const Template: FC<Props> = ({ template, defaultState, handleSave, handleDelete }) => {
   const currentTemplate = useRef<TemplateTableWithData>(template || defaultTemplateTableWithData)
   const getCurrentTemplate = () => currentTemplate.current
   const setCurrentTemplate = (t: Partial<TemplateTableWithData>) => {
@@ -88,7 +98,6 @@ const Template: FC<Props> = ({ template, defaultState }) => {
     }
 
     if (newState === PageState.DELETE) {
-      console.log({ pageState })
       tempState.current = pageState
       setPopupStates((prev) => ({
         ...prev,
@@ -138,8 +147,10 @@ const Template: FC<Props> = ({ template, defaultState }) => {
       })
   }
 
-  // todo [] create handler when user wants to save the template
-  const saveTemplate = () => {}
+  const saveTemplate = async (cb?: () => void) => {
+    await handleSave(getCurrentTemplate(), cb !== undefined || cb !== null)
+    cb?.()
+  }
 
   const discardChanges = () => {
     setCurrentTemplate(template)
@@ -148,12 +159,12 @@ const Template: FC<Props> = ({ template, defaultState }) => {
     goToNextState()
   }
 
-  // todo [] create handler when user wants to delete the template
-  const deleteTemplate = () => {}
+  const deleteTemplate = () => {
+    handleDelete(template.id)
+  }
 
   const goToNextState = () => {
     const value = tempState.current
-    console.log(value)
     setPageState(value)
     tempState.current = null
     setPopupStates((prev) => ({ ...prev, SAVE_CHANGES: false, CONFIRM_DELETE: false }))
@@ -171,18 +182,6 @@ const Template: FC<Props> = ({ template, defaultState }) => {
     setIsEditable(checkIfEditable(pageState))
   }, [pageState])
 
-  useEffect(() => {
-    if (!template) {
-      setPageState(PageState.CREATE)
-      return
-    }
-
-    if (isEditable) {
-      setPageState(PageState.EDIT)
-      return
-    }
-  }, [])
-
   const Icon = PageStateIcon[pageState]
 
   return (
@@ -190,7 +189,10 @@ const Template: FC<Props> = ({ template, defaultState }) => {
       <div className={style.header}>
         <Popup
           trigger={
-            <button className={`btn btn--xs btn--ghost ${style['page-state']}`}>
+            <button
+              className={`btn btn--xs btn--ghost ${style['page-state']}`}
+              data-testid="change-state-btn"
+            >
               {pageState.toUpperCase()}
               <Icon />
             </button>
@@ -210,6 +212,9 @@ const Template: FC<Props> = ({ template, defaultState }) => {
                   <button
                     className={`btn btn--ghost btn--s w-full flex items-center ml-0`}
                     onClick={() => handleChangePageState(value)}
+                    key={key}
+                    data-testid="state-btn"
+                    aria-label={`${key.toLowerCase()} template`}
                   >
                     <I className="mr-3" />
                     {key.toUpperCase()} TEMPLATE
@@ -219,7 +224,12 @@ const Template: FC<Props> = ({ template, defaultState }) => {
           </>
         </Popup>
         <div className={style['name-wrapper']}>
-          <div className={style['color-indicator']} style={{ backgroundColor: templateColor }} />
+          <div
+            className={style['color-indicator']}
+            style={{ backgroundColor: templateColor }}
+            data-testid="color-indicator"
+            aria-label="Template Color"
+          />
           <label className={style['name-input-label']}>
             TEMPLATE NAME
             <input
@@ -230,20 +240,22 @@ const Template: FC<Props> = ({ template, defaultState }) => {
             />
           </label>
         </div>
-        <div className={style['button-group']}>
-          <Popup
-            arrow={false}
-            position="bottom left"
-            trigger={<button className="btn btn--ghost btn--xs">CHANGE COLOR</button>}
-            offsetY={8}
-          >
-            <ColorPicker
-              className="w-48"
-              onColorChange={handleColorChange}
-              defaultSelected={templateColor}
-            />
-          </Popup>
-        </div>
+        {isEditable && (
+          <div className={style['button-group']}>
+            <Popup
+              arrow={false}
+              position="bottom left"
+              trigger={<button className="btn btn--ghost btn--xs">CHANGE COLOR</button>}
+              offsetY={8}
+            >
+              <ColorPicker
+                className="w-48"
+                onColorChange={handleColorChange}
+                defaultSelected={templateColor}
+              />
+            </Popup>
+          </div>
+        )}
       </div>
       <div>
         <span className={style['exercise-text']}>
@@ -257,7 +269,7 @@ const Template: FC<Props> = ({ template, defaultState }) => {
         />
       </div>
       {isTemplateChanged && (
-        <button className={`btn btn--s btn--ghost ${style['save-button']}`}>
+        <button className={`btn btn--s btn--ghost ${style['save-button']}`} data-testid="save-btn">
           <RiSaveLine className="mr-3 h-4 w-4" />
           SAVE CHANGES
         </button>
@@ -269,10 +281,7 @@ const Template: FC<Props> = ({ template, defaultState }) => {
         className="modal"
       >
         <SaveChangesModal
-          onSaveClick={() => {
-            saveTemplate()
-            goToNextState()
-          }}
+          onSaveClick={() => saveTemplate(goToNextState)}
           onDiscardClick={discardChanges}
         />
       </Popup>

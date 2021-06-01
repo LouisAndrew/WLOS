@@ -11,7 +11,7 @@ const Component = <ColorPicker onColorChange={onColorChange} />
 describe('color picker component', () => {
   it('should render the component', () => {
     const { getByTestId } = render(Component)
-    expect(getByTestId('wrapper')).toBeInTheDocument()
+    expect(getByTestId('color-picker-wrapper')).toBeInTheDocument()
   })
 
   it.each(colorTable)('should render all base colors', (colorName, colorCode) => {
