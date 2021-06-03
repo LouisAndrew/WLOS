@@ -1,6 +1,7 @@
 .wrapper {
   @apply w-max font-bold rounded px-2 py-0.5 duration-200
-   hover:bg-primary-gray;
+   hover:bg-primary-gray
+   self-end;
 }
 
 .wrapper[data-editable='true'] {
@@ -9,7 +10,7 @@
 
 .metric-select-item {
   @apply font-semibold px-1 py-0.5
-   hover:bg-secondary-gray duration-200 rounded
+   hover:bg-shade-gray duration-200 rounded
    w-min whitespace-nowrap;
 }
 

@@ -56,7 +56,7 @@ const ReviewSelect: FC<Props> = ({ onChange, defaultReview, isEditable }) => {
         })
 
         return (
-          <label htmlFor={r} className={labelClassName}>
+          <label htmlFor={r} className={labelClassName} key={r}>
             <input
               aria-label={startCase(r)}
               type="radio"

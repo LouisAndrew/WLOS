@@ -6,12 +6,20 @@
 }
 
 .input-wrapper {
-  @apply flex items-center;
+  @apply flex items-center mt-3;
+}
+
+.label {
+  @apply flex flex-col mr-4;
+}
+
+.label.first {
+  @apply mr-3;
 }
 
 .input {
   width: calc(2 * theme('spacing.4'));
-  @apply text-base mr-0 ml-5 font-bold;
+  @apply text-base mr-0 ml-0 font-bold;
 }
 
 .input[data-char-count='3'] {
@@ -37,12 +45,18 @@
 .reps-input {
 }
 
+.band {
+  @apply self-center;
+}
+
 .band-input-wrapper {
-  @apply flex flex-center duration-200 p-1 rounded hover:bg-primary-gray cursor-pointer;
+  @apply flex
+   duration-200 p-1 rounded hover:bg-primary-gray cursor-pointer
+   flex-center;
 }
 
 .band-display-wrapper {
-  @apply flex;
+  @apply flex ml-0 sm:ml-2;
 }
 
 .band-display-item {
@@ -51,5 +65,9 @@
 }
 
 .additional-display-wrapper {
-  @apply ml-1 font-body text-base font-bold;
+  @apply ml-2 font-body text-base font-bold flex flex-center;
+}
+
+.additional-weight {
+  @apply ml-2;
 }

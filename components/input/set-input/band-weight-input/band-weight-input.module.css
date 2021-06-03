@@ -1,30 +1,30 @@
 .wrapper {
-  @apply px-2 bg-primary-gray;
+  @apply px-2 py-2 bg-secondary-gray;
 }
 .band-input-wrapper {
-  @apply flex px-1 py-2 bg-bg-gray rounded w-max my-2;
+  @apply flex px-1 py-2 bg-shade-gray rounded w-max my-2;
 }
 .band-input-label {
-  @apply h-5 w-5 flex rounded cursor-pointer flex-center mx-2;
+  @apply h-5 w-5 flex rounded-full cursor-pointer flex-center mx-2;
 }
 .band-input {
   @apply hidden;
 }
 .band-input-marker {
-  @apply bg-bg-gray h-0 w-0 rounded-full duration-200;
+  @apply bg-shade-gray h-0 w-0 rounded-full duration-200;
 }
 .band-input-label:hover .band-input-marker {
   @apply h-2 w-2;
 }
 .band-input:checked + .band-input-marker {
-  @apply h-3 w-3 rounded;
+  @apply h-3 w-3 rounded-full;
 }
 .weight-input {
-  @apply block bg-bg-gray text-white text-xl font-display px-3 w-28 rounded duration-200;
+  @apply block bg-shade-gray text-white text-xl font-display px-3 w-28 rounded duration-200;
 }
 
 .weight-input:disabled {
-  @apply bg-secondary-gray text-shade-gray cursor-not-allowed;
+  @apply bg-shade-gray text-shade-gray cursor-not-allowed;
 }
 
 .weight-wrapper {

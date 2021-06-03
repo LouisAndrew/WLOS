@@ -9,6 +9,9 @@ import { ReviewSelect } from './review-select'
 import Popup from 'reactjs-popup'
 import { BandWeightInput } from './band-weight-input'
 import SetInputBandDisplay from './set-input-band-display'
+import classname from 'classnames/bind'
+
+const cx = classname.bind(styles)
 
 export type Props = {
   /**
@@ -91,8 +94,13 @@ const SetInput: FC<Props> = ({
   }, [weightMetric])
 
   useEffect(() => {
+    const metric =
+      weightMetric === Metric.BAND && weightValue.toString().includes('000')
+        ? Metric.BAND_KG
+        : weightMetric
+
     onSetChange?.({
-      weightMetric,
+      weightMetric: metric,
       setNumber,
       repsCount,
       weightValue,
@@ -116,7 +124,7 @@ const SetInput: FC<Props> = ({
         )}
       </div>
       <div className={styles['input-wrapper']}>
-        <label htmlFor={`${inputIds}-reps`}>
+        <label htmlFor={`${inputIds}-reps`} className={styles.label}>
           REPS
           <input
             data-char-count={repsCount.toString().length}
@@ -153,16 +161,16 @@ const SetInput: FC<Props> = ({
             arrow={false}
             position="bottom left"
             disabled={!isEditable}
+            offsetY={8}
           >
             <BandWeightInput
-              metric={weightMetric as Metric.BAND | Metric.BAND_KG}
               defaultWeightValue={weightValue}
               onChange={(val) => setWeightValue(val === 0 ? -1 : val)}
             />
           </Popup>
         ) : (
-          <label htmlFor={`${inputIds}-weight`} className="ml-4">
-            WEIGHT
+          <label htmlFor={`${inputIds}-weight`} className={`ml-4 ${styles.label}`}>
+            {weightMetric === Metric.TIME ? 'TIME' : 'WEIGHT'}
             <input
               data-char-count={weightValue.toString().length}
               type="number"
@@ -190,9 +198,10 @@ const SetInput: FC<Props> = ({
           </label>
         )}
         <MetricInput
-          defaultMetric={weightMetric}
+          defaultMetric={weightMetric === Metric.BAND_KG ? Metric.BAND : weightMetric}
           onChange={(m) => changeMetric(m)}
           isEditable={isEditable}
+          className={cx({ band: weightMetric === Metric.BAND || weightMetric === Metric.BAND_KG })}
         />
       </div>
     </div>

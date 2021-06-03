@@ -15,6 +15,7 @@ const Template: Story<Props> = (args) => <SetInput isEditable {...args} />
 export const Default = Template.bind({})
 Default.args = {
   setNumber: 1,
+  onSetChange: (e) => console.log(e),
 }
 
 const args = {

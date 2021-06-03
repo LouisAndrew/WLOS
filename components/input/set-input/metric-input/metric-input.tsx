@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, useState } from 'react'
 import { Popup } from 'reactjs-popup'
 import classname from 'classnames/bind'
 import { useUserData } from '@h/useUserData'
@@ -30,26 +30,32 @@ export type Props = {
 const MetricInput: FC<Props> = ({ defaultMetric, isEditable, className, onChange }) => {
   const { getUserBands } = useUserData()
   const couldSelectBanded = getUserBands().length > 0
-  const renderMetricText = (m: Metric) => m.replace('_', ' + ')
+  const renderMetricText = (m: Metric, renderText: boolean = false) =>
+    m === Metric.TIME && renderText ? 's' : m.replace('_', ' + ')
 
   return (
     <Popup
       trigger={
-        <div
+        <button
           className={`${styles.wrapper} ${className}`}
           data-testid="metric-input-wrapper"
           data-editable={isEditable}
         >
-          {renderMetricText(defaultMetric || Metric.KG)}
-        </div>
+          {renderMetricText(defaultMetric || Metric.KG, true)}
+        </button>
       }
       disabled={!isEditable}
       arrow={false}
       position="bottom right"
+      offsetY={8}
     >
       <ul data-testid="metric-input-select-list" className={styles['metric-select']}>
         {Object.values(Metric).map((metric) => {
           if (!couldSelectBanded && [Metric.BAND, Metric.BAND_KG].includes(metric)) {
+            return null
+          }
+
+          if (metric === Metric.BAND_KG) {
             return null
           }
 

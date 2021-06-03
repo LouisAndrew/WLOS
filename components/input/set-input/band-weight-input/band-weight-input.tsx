@@ -15,10 +15,6 @@ export type Props = {
    */
   isEditable?: boolean
   /**
-   * Metric that should be applied
-   */
-  metric: Metric.BAND | Metric.BAND_KG
-  /**
    * Default value of the weight.
    */
   defaultWeightValue?: number
@@ -59,11 +55,10 @@ const getChangeValue = (bandValue: number, additionalWeight: number) =>
 // todo: how to store band_kg weight values?
 // -> BAND: 123 = band1, band2, band3
 // -> BAND_KG: 1200012.5 = band1, band2 + 12.5 kg
-const BandWeightInput: FC<Props> = ({ defaultWeightValue, onChange, metric }) => {
+const BandWeightInput: FC<Props> = ({ defaultWeightValue, onChange }) => {
   const { getUserBands } = useUserData()
   const bands = getUserBands()
 
-  const withAdditionalWeight = metric === Metric.BAND_KG
   const [selectedBands, setSelectedBands] = useState<Band[]>(
     getBands(defaultWeightValue || EMPTY_VALUE, bands)
   )
@@ -88,12 +83,14 @@ const BandWeightInput: FC<Props> = ({ defaultWeightValue, onChange, metric }) =>
         : '0'
     )
 
-    if (!withAdditionalWeight || additionalWeight === EMPTY_VALUE) {
+    if (additionalWeight === EMPTY_VALUE) {
       onChange?.(bandValue)
       return
     }
 
-    onChange?.(getChangeValue(bandValue, additionalWeight))
+    onChange?.(
+      selectedBands.length === 0 ? EMPTY_VALUE : getChangeValue(bandValue, additionalWeight)
+    )
   }, [selectedBands, additionalWeight])
 
   return (
@@ -129,38 +126,36 @@ const BandWeightInput: FC<Props> = ({ defaultWeightValue, onChange, metric }) =>
           )
         })}
       </div>
-      {withAdditionalWeight && (
-        <div className={style['weight-wrapper']}>
-          <label htmlFor="band-weight-input" className="col-span-full row-span-1">
-            Additional Weight
-          </label>
-          <input
-            onChange={(e) => {
-              const val = e.target.value
-              const validator = ['', '0']
-              if (validator.includes(val)) {
-                setAdditionalWeight(EMPTY_VALUE)
-                return
-              }
+      <div className={style['weight-wrapper']}>
+        <label htmlFor="band-weight-input" className="col-span-full row-span-1">
+          Additional Weight
+        </label>
+        <input
+          onChange={(e) => {
+            const val = e.target.value
+            const validator = ['', '0']
+            if (validator.includes(val)) {
+              setAdditionalWeight(EMPTY_VALUE)
+              return
+            }
 
-              const parsed = parseFloat(val)
-              if (parsed <= 0) {
-                setAdditionalWeight(EMPTY_VALUE)
-                return
-              }
+            const parsed = parseFloat(val)
+            if (parsed <= 0) {
+              setAdditionalWeight(EMPTY_VALUE)
+              return
+            }
 
-              setAdditionalWeight(parseFloat(val))
-            }}
-            value={additionalWeight === EMPTY_VALUE ? '' : additionalWeight}
-            disabled={selectedBands.length === 0}
-            className={style['weight-input']}
-            type="number"
-            placeholder="##"
-            id="band-weight-input"
-          />
-          <MetricInput isEditable={false} defaultMetric={Metric.KG} />
-        </div>
-      )}
+            setAdditionalWeight(parseFloat(val))
+          }}
+          value={additionalWeight === EMPTY_VALUE ? '' : additionalWeight}
+          disabled={selectedBands.length === 0}
+          className={style['weight-input']}
+          type="number"
+          placeholder="##"
+          id="band-weight-input"
+        />
+        <MetricInput isEditable={false} defaultMetric={Metric.KG} />
+      </div>
     </div>
   )
 }

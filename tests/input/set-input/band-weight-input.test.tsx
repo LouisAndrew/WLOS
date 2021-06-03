@@ -7,8 +7,7 @@ import { changeEvent } from '@tests/utils/changeEvent'
 
 const bands = mockUserData.settings.bands.map((b) => [b])
 
-const component = (args: Partial<Props> = {}) =>
-  render(<BandWeightInput metric={Metric.BAND} {...args} />)
+const component = (args: Partial<Props> = {}) => render(<BandWeightInput {...args} />)
 
 const getLabelText = (value: number) => `${value}-band-select`
 
@@ -48,8 +47,7 @@ describe('Band Weight input component and calls onChange when selected', () => {
   })
 
   describe('Band and weights.', () => {
-    const c = (args: Partial<Props> = {}) =>
-      render(<BandWeightInput metric={Metric.BAND_KG} {...args} />)
+    const c = (args: Partial<Props> = {}) => render(<BandWeightInput {...args} />)
 
     it('Renders an additional input for weight and disables it if no band is selected', () => {
       const { queryByLabelText: ql } = c()

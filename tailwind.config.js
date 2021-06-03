@@ -13,7 +13,7 @@ module.exports = {
         'secondary-gray': '#252525',
         'secondary-yellow': '#F2E889',
         'shade-yellow' :'#FFF8B7',
-        'shade-gray': '#848484',
+        'shade-gray': '#3c3c3c',
         'muted': '#adacac'
       },
       fontFamily: {
