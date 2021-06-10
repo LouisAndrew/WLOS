@@ -1,9 +1,11 @@
 import { mockUserData } from '@/mock/mock-user-data'
+import { defaultWorkoutLog, filledWorkoutLog } from '@/mock/workout-log'
 import { Band } from '@t/Band'
 import { ExerciseTable } from '@t/tables/Exercise'
 import { SavedLogsTable } from '@t/tables/Log'
 import { TemplateTable } from '@t/tables/Template'
 import { UserData } from '@t/UserData'
+import { WorkoutLog } from '@t/WorkoutLog'
 
 export type UD = {
   /**
@@ -17,7 +19,7 @@ export type UD = {
   /**
    * Retrieve list of user's saved workout logs.
    */
-  getSavedLogs: () => SavedLogsTable[]
+  getSavedLogs: () => WorkoutLog[]
   /**
    * Retrieve list of user's saved exercises (including preset exercises).
    */
@@ -31,7 +33,12 @@ export type UD = {
 export const defaultUD: UD = {
   getFullData: () => mockUserData,
   getSavedTemplates: () => mockUserData.savedTemplates,
-  getSavedLogs: () => mockUserData.savedLogs,
+  getSavedLogs: () => [
+    defaultWorkoutLog,
+    filledWorkoutLog,
+    { ...defaultWorkoutLog, date: new Date(Date.parse('12-21-2021')), templateId: 12 },
+    { ...filledWorkoutLog, date: new Date(Date.parse('12-15-2021')), templateId: 12 },
+  ],
   getSavedExercises: () => mockUserData.savedExercises,
   getUserBands: () => mockUserData.settings.bands,
 }

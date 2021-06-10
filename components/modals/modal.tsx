@@ -59,10 +59,10 @@ const Modal: FC<Props> = ({
   const renderButtons = onPrimaryClicked || onSecondaryClicked
 
   return (
-    <div data-testid="modal-wrapper" className={`${style.wrapper} ${className}`}>
+    <div data-testid="modal-wrapper" className={`modal-wrapper ${className}`}>
       <Icon className={cx({ icon: true, [iconFill || 'white']: true })} />
-      <h3 className="heading text-xl tracking-widest">{headerText}</h3>
-      {bodyText && <p className="font-body text-sm text-muted">{bodyText}</p>}
+      <h3>{headerText}</h3>
+      {bodyText && <p>{bodyText}</p>}
       {renderButtons && (
         <div className={style['button-group']}>
           {onSecondaryClicked && (
@@ -74,7 +74,7 @@ const Modal: FC<Props> = ({
               })}`}
               data-buttontype="secondary"
             >
-              {secondaryButtonText || 'No'}
+              {secondaryButtonText || 'NO'}
             </button>
           )}
           {onPrimaryClicked && (
@@ -86,7 +86,7 @@ const Modal: FC<Props> = ({
               })}`}
               data-buttontype="primary"
             >
-              {primaryButtonText || 'Yes'}
+              {primaryButtonText || 'YES'}
             </button>
           )}
         </div>

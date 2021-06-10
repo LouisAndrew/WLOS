@@ -57,6 +57,18 @@
 }
 
 @layer components {
+  .modal-wrapper {
+    @apply p-8 w-64 flex flex-col sm:w-80 md:w-96;
+  }
+
+  .view-wrapper {
+    @apply container my-4 sm:px-3 md:px-24 lg:px-32 xl:px-72 flex flex-col;
+  }
+
+  .view-text {
+    @apply font-display my-3 text-xs font-semibold block tracking-extrawide text-muted;
+  }
+
   .body {
     @apply font-body font-light;
   }
@@ -75,7 +87,7 @@
   }
 
   .btn--secondary {
-    @apply text-primary-yellow border-primary-yellow hover:bg-primary-yellow hover:text-bg-gray;
+    @apply text-primary-yellow hover:bg-primary-yellow hover:text-bg-gray;
   }
 
   .btn--ghost {
@@ -84,6 +96,14 @@
 
   .btn--ghost-yellow {
     @apply hover:bg-secondary-yellow hover:text-bg-gray;
+  }
+
+  .btn--delete {
+    @apply bg-red-400 border-red-400 text-red-900 hover:brightness-75;
+  }
+
+  .btn--delete svg {
+    fill: theme('colors.red.900');
   }
 
   .btn--text {
@@ -188,6 +208,14 @@ button {
 .tooltip-content {
   background-color: var(--bg-transparent-dark);
   backdrop-filter: var(--bg-blur);
+}
+
+.modal-content h3 {
+  @apply text-xl tracking-widest font-display uppercase;
+}
+
+.modal-content p {
+  @apply font-body text-sm text-muted block my-3 tracking-widest;
 }
 
 [role='tooltip'].popup-content {

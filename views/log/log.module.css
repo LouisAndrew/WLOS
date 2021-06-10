@@ -1,0 +1,62 @@
+.save-button {
+  @apply flex flex-center w-max mt-3;
+}
+
+.log_text_group {
+  grid-template-columns: auto 1fr;
+  column-gap: 32px;
+  @apply grid;
+}
+
+.log_text_group + span {
+  @apply my-2;
+}
+
+.log_text {
+  @apply text-sm align-middle font-light my-2;
+}
+
+.comparison {
+  @apply w-max;
+}
+
+.compare_btn {
+  @apply my-2 w-max flex items-center;
+}
+
+.compare_btn svg {
+  @apply h-3 w-3 mr-2;
+}
+
+.compare_select_btn {
+  @apply hover:bg-primary-gray flex;
+}
+
+.compare_select_btn svg {
+  @apply mt-1 h-5 w-5;
+}
+
+.compare_remove {
+  @apply h-6 w-6 p-0 flex flex-center self-center ml-6 hover:bg-red-400;
+}
+
+.compare_remove svg {
+  fill: theme('colors.red.400');
+  @apply h-4 w-4 mt-0 duration-200;
+}
+
+.compare_remove:hover svg {
+  fill: theme('colors.red.900');
+}
+
+.compare_select_details {
+  @apply flex flex-col items-start ml-4;
+}
+
+.compare_select_details .date {
+  @apply text-xs font-body;
+}
+
+.comparison_item {
+  @apply col-start-1 col-end-3 sm:col-start-2 mt-0 sm:mt-2;
+}

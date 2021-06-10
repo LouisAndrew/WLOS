@@ -1,0 +1,2418 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Log View matches the snapshot 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="view-wrapper"
+        data-testid="log-wrapper"
+      >
+        <div
+          class="header"
+          data-testid="view-header-wrapper"
+        >
+          <button
+            aria-describedby="popup-63"
+            class="btn btn--xs btn--ghost page-state"
+            data-testid="change-state-btn"
+          >
+            EDITING
+            <svg
+              fill="currentColor"
+              height="1em"
+              stroke="currentColor"
+              stroke-width="0"
+              viewBox="0 0 24 24"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g>
+                <path
+                  d="M0 0h24v24H0z"
+                  fill="none"
+                />
+                <path
+                  d="M17.849 11.808l-.707-.707-9.9 9.9H3v-4.243L14.313 5.444l5.657 5.657a1 1 0 0 1 0 1.414l-7.07 7.071-1.415-1.414 6.364-6.364zm-2.121-2.121l-1.415-1.414L5 17.586v1.415h1.414l9.314-9.314zm2.828-7.071l2.829 2.828a1 1 0 0 1 0 1.414L19.97 8.273 15.728 4.03l1.414-1.414a1 1 0 0 1 1.414 0z"
+                />
+              </g>
+            </svg>
+          </button>
+          <div
+            class="name-wrapper"
+          >
+            <div
+              aria-label="Template Color"
+              class="color-indicator"
+              data-testid="color-indicator"
+              style="background-color: rgb(239, 68, 68);"
+            />
+            <label
+              class="name-input-label"
+            >
+              TEMPLATE NAME
+              <input
+                data-iseditable="false"
+                placeholder="ENTER NAME"
+                type="text"
+                value="PRESET WORKOUT"
+              />
+            </label>
+          </div>
+        </div>
+        <div>
+          <div
+            class="log_text_group"
+          >
+            <span
+              class="view-text"
+            >
+              DATE
+            </span>
+            <span
+              class="log_text"
+            >
+              Oct 10, 2000
+            </span>
+            <span
+              class="view-text"
+            >
+              EXERCISES
+            </span>
+            <button
+              class="btn btn--xs btn--ghost comparison_item compare_btn"
+              data-testid="comparison-log"
+            >
+              <svg
+                fill="currentColor"
+                height="1em"
+                stroke="currentColor"
+                stroke-width="0"
+                viewBox="0 0 24 24"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g>
+                  <path
+                    d="M0 0h24v24H0z"
+                    fill="none"
+                  />
+                  <path
+                    d="M20 22H4a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1zm-1-2V4H5v16h14zM8 7h8v2H8V7zm0 4h8v2H8v-2zm0 4h5v2H8v-2z"
+                  />
+                </g>
+              </svg>
+              COMPARE WORKOUT LOG
+            </button>
+          </div>
+          <div
+            data-testid="log-list-wrapper"
+          >
+            <div>
+              <div
+                class="log_list_item"
+              >
+                <div
+                  class="log_list_progress"
+                  data-isdone="false"
+                >
+                  <div
+                    class="log_list_progress_item"
+                  >
+                    <svg
+                      fill="currentColor"
+                      height="1em"
+                      stroke="currentColor"
+                      stroke-width="0"
+                      viewBox="0 0 24 24"
+                      width="1em"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <g>
+                        <path
+                          d="M0 0h24v24H0z"
+                          fill="none"
+                        />
+                        <path
+                          d="M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414z"
+                        />
+                      </g>
+                    </svg>
+                  </div>
+                  <div
+                    class="log_list_progress_line"
+                  />
+                </div>
+                <div
+                  class="wrapper"
+                  data-testid="log-list-item-wrapper"
+                >
+                  <div
+                    class="wrapper set"
+                    data-testid="exercise-list-item-wrapper"
+                  >
+                    <div
+                      class="wrapper undefined"
+                      data-testid="exercise-input-wrapper"
+                    >
+                      <span
+                        class="w-full block"
+                      >
+                        <input
+                          aria-label="Exercise Name"
+                          class="name-input"
+                          data-iseditable="false"
+                          placeholder="Exercise Name"
+                          type="text"
+                          value="PULL UP"
+                        />
+                      </span>
+                      <div
+                        class="ranges"
+                      >
+                        <div
+                          class="wrapper undefined"
+                          data-testid="ranged-input-wrapper"
+                        >
+                          <div
+                            class="input-group"
+                          >
+                            <input
+                              aria-label="Range start"
+                              class="input"
+                              data-testid="sets-range-start"
+                              placeholder="#"
+                              required=""
+                              style="width: 24px;"
+                              value="2"
+                            />
+                            <input
+                              aria-label="Range separator"
+                              class="input input-separator"
+                              data-testid="sets-range-separator"
+                              placeholder="-"
+                              style="width: 24px; opacity: 1;"
+                              value="-"
+                            />
+                            <input
+                              aria-label="Range end"
+                              class="input"
+                              data-testid="sets-range-end"
+                              placeholder="#"
+                              style="width: 24px; opacity: 1;"
+                              value="3"
+                            />
+                          </div>
+                          <div
+                            class="placeholder"
+                          >
+                            SETS
+                          </div>
+                        </div>
+                        <svg
+                          class="ranges-separator"
+                          fill="currentColor"
+                          height="1em"
+                          stroke="currentColor"
+                          stroke-width="0"
+                          viewBox="0 0 24 24"
+                          width="1em"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <g>
+                            <path
+                              d="M0 0h24v24H0z"
+                              fill="none"
+                            />
+                            <path
+                              d="M12 10.586l4.95-4.95 1.414 1.414-4.95 4.95 4.95 4.95-1.414 1.414-4.95-4.95-4.95 4.95-1.414-1.414 4.95-4.95-4.95-4.95L7.05 5.636z"
+                            />
+                          </g>
+                        </svg>
+                        <div
+                          class="wrapper undefined"
+                          data-testid="ranged-input-wrapper"
+                        >
+                          <div
+                            class="input-group"
+                          >
+                            <input
+                              aria-label="Range start"
+                              class="input"
+                              data-testid="reps-range-start"
+                              placeholder="##"
+                              required=""
+                              style="width: 48px;"
+                              value="19"
+                            />
+                            <input
+                              aria-label="Range separator"
+                              class="input input-separator"
+                              data-testid="reps-range-separator"
+                              placeholder="-"
+                              style="width: 0px; opacity: 0;"
+                              value=""
+                            />
+                            <input
+                              aria-label="Range end"
+                              class="input error"
+                              data-testid="reps-range-end"
+                              placeholder="##"
+                              style="width: 0px; opacity: 0;"
+                              value=""
+                            />
+                          </div>
+                          <div
+                            class="placeholder"
+                          >
+                            REPS
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <button
+                      aria-describedby="popup-82"
+                      class="btn btn--xs btn--ghost-yellow list-more-button"
+                    >
+                      DETAILS
+                    </button>
+                  </div>
+                  <div
+                    class="exercise_sets"
+                  >
+                    <div
+                      class="exercise_set_container"
+                    >
+                      <div
+                        class="set_wrapper"
+                      >
+                        <div
+                          class="wrapper"
+                          data-testid="set-input-wrapper"
+                        >
+                          <div
+                            class="set-number-wrapper"
+                          >
+                            SET
+                            <span
+                              class="ml-3"
+                              data-testid="set-number"
+                            >
+                              #
+                              1
+                            </span>
+                            <div
+                              class="wrapper"
+                              data-editable="true"
+                              data-testid="review-select-wrapper"
+                            >
+                              <label
+                                class="input-label active"
+                                for="s_UP"
+                              >
+                                <input
+                                  aria-label="UP"
+                                  checked=""
+                                  class="input"
+                                  id="s_UP"
+                                  name="s__review-select"
+                                  type="radio"
+                                />
+                                <svg
+                                  class="input-icon"
+                                  fill="currentColor"
+                                  height="1em"
+                                  stroke="currentColor"
+                                  stroke-width="0"
+                                  viewBox="0 0 24 24"
+                                  width="1em"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <g>
+                                    <path
+                                      d="M0 0h24v24H0z"
+                                      fill="none"
+                                    />
+                                    <path
+                                      d="M2 9h3v12H2a1 1 0 0 1-1-1V10a1 1 0 0 1 1-1zm5.293-1.293l6.4-6.4a.5.5 0 0 1 .654-.047l.853.64a1.5 1.5 0 0 1 .553 1.57L14.6 8H21a2 2 0 0 1 2 2v2.104a2 2 0 0 1-.15.762l-3.095 7.515a1 1 0 0 1-.925.619H8a1 1 0 0 1-1-1V8.414a1 1 0 0 1 .293-.707z"
+                                    />
+                                  </g>
+                                </svg>
+                              </label>
+                              <label
+                                class="input-label"
+                                for="s_DOWN"
+                              >
+                                <input
+                                  aria-label="DOWN"
+                                  class="input"
+                                  id="s_DOWN"
+                                  name="s__review-select"
+                                  type="radio"
+                                />
+                                <svg
+                                  class="input-icon"
+                                  fill="currentColor"
+                                  height="1em"
+                                  stroke="currentColor"
+                                  stroke-width="0"
+                                  viewBox="0 0 24 24"
+                                  width="1em"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <g>
+                                    <path
+                                      d="M0 0h24v24H0z"
+                                      fill="none"
+                                    />
+                                    <path
+                                      d="M22 15h-3V3h3a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1zm-5.293 1.293l-6.4 6.4a.5.5 0 0 1-.654.047L8.8 22.1a1.5 1.5 0 0 1-.553-1.57L9.4 16H3a2 2 0 0 1-2-2v-2.104a2 2 0 0 1 .15-.762L4.246 3.62A1 1 0 0 1 5.17 3H16a1 1 0 0 1 1 1v11.586a1 1 0 0 1-.293.707z"
+                                    />
+                                  </g>
+                                </svg>
+                              </label>
+                              <label
+                                class="input-label"
+                                for="s_STAY"
+                              >
+                                <input
+                                  aria-label="STAY"
+                                  class="input"
+                                  id="s_STAY"
+                                  name="s__review-select"
+                                  type="radio"
+                                />
+                                <svg
+                                  class="input-icon"
+                                  fill="currentColor"
+                                  height="1em"
+                                  stroke="currentColor"
+                                  stroke-width="0"
+                                  viewBox="0 0 24 24"
+                                  width="1em"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <g>
+                                    <path
+                                      d="M0 0h24v24H0z"
+                                      fill="none"
+                                    />
+                                    <path
+                                      d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm-4-8v2h8v-2H8zm0-3a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zm8 0a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"
+                                    />
+                                  </g>
+                                </svg>
+                              </label>
+                            </div>
+                          </div>
+                          <div
+                            class="input-wrapper"
+                          >
+                            <label
+                              class="label"
+                              for="s-reps"
+                            >
+                              REPS
+                              <input
+                                class="input"
+                                data-char-count="2"
+                                id="s-reps"
+                                placeholder="##"
+                                type="number"
+                                value="12"
+                              />
+                            </label>
+                            <label
+                              class="ml-4 label"
+                              for="s-weight"
+                            >
+                              WEIGHT
+                              <input
+                                class="input"
+                                data-char-count="2"
+                                id="s-weight"
+                                placeholder="##"
+                                type="number"
+                                value="20"
+                              />
+                            </label>
+                            <button
+                              aria-describedby="popup-70"
+                              class="wrapper "
+                              data-editable="true"
+                              data-testid="metric-input-wrapper"
+                            >
+                              KG
+                            </button>
+                          </div>
+                        </div>
+                        <button
+                          aria-describedby="popup-71"
+                          class="btn btn--icon btn--xs btn--ghost delete_set_btn"
+                        >
+                          <svg
+                            fill="currentColor"
+                            height="1em"
+                            stroke="currentColor"
+                            stroke-width="0"
+                            viewBox="0 0 24 24"
+                            width="1em"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <g>
+                              <path
+                                d="M0 0h24v24H0z"
+                                fill="none"
+                              />
+                              <path
+                                d="M7 4V2h10v2h5v2h-2v15a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6H2V4h5zM6 6v14h12V6H6zm3 3h2v8H9V9zm4 0h2v8h-2V9z"
+                              />
+                            </g>
+                          </svg>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="flex items-center flex-wrap"
+                  >
+                    <button
+                      class="btn btn--s btn--ghost button_group_item"
+                      data-testid="add-set"
+                    >
+                      <svg
+                        fill="currentColor"
+                        height="1em"
+                        stroke="currentColor"
+                        stroke-width="0"
+                        viewBox="0 0 24 24"
+                        width="1em"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M6 5L6 11 6 13 6 19 9 19 9 13 15 13 15 19 18 19 18 5 15 5 15 11 9 11 9 5zM3 15c0 .553.447 1 1 1h1V8H4C3.447 8 3 8.447 3 9v2H2v2h1V15zM21 9c0-.553-.447-1-1-1h-1v8h1c.553 0 1-.447 1-1v-2h1v-2h-1V9z"
+                        />
+                      </svg>
+                      ADD SET
+                    </button>
+                    <button
+                      class="btn btn--s btn--ghost button_group_item"
+                    >
+                      <svg
+                        fill="currentColor"
+                        height="1em"
+                        stroke="currentColor"
+                        stroke-width="0"
+                        viewBox="0 0 24 24"
+                        width="1em"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <g>
+                          <path
+                            d="M0 0h24v24H0z"
+                            fill="none"
+                          />
+                          <path
+                            d="M7 4V2h10v2h5v2h-2v15a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6H2V4h5zM6 6v14h12V6H6zm3 3h2v8H9V9zm4 0h2v8h-2V9z"
+                          />
+                        </g>
+                      </svg>
+                      REMOVE
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="log_list_item"
+              >
+                <div
+                  class="log_list_progress"
+                  data-isdone="false"
+                >
+                  <div
+                    class="log_list_progress_item"
+                  >
+                    <svg
+                      fill="currentColor"
+                      height="1em"
+                      stroke="currentColor"
+                      stroke-width="0"
+                      viewBox="0 0 24 24"
+                      width="1em"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <g>
+                        <path
+                          d="M0 0h24v24H0z"
+                          fill="none"
+                        />
+                        <path
+                          d="M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414z"
+                        />
+                      </g>
+                    </svg>
+                  </div>
+                  <div
+                    class="log_list_progress_line"
+                  />
+                </div>
+                <div
+                  class="wrapper"
+                  data-testid="log-list-item-wrapper"
+                >
+                  <div
+                    class="wrapper set"
+                    data-testid="exercise-list-item-wrapper"
+                  >
+                    <div
+                      class="wrapper undefined"
+                      data-testid="exercise-input-wrapper"
+                    >
+                      <span
+                        class="w-full block"
+                      >
+                        <input
+                          aria-label="Exercise Name"
+                          class="name-input"
+                          data-iseditable="false"
+                          placeholder="Exercise Name"
+                          type="text"
+                          value="PUSH UP"
+                        />
+                      </span>
+                      <div
+                        class="ranges"
+                      >
+                        <div
+                          class="wrapper undefined"
+                          data-testid="ranged-input-wrapper"
+                        >
+                          <div
+                            class="input-group"
+                          >
+                            <input
+                              aria-label="Range start"
+                              class="input"
+                              data-testid="sets-range-start"
+                              placeholder="#"
+                              required=""
+                              style="width: 24px;"
+                              value="3"
+                            />
+                            <input
+                              aria-label="Range separator"
+                              class="input input-separator"
+                              data-testid="sets-range-separator"
+                              placeholder="-"
+                              style="width: 24px; opacity: 1;"
+                              value="-"
+                            />
+                            <input
+                              aria-label="Range end"
+                              class="input"
+                              data-testid="sets-range-end"
+                              placeholder="#"
+                              style="width: 24px; opacity: 1;"
+                              value="4"
+                            />
+                          </div>
+                          <div
+                            class="placeholder"
+                          >
+                            SETS
+                          </div>
+                        </div>
+                        <svg
+                          class="ranges-separator"
+                          fill="currentColor"
+                          height="1em"
+                          stroke="currentColor"
+                          stroke-width="0"
+                          viewBox="0 0 24 24"
+                          width="1em"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <g>
+                            <path
+                              d="M0 0h24v24H0z"
+                              fill="none"
+                            />
+                            <path
+                              d="M12 10.586l4.95-4.95 1.414 1.414-4.95 4.95 4.95 4.95-1.414 1.414-4.95-4.95-4.95 4.95-1.414-1.414 4.95-4.95-4.95-4.95L7.05 5.636z"
+                            />
+                          </g>
+                        </svg>
+                        <div
+                          class="wrapper undefined"
+                          data-testid="ranged-input-wrapper"
+                        >
+                          <div
+                            class="input-group"
+                          >
+                            <input
+                              aria-label="Range start"
+                              class="input"
+                              data-testid="reps-range-start"
+                              placeholder="##"
+                              required=""
+                              style="width: 48px;"
+                              value="12"
+                            />
+                            <input
+                              aria-label="Range separator"
+                              class="input input-separator"
+                              data-testid="reps-range-separator"
+                              placeholder="-"
+                              style="width: 0px; opacity: 0;"
+                              value=""
+                            />
+                            <input
+                              aria-label="Range end"
+                              class="input error"
+                              data-testid="reps-range-end"
+                              placeholder="##"
+                              style="width: 0px; opacity: 0;"
+                              value=""
+                            />
+                          </div>
+                          <div
+                            class="placeholder"
+                          >
+                            REPS
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <button
+                      aria-describedby="popup-87"
+                      class="btn btn--xs btn--ghost-yellow list-more-button"
+                    >
+                      DETAILS
+                    </button>
+                  </div>
+                  <div
+                    class="exercise_sets"
+                  >
+                    <div
+                      class="exercise_set_container"
+                    >
+                      <div
+                        class="set_wrapper"
+                      >
+                        <div
+                          class="wrapper"
+                          data-testid="set-input-wrapper"
+                        >
+                          <div
+                            class="set-number-wrapper"
+                          >
+                            SET
+                            <span
+                              class="ml-3"
+                              data-testid="set-number"
+                            >
+                              #
+                              2
+                            </span>
+                            <div
+                              class="wrapper"
+                              data-editable="true"
+                              data-testid="review-select-wrapper"
+                            >
+                              <label
+                                class="input-label active"
+                                for="s_UP"
+                              >
+                                <input
+                                  aria-label="UP"
+                                  checked=""
+                                  class="input"
+                                  id="s_UP"
+                                  name="s__review-select"
+                                  type="radio"
+                                />
+                                <svg
+                                  class="input-icon"
+                                  fill="currentColor"
+                                  height="1em"
+                                  stroke="currentColor"
+                                  stroke-width="0"
+                                  viewBox="0 0 24 24"
+                                  width="1em"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <g>
+                                    <path
+                                      d="M0 0h24v24H0z"
+                                      fill="none"
+                                    />
+                                    <path
+                                      d="M2 9h3v12H2a1 1 0 0 1-1-1V10a1 1 0 0 1 1-1zm5.293-1.293l6.4-6.4a.5.5 0 0 1 .654-.047l.853.64a1.5 1.5 0 0 1 .553 1.57L14.6 8H21a2 2 0 0 1 2 2v2.104a2 2 0 0 1-.15.762l-3.095 7.515a1 1 0 0 1-.925.619H8a1 1 0 0 1-1-1V8.414a1 1 0 0 1 .293-.707z"
+                                    />
+                                  </g>
+                                </svg>
+                              </label>
+                              <label
+                                class="input-label"
+                                for="s_DOWN"
+                              >
+                                <input
+                                  aria-label="DOWN"
+                                  class="input"
+                                  id="s_DOWN"
+                                  name="s__review-select"
+                                  type="radio"
+                                />
+                                <svg
+                                  class="input-icon"
+                                  fill="currentColor"
+                                  height="1em"
+                                  stroke="currentColor"
+                                  stroke-width="0"
+                                  viewBox="0 0 24 24"
+                                  width="1em"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <g>
+                                    <path
+                                      d="M0 0h24v24H0z"
+                                      fill="none"
+                                    />
+                                    <path
+                                      d="M22 15h-3V3h3a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1zm-5.293 1.293l-6.4 6.4a.5.5 0 0 1-.654.047L8.8 22.1a1.5 1.5 0 0 1-.553-1.57L9.4 16H3a2 2 0 0 1-2-2v-2.104a2 2 0 0 1 .15-.762L4.246 3.62A1 1 0 0 1 5.17 3H16a1 1 0 0 1 1 1v11.586a1 1 0 0 1-.293.707z"
+                                    />
+                                  </g>
+                                </svg>
+                              </label>
+                              <label
+                                class="input-label"
+                                for="s_STAY"
+                              >
+                                <input
+                                  aria-label="STAY"
+                                  class="input"
+                                  id="s_STAY"
+                                  name="s__review-select"
+                                  type="radio"
+                                />
+                                <svg
+                                  class="input-icon"
+                                  fill="currentColor"
+                                  height="1em"
+                                  stroke="currentColor"
+                                  stroke-width="0"
+                                  viewBox="0 0 24 24"
+                                  width="1em"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <g>
+                                    <path
+                                      d="M0 0h24v24H0z"
+                                      fill="none"
+                                    />
+                                    <path
+                                      d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm-4-8v2h8v-2H8zm0-3a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zm8 0a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"
+                                    />
+                                  </g>
+                                </svg>
+                              </label>
+                            </div>
+                          </div>
+                          <div
+                            class="input-wrapper"
+                          >
+                            <label
+                              class="label"
+                              for="s-reps"
+                            >
+                              REPS
+                              <input
+                                class="input"
+                                data-char-count="2"
+                                id="s-reps"
+                                placeholder="##"
+                                type="number"
+                                value="12"
+                              />
+                            </label>
+                            <label
+                              class="ml-4 label"
+                              for="s-weight"
+                            >
+                              WEIGHT
+                              <input
+                                class="input"
+                                data-char-count="2"
+                                id="s-weight"
+                                placeholder="##"
+                                type="number"
+                                value="20"
+                              />
+                            </label>
+                            <button
+                              aria-describedby="popup-74"
+                              class="wrapper "
+                              data-editable="true"
+                              data-testid="metric-input-wrapper"
+                            >
+                              KG
+                            </button>
+                          </div>
+                        </div>
+                        <button
+                          aria-describedby="popup-75"
+                          class="btn btn--icon btn--xs btn--ghost delete_set_btn"
+                        >
+                          <svg
+                            fill="currentColor"
+                            height="1em"
+                            stroke="currentColor"
+                            stroke-width="0"
+                            viewBox="0 0 24 24"
+                            width="1em"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <g>
+                              <path
+                                d="M0 0h24v24H0z"
+                                fill="none"
+                              />
+                              <path
+                                d="M7 4V2h10v2h5v2h-2v15a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6H2V4h5zM6 6v14h12V6H6zm3 3h2v8H9V9zm4 0h2v8h-2V9z"
+                              />
+                            </g>
+                          </svg>
+                        </button>
+                      </div>
+                      <div
+                        class="set_wrapper"
+                      >
+                        <div
+                          class="wrapper"
+                          data-testid="set-input-wrapper"
+                        >
+                          <div
+                            class="set-number-wrapper"
+                          >
+                            SET
+                            <span
+                              class="ml-3"
+                              data-testid="set-number"
+                            >
+                              #
+                              2
+                            </span>
+                            <div
+                              class="wrapper"
+                              data-editable="true"
+                              data-testid="review-select-wrapper"
+                            >
+                              <label
+                                class="input-label active"
+                                for="s_UP"
+                              >
+                                <input
+                                  aria-label="UP"
+                                  checked=""
+                                  class="input"
+                                  id="s_UP"
+                                  name="s__review-select"
+                                  type="radio"
+                                />
+                                <svg
+                                  class="input-icon"
+                                  fill="currentColor"
+                                  height="1em"
+                                  stroke="currentColor"
+                                  stroke-width="0"
+                                  viewBox="0 0 24 24"
+                                  width="1em"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <g>
+                                    <path
+                                      d="M0 0h24v24H0z"
+                                      fill="none"
+                                    />
+                                    <path
+                                      d="M2 9h3v12H2a1 1 0 0 1-1-1V10a1 1 0 0 1 1-1zm5.293-1.293l6.4-6.4a.5.5 0 0 1 .654-.047l.853.64a1.5 1.5 0 0 1 .553 1.57L14.6 8H21a2 2 0 0 1 2 2v2.104a2 2 0 0 1-.15.762l-3.095 7.515a1 1 0 0 1-.925.619H8a1 1 0 0 1-1-1V8.414a1 1 0 0 1 .293-.707z"
+                                    />
+                                  </g>
+                                </svg>
+                              </label>
+                              <label
+                                class="input-label"
+                                for="s_DOWN"
+                              >
+                                <input
+                                  aria-label="DOWN"
+                                  class="input"
+                                  id="s_DOWN"
+                                  name="s__review-select"
+                                  type="radio"
+                                />
+                                <svg
+                                  class="input-icon"
+                                  fill="currentColor"
+                                  height="1em"
+                                  stroke="currentColor"
+                                  stroke-width="0"
+                                  viewBox="0 0 24 24"
+                                  width="1em"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <g>
+                                    <path
+                                      d="M0 0h24v24H0z"
+                                      fill="none"
+                                    />
+                                    <path
+                                      d="M22 15h-3V3h3a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1zm-5.293 1.293l-6.4 6.4a.5.5 0 0 1-.654.047L8.8 22.1a1.5 1.5 0 0 1-.553-1.57L9.4 16H3a2 2 0 0 1-2-2v-2.104a2 2 0 0 1 .15-.762L4.246 3.62A1 1 0 0 1 5.17 3H16a1 1 0 0 1 1 1v11.586a1 1 0 0 1-.293.707z"
+                                    />
+                                  </g>
+                                </svg>
+                              </label>
+                              <label
+                                class="input-label"
+                                for="s_STAY"
+                              >
+                                <input
+                                  aria-label="STAY"
+                                  class="input"
+                                  id="s_STAY"
+                                  name="s__review-select"
+                                  type="radio"
+                                />
+                                <svg
+                                  class="input-icon"
+                                  fill="currentColor"
+                                  height="1em"
+                                  stroke="currentColor"
+                                  stroke-width="0"
+                                  viewBox="0 0 24 24"
+                                  width="1em"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <g>
+                                    <path
+                                      d="M0 0h24v24H0z"
+                                      fill="none"
+                                    />
+                                    <path
+                                      d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm-4-8v2h8v-2H8zm0-3a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zm8 0a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"
+                                    />
+                                  </g>
+                                </svg>
+                              </label>
+                            </div>
+                          </div>
+                          <div
+                            class="input-wrapper"
+                          >
+                            <label
+                              class="label"
+                              for="s-reps"
+                            >
+                              REPS
+                              <input
+                                class="input"
+                                data-char-count="2"
+                                id="s-reps"
+                                placeholder="##"
+                                type="number"
+                                value="12"
+                              />
+                            </label>
+                            <label
+                              class="ml-4 label"
+                              for="s-weight"
+                            >
+                              WEIGHT
+                              <input
+                                class="input"
+                                data-char-count="2"
+                                id="s-weight"
+                                placeholder="##"
+                                type="number"
+                                value="20"
+                              />
+                            </label>
+                            <button
+                              aria-describedby="popup-76"
+                              class="wrapper "
+                              data-editable="true"
+                              data-testid="metric-input-wrapper"
+                            >
+                              KG
+                            </button>
+                          </div>
+                        </div>
+                        <button
+                          aria-describedby="popup-77"
+                          class="btn btn--icon btn--xs btn--ghost delete_set_btn"
+                        >
+                          <svg
+                            fill="currentColor"
+                            height="1em"
+                            stroke="currentColor"
+                            stroke-width="0"
+                            viewBox="0 0 24 24"
+                            width="1em"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <g>
+                              <path
+                                d="M0 0h24v24H0z"
+                                fill="none"
+                              />
+                              <path
+                                d="M7 4V2h10v2h5v2h-2v15a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6H2V4h5zM6 6v14h12V6H6zm3 3h2v8H9V9zm4 0h2v8h-2V9z"
+                              />
+                            </g>
+                          </svg>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="flex items-center flex-wrap"
+                  >
+                    <button
+                      class="btn btn--s btn--ghost button_group_item"
+                      data-testid="add-set"
+                    >
+                      <svg
+                        fill="currentColor"
+                        height="1em"
+                        stroke="currentColor"
+                        stroke-width="0"
+                        viewBox="0 0 24 24"
+                        width="1em"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M6 5L6 11 6 13 6 19 9 19 9 13 15 13 15 19 18 19 18 5 15 5 15 11 9 11 9 5zM3 15c0 .553.447 1 1 1h1V8H4C3.447 8 3 8.447 3 9v2H2v2h1V15zM21 9c0-.553-.447-1-1-1h-1v8h1c.553 0 1-.447 1-1v-2h1v-2h-1V9z"
+                        />
+                      </svg>
+                      ADD SET
+                    </button>
+                    <button
+                      class="btn btn--s btn--ghost button_group_item"
+                    >
+                      <svg
+                        fill="currentColor"
+                        height="1em"
+                        stroke="currentColor"
+                        stroke-width="0"
+                        viewBox="0 0 24 24"
+                        width="1em"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <g>
+                          <path
+                            d="M0 0h24v24H0z"
+                            fill="none"
+                          />
+                          <path
+                            d="M7 4V2h10v2h5v2h-2v15a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6H2V4h5zM6 6v14h12V6H6zm3 3h2v8H9V9zm4 0h2v8h-2V9z"
+                          />
+                        </g>
+                      </svg>
+                      REMOVE
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="flex items-start sm:items-center flex-col sm:flex-row"
+            >
+              <button
+                class="btn btn--xs btn--secondary button_group add_exercise_btn"
+              >
+                <svg
+                  fill="currentColor"
+                  height="1em"
+                  stroke="currentColor"
+                  stroke-width="0"
+                  viewBox="0 0 24 24"
+                  width="1em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g>
+                    <path
+                      d="M0 0h24v24H0z"
+                      fill="none"
+                    />
+                    <path
+                      d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2z"
+                    />
+                  </g>
+                </svg>
+                ADD EXERCISE
+              </button>
+            </div>
+          </div>
+        </div>
+        <button
+          class="btn btn--s btn--ghost save-button"
+          data-testid="save-btn"
+        >
+          <svg
+            class="mr-3 h-4 w-4"
+            fill="currentColor"
+            height="1em"
+            stroke="currentColor"
+            stroke-width="0"
+            viewBox="0 0 24 24"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <g>
+              <path
+                d="M0 0h24v24H0z"
+                fill="none"
+              />
+              <path
+                d="M7 19v-6h10v6h2V7.828L16.172 5H5v14h2zM4 3h13l4 4v13a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zm5 12v4h6v-4H9z"
+              />
+            </g>
+          </svg>
+          SAVE CHANGES
+        </button>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="view-wrapper"
+      data-testid="log-wrapper"
+    >
+      <div
+        class="header"
+        data-testid="view-header-wrapper"
+      >
+        <button
+          aria-describedby="popup-63"
+          class="btn btn--xs btn--ghost page-state"
+          data-testid="change-state-btn"
+        >
+          EDITING
+          <svg
+            fill="currentColor"
+            height="1em"
+            stroke="currentColor"
+            stroke-width="0"
+            viewBox="0 0 24 24"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <g>
+              <path
+                d="M0 0h24v24H0z"
+                fill="none"
+              />
+              <path
+                d="M17.849 11.808l-.707-.707-9.9 9.9H3v-4.243L14.313 5.444l5.657 5.657a1 1 0 0 1 0 1.414l-7.07 7.071-1.415-1.414 6.364-6.364zm-2.121-2.121l-1.415-1.414L5 17.586v1.415h1.414l9.314-9.314zm2.828-7.071l2.829 2.828a1 1 0 0 1 0 1.414L19.97 8.273 15.728 4.03l1.414-1.414a1 1 0 0 1 1.414 0z"
+              />
+            </g>
+          </svg>
+        </button>
+        <div
+          class="name-wrapper"
+        >
+          <div
+            aria-label="Template Color"
+            class="color-indicator"
+            data-testid="color-indicator"
+            style="background-color: rgb(239, 68, 68);"
+          />
+          <label
+            class="name-input-label"
+          >
+            TEMPLATE NAME
+            <input
+              data-iseditable="false"
+              placeholder="ENTER NAME"
+              type="text"
+              value="PRESET WORKOUT"
+            />
+          </label>
+        </div>
+      </div>
+      <div>
+        <div
+          class="log_text_group"
+        >
+          <span
+            class="view-text"
+          >
+            DATE
+          </span>
+          <span
+            class="log_text"
+          >
+            Oct 10, 2000
+          </span>
+          <span
+            class="view-text"
+          >
+            EXERCISES
+          </span>
+          <button
+            class="btn btn--xs btn--ghost comparison_item compare_btn"
+            data-testid="comparison-log"
+          >
+            <svg
+              fill="currentColor"
+              height="1em"
+              stroke="currentColor"
+              stroke-width="0"
+              viewBox="0 0 24 24"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g>
+                <path
+                  d="M0 0h24v24H0z"
+                  fill="none"
+                />
+                <path
+                  d="M20 22H4a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1zm-1-2V4H5v16h14zM8 7h8v2H8V7zm0 4h8v2H8v-2zm0 4h5v2H8v-2z"
+                />
+              </g>
+            </svg>
+            COMPARE WORKOUT LOG
+          </button>
+        </div>
+        <div
+          data-testid="log-list-wrapper"
+        >
+          <div>
+            <div
+              class="log_list_item"
+            >
+              <div
+                class="log_list_progress"
+                data-isdone="false"
+              >
+                <div
+                  class="log_list_progress_item"
+                >
+                  <svg
+                    fill="currentColor"
+                    height="1em"
+                    stroke="currentColor"
+                    stroke-width="0"
+                    viewBox="0 0 24 24"
+                    width="1em"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <g>
+                      <path
+                        d="M0 0h24v24H0z"
+                        fill="none"
+                      />
+                      <path
+                        d="M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414z"
+                      />
+                    </g>
+                  </svg>
+                </div>
+                <div
+                  class="log_list_progress_line"
+                />
+              </div>
+              <div
+                class="wrapper"
+                data-testid="log-list-item-wrapper"
+              >
+                <div
+                  class="wrapper set"
+                  data-testid="exercise-list-item-wrapper"
+                >
+                  <div
+                    class="wrapper undefined"
+                    data-testid="exercise-input-wrapper"
+                  >
+                    <span
+                      class="w-full block"
+                    >
+                      <input
+                        aria-label="Exercise Name"
+                        class="name-input"
+                        data-iseditable="false"
+                        placeholder="Exercise Name"
+                        type="text"
+                        value="PULL UP"
+                      />
+                    </span>
+                    <div
+                      class="ranges"
+                    >
+                      <div
+                        class="wrapper undefined"
+                        data-testid="ranged-input-wrapper"
+                      >
+                        <div
+                          class="input-group"
+                        >
+                          <input
+                            aria-label="Range start"
+                            class="input"
+                            data-testid="sets-range-start"
+                            placeholder="#"
+                            required=""
+                            style="width: 24px;"
+                            value="2"
+                          />
+                          <input
+                            aria-label="Range separator"
+                            class="input input-separator"
+                            data-testid="sets-range-separator"
+                            placeholder="-"
+                            style="width: 24px; opacity: 1;"
+                            value="-"
+                          />
+                          <input
+                            aria-label="Range end"
+                            class="input"
+                            data-testid="sets-range-end"
+                            placeholder="#"
+                            style="width: 24px; opacity: 1;"
+                            value="3"
+                          />
+                        </div>
+                        <div
+                          class="placeholder"
+                        >
+                          SETS
+                        </div>
+                      </div>
+                      <svg
+                        class="ranges-separator"
+                        fill="currentColor"
+                        height="1em"
+                        stroke="currentColor"
+                        stroke-width="0"
+                        viewBox="0 0 24 24"
+                        width="1em"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <g>
+                          <path
+                            d="M0 0h24v24H0z"
+                            fill="none"
+                          />
+                          <path
+                            d="M12 10.586l4.95-4.95 1.414 1.414-4.95 4.95 4.95 4.95-1.414 1.414-4.95-4.95-4.95 4.95-1.414-1.414 4.95-4.95-4.95-4.95L7.05 5.636z"
+                          />
+                        </g>
+                      </svg>
+                      <div
+                        class="wrapper undefined"
+                        data-testid="ranged-input-wrapper"
+                      >
+                        <div
+                          class="input-group"
+                        >
+                          <input
+                            aria-label="Range start"
+                            class="input"
+                            data-testid="reps-range-start"
+                            placeholder="##"
+                            required=""
+                            style="width: 48px;"
+                            value="19"
+                          />
+                          <input
+                            aria-label="Range separator"
+                            class="input input-separator"
+                            data-testid="reps-range-separator"
+                            placeholder="-"
+                            style="width: 0px; opacity: 0;"
+                            value=""
+                          />
+                          <input
+                            aria-label="Range end"
+                            class="input error"
+                            data-testid="reps-range-end"
+                            placeholder="##"
+                            style="width: 0px; opacity: 0;"
+                            value=""
+                          />
+                        </div>
+                        <div
+                          class="placeholder"
+                        >
+                          REPS
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <button
+                    aria-describedby="popup-82"
+                    class="btn btn--xs btn--ghost-yellow list-more-button"
+                  >
+                    DETAILS
+                  </button>
+                </div>
+                <div
+                  class="exercise_sets"
+                >
+                  <div
+                    class="exercise_set_container"
+                  >
+                    <div
+                      class="set_wrapper"
+                    >
+                      <div
+                        class="wrapper"
+                        data-testid="set-input-wrapper"
+                      >
+                        <div
+                          class="set-number-wrapper"
+                        >
+                          SET
+                          <span
+                            class="ml-3"
+                            data-testid="set-number"
+                          >
+                            #
+                            1
+                          </span>
+                          <div
+                            class="wrapper"
+                            data-editable="true"
+                            data-testid="review-select-wrapper"
+                          >
+                            <label
+                              class="input-label active"
+                              for="s_UP"
+                            >
+                              <input
+                                aria-label="UP"
+                                checked=""
+                                class="input"
+                                id="s_UP"
+                                name="s__review-select"
+                                type="radio"
+                              />
+                              <svg
+                                class="input-icon"
+                                fill="currentColor"
+                                height="1em"
+                                stroke="currentColor"
+                                stroke-width="0"
+                                viewBox="0 0 24 24"
+                                width="1em"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <g>
+                                  <path
+                                    d="M0 0h24v24H0z"
+                                    fill="none"
+                                  />
+                                  <path
+                                    d="M2 9h3v12H2a1 1 0 0 1-1-1V10a1 1 0 0 1 1-1zm5.293-1.293l6.4-6.4a.5.5 0 0 1 .654-.047l.853.64a1.5 1.5 0 0 1 .553 1.57L14.6 8H21a2 2 0 0 1 2 2v2.104a2 2 0 0 1-.15.762l-3.095 7.515a1 1 0 0 1-.925.619H8a1 1 0 0 1-1-1V8.414a1 1 0 0 1 .293-.707z"
+                                  />
+                                </g>
+                              </svg>
+                            </label>
+                            <label
+                              class="input-label"
+                              for="s_DOWN"
+                            >
+                              <input
+                                aria-label="DOWN"
+                                class="input"
+                                id="s_DOWN"
+                                name="s__review-select"
+                                type="radio"
+                              />
+                              <svg
+                                class="input-icon"
+                                fill="currentColor"
+                                height="1em"
+                                stroke="currentColor"
+                                stroke-width="0"
+                                viewBox="0 0 24 24"
+                                width="1em"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <g>
+                                  <path
+                                    d="M0 0h24v24H0z"
+                                    fill="none"
+                                  />
+                                  <path
+                                    d="M22 15h-3V3h3a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1zm-5.293 1.293l-6.4 6.4a.5.5 0 0 1-.654.047L8.8 22.1a1.5 1.5 0 0 1-.553-1.57L9.4 16H3a2 2 0 0 1-2-2v-2.104a2 2 0 0 1 .15-.762L4.246 3.62A1 1 0 0 1 5.17 3H16a1 1 0 0 1 1 1v11.586a1 1 0 0 1-.293.707z"
+                                  />
+                                </g>
+                              </svg>
+                            </label>
+                            <label
+                              class="input-label"
+                              for="s_STAY"
+                            >
+                              <input
+                                aria-label="STAY"
+                                class="input"
+                                id="s_STAY"
+                                name="s__review-select"
+                                type="radio"
+                              />
+                              <svg
+                                class="input-icon"
+                                fill="currentColor"
+                                height="1em"
+                                stroke="currentColor"
+                                stroke-width="0"
+                                viewBox="0 0 24 24"
+                                width="1em"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <g>
+                                  <path
+                                    d="M0 0h24v24H0z"
+                                    fill="none"
+                                  />
+                                  <path
+                                    d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm-4-8v2h8v-2H8zm0-3a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zm8 0a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"
+                                  />
+                                </g>
+                              </svg>
+                            </label>
+                          </div>
+                        </div>
+                        <div
+                          class="input-wrapper"
+                        >
+                          <label
+                            class="label"
+                            for="s-reps"
+                          >
+                            REPS
+                            <input
+                              class="input"
+                              data-char-count="2"
+                              id="s-reps"
+                              placeholder="##"
+                              type="number"
+                              value="12"
+                            />
+                          </label>
+                          <label
+                            class="ml-4 label"
+                            for="s-weight"
+                          >
+                            WEIGHT
+                            <input
+                              class="input"
+                              data-char-count="2"
+                              id="s-weight"
+                              placeholder="##"
+                              type="number"
+                              value="20"
+                            />
+                          </label>
+                          <button
+                            aria-describedby="popup-70"
+                            class="wrapper "
+                            data-editable="true"
+                            data-testid="metric-input-wrapper"
+                          >
+                            KG
+                          </button>
+                        </div>
+                      </div>
+                      <button
+                        aria-describedby="popup-71"
+                        class="btn btn--icon btn--xs btn--ghost delete_set_btn"
+                      >
+                        <svg
+                          fill="currentColor"
+                          height="1em"
+                          stroke="currentColor"
+                          stroke-width="0"
+                          viewBox="0 0 24 24"
+                          width="1em"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <g>
+                            <path
+                              d="M0 0h24v24H0z"
+                              fill="none"
+                            />
+                            <path
+                              d="M7 4V2h10v2h5v2h-2v15a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6H2V4h5zM6 6v14h12V6H6zm3 3h2v8H9V9zm4 0h2v8h-2V9z"
+                            />
+                          </g>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="flex items-center flex-wrap"
+                >
+                  <button
+                    class="btn btn--s btn--ghost button_group_item"
+                    data-testid="add-set"
+                  >
+                    <svg
+                      fill="currentColor"
+                      height="1em"
+                      stroke="currentColor"
+                      stroke-width="0"
+                      viewBox="0 0 24 24"
+                      width="1em"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M6 5L6 11 6 13 6 19 9 19 9 13 15 13 15 19 18 19 18 5 15 5 15 11 9 11 9 5zM3 15c0 .553.447 1 1 1h1V8H4C3.447 8 3 8.447 3 9v2H2v2h1V15zM21 9c0-.553-.447-1-1-1h-1v8h1c.553 0 1-.447 1-1v-2h1v-2h-1V9z"
+                      />
+                    </svg>
+                    ADD SET
+                  </button>
+                  <button
+                    class="btn btn--s btn--ghost button_group_item"
+                  >
+                    <svg
+                      fill="currentColor"
+                      height="1em"
+                      stroke="currentColor"
+                      stroke-width="0"
+                      viewBox="0 0 24 24"
+                      width="1em"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <g>
+                        <path
+                          d="M0 0h24v24H0z"
+                          fill="none"
+                        />
+                        <path
+                          d="M7 4V2h10v2h5v2h-2v15a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6H2V4h5zM6 6v14h12V6H6zm3 3h2v8H9V9zm4 0h2v8h-2V9z"
+                        />
+                      </g>
+                    </svg>
+                    REMOVE
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div
+              class="log_list_item"
+            >
+              <div
+                class="log_list_progress"
+                data-isdone="false"
+              >
+                <div
+                  class="log_list_progress_item"
+                >
+                  <svg
+                    fill="currentColor"
+                    height="1em"
+                    stroke="currentColor"
+                    stroke-width="0"
+                    viewBox="0 0 24 24"
+                    width="1em"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <g>
+                      <path
+                        d="M0 0h24v24H0z"
+                        fill="none"
+                      />
+                      <path
+                        d="M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414z"
+                      />
+                    </g>
+                  </svg>
+                </div>
+                <div
+                  class="log_list_progress_line"
+                />
+              </div>
+              <div
+                class="wrapper"
+                data-testid="log-list-item-wrapper"
+              >
+                <div
+                  class="wrapper set"
+                  data-testid="exercise-list-item-wrapper"
+                >
+                  <div
+                    class="wrapper undefined"
+                    data-testid="exercise-input-wrapper"
+                  >
+                    <span
+                      class="w-full block"
+                    >
+                      <input
+                        aria-label="Exercise Name"
+                        class="name-input"
+                        data-iseditable="false"
+                        placeholder="Exercise Name"
+                        type="text"
+                        value="PUSH UP"
+                      />
+                    </span>
+                    <div
+                      class="ranges"
+                    >
+                      <div
+                        class="wrapper undefined"
+                        data-testid="ranged-input-wrapper"
+                      >
+                        <div
+                          class="input-group"
+                        >
+                          <input
+                            aria-label="Range start"
+                            class="input"
+                            data-testid="sets-range-start"
+                            placeholder="#"
+                            required=""
+                            style="width: 24px;"
+                            value="3"
+                          />
+                          <input
+                            aria-label="Range separator"
+                            class="input input-separator"
+                            data-testid="sets-range-separator"
+                            placeholder="-"
+                            style="width: 24px; opacity: 1;"
+                            value="-"
+                          />
+                          <input
+                            aria-label="Range end"
+                            class="input"
+                            data-testid="sets-range-end"
+                            placeholder="#"
+                            style="width: 24px; opacity: 1;"
+                            value="4"
+                          />
+                        </div>
+                        <div
+                          class="placeholder"
+                        >
+                          SETS
+                        </div>
+                      </div>
+                      <svg
+                        class="ranges-separator"
+                        fill="currentColor"
+                        height="1em"
+                        stroke="currentColor"
+                        stroke-width="0"
+                        viewBox="0 0 24 24"
+                        width="1em"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <g>
+                          <path
+                            d="M0 0h24v24H0z"
+                            fill="none"
+                          />
+                          <path
+                            d="M12 10.586l4.95-4.95 1.414 1.414-4.95 4.95 4.95 4.95-1.414 1.414-4.95-4.95-4.95 4.95-1.414-1.414 4.95-4.95-4.95-4.95L7.05 5.636z"
+                          />
+                        </g>
+                      </svg>
+                      <div
+                        class="wrapper undefined"
+                        data-testid="ranged-input-wrapper"
+                      >
+                        <div
+                          class="input-group"
+                        >
+                          <input
+                            aria-label="Range start"
+                            class="input"
+                            data-testid="reps-range-start"
+                            placeholder="##"
+                            required=""
+                            style="width: 48px;"
+                            value="12"
+                          />
+                          <input
+                            aria-label="Range separator"
+                            class="input input-separator"
+                            data-testid="reps-range-separator"
+                            placeholder="-"
+                            style="width: 0px; opacity: 0;"
+                            value=""
+                          />
+                          <input
+                            aria-label="Range end"
+                            class="input error"
+                            data-testid="reps-range-end"
+                            placeholder="##"
+                            style="width: 0px; opacity: 0;"
+                            value=""
+                          />
+                        </div>
+                        <div
+                          class="placeholder"
+                        >
+                          REPS
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <button
+                    aria-describedby="popup-87"
+                    class="btn btn--xs btn--ghost-yellow list-more-button"
+                  >
+                    DETAILS
+                  </button>
+                </div>
+                <div
+                  class="exercise_sets"
+                >
+                  <div
+                    class="exercise_set_container"
+                  >
+                    <div
+                      class="set_wrapper"
+                    >
+                      <div
+                        class="wrapper"
+                        data-testid="set-input-wrapper"
+                      >
+                        <div
+                          class="set-number-wrapper"
+                        >
+                          SET
+                          <span
+                            class="ml-3"
+                            data-testid="set-number"
+                          >
+                            #
+                            2
+                          </span>
+                          <div
+                            class="wrapper"
+                            data-editable="true"
+                            data-testid="review-select-wrapper"
+                          >
+                            <label
+                              class="input-label active"
+                              for="s_UP"
+                            >
+                              <input
+                                aria-label="UP"
+                                checked=""
+                                class="input"
+                                id="s_UP"
+                                name="s__review-select"
+                                type="radio"
+                              />
+                              <svg
+                                class="input-icon"
+                                fill="currentColor"
+                                height="1em"
+                                stroke="currentColor"
+                                stroke-width="0"
+                                viewBox="0 0 24 24"
+                                width="1em"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <g>
+                                  <path
+                                    d="M0 0h24v24H0z"
+                                    fill="none"
+                                  />
+                                  <path
+                                    d="M2 9h3v12H2a1 1 0 0 1-1-1V10a1 1 0 0 1 1-1zm5.293-1.293l6.4-6.4a.5.5 0 0 1 .654-.047l.853.64a1.5 1.5 0 0 1 .553 1.57L14.6 8H21a2 2 0 0 1 2 2v2.104a2 2 0 0 1-.15.762l-3.095 7.515a1 1 0 0 1-.925.619H8a1 1 0 0 1-1-1V8.414a1 1 0 0 1 .293-.707z"
+                                  />
+                                </g>
+                              </svg>
+                            </label>
+                            <label
+                              class="input-label"
+                              for="s_DOWN"
+                            >
+                              <input
+                                aria-label="DOWN"
+                                class="input"
+                                id="s_DOWN"
+                                name="s__review-select"
+                                type="radio"
+                              />
+                              <svg
+                                class="input-icon"
+                                fill="currentColor"
+                                height="1em"
+                                stroke="currentColor"
+                                stroke-width="0"
+                                viewBox="0 0 24 24"
+                                width="1em"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <g>
+                                  <path
+                                    d="M0 0h24v24H0z"
+                                    fill="none"
+                                  />
+                                  <path
+                                    d="M22 15h-3V3h3a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1zm-5.293 1.293l-6.4 6.4a.5.5 0 0 1-.654.047L8.8 22.1a1.5 1.5 0 0 1-.553-1.57L9.4 16H3a2 2 0 0 1-2-2v-2.104a2 2 0 0 1 .15-.762L4.246 3.62A1 1 0 0 1 5.17 3H16a1 1 0 0 1 1 1v11.586a1 1 0 0 1-.293.707z"
+                                  />
+                                </g>
+                              </svg>
+                            </label>
+                            <label
+                              class="input-label"
+                              for="s_STAY"
+                            >
+                              <input
+                                aria-label="STAY"
+                                class="input"
+                                id="s_STAY"
+                                name="s__review-select"
+                                type="radio"
+                              />
+                              <svg
+                                class="input-icon"
+                                fill="currentColor"
+                                height="1em"
+                                stroke="currentColor"
+                                stroke-width="0"
+                                viewBox="0 0 24 24"
+                                width="1em"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <g>
+                                  <path
+                                    d="M0 0h24v24H0z"
+                                    fill="none"
+                                  />
+                                  <path
+                                    d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm-4-8v2h8v-2H8zm0-3a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zm8 0a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"
+                                  />
+                                </g>
+                              </svg>
+                            </label>
+                          </div>
+                        </div>
+                        <div
+                          class="input-wrapper"
+                        >
+                          <label
+                            class="label"
+                            for="s-reps"
+                          >
+                            REPS
+                            <input
+                              class="input"
+                              data-char-count="2"
+                              id="s-reps"
+                              placeholder="##"
+                              type="number"
+                              value="12"
+                            />
+                          </label>
+                          <label
+                            class="ml-4 label"
+                            for="s-weight"
+                          >
+                            WEIGHT
+                            <input
+                              class="input"
+                              data-char-count="2"
+                              id="s-weight"
+                              placeholder="##"
+                              type="number"
+                              value="20"
+                            />
+                          </label>
+                          <button
+                            aria-describedby="popup-74"
+                            class="wrapper "
+                            data-editable="true"
+                            data-testid="metric-input-wrapper"
+                          >
+                            KG
+                          </button>
+                        </div>
+                      </div>
+                      <button
+                        aria-describedby="popup-75"
+                        class="btn btn--icon btn--xs btn--ghost delete_set_btn"
+                      >
+                        <svg
+                          fill="currentColor"
+                          height="1em"
+                          stroke="currentColor"
+                          stroke-width="0"
+                          viewBox="0 0 24 24"
+                          width="1em"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <g>
+                            <path
+                              d="M0 0h24v24H0z"
+                              fill="none"
+                            />
+                            <path
+                              d="M7 4V2h10v2h5v2h-2v15a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6H2V4h5zM6 6v14h12V6H6zm3 3h2v8H9V9zm4 0h2v8h-2V9z"
+                            />
+                          </g>
+                        </svg>
+                      </button>
+                    </div>
+                    <div
+                      class="set_wrapper"
+                    >
+                      <div
+                        class="wrapper"
+                        data-testid="set-input-wrapper"
+                      >
+                        <div
+                          class="set-number-wrapper"
+                        >
+                          SET
+                          <span
+                            class="ml-3"
+                            data-testid="set-number"
+                          >
+                            #
+                            2
+                          </span>
+                          <div
+                            class="wrapper"
+                            data-editable="true"
+                            data-testid="review-select-wrapper"
+                          >
+                            <label
+                              class="input-label active"
+                              for="s_UP"
+                            >
+                              <input
+                                aria-label="UP"
+                                checked=""
+                                class="input"
+                                id="s_UP"
+                                name="s__review-select"
+                                type="radio"
+                              />
+                              <svg
+                                class="input-icon"
+                                fill="currentColor"
+                                height="1em"
+                                stroke="currentColor"
+                                stroke-width="0"
+                                viewBox="0 0 24 24"
+                                width="1em"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <g>
+                                  <path
+                                    d="M0 0h24v24H0z"
+                                    fill="none"
+                                  />
+                                  <path
+                                    d="M2 9h3v12H2a1 1 0 0 1-1-1V10a1 1 0 0 1 1-1zm5.293-1.293l6.4-6.4a.5.5 0 0 1 .654-.047l.853.64a1.5 1.5 0 0 1 .553 1.57L14.6 8H21a2 2 0 0 1 2 2v2.104a2 2 0 0 1-.15.762l-3.095 7.515a1 1 0 0 1-.925.619H8a1 1 0 0 1-1-1V8.414a1 1 0 0 1 .293-.707z"
+                                  />
+                                </g>
+                              </svg>
+                            </label>
+                            <label
+                              class="input-label"
+                              for="s_DOWN"
+                            >
+                              <input
+                                aria-label="DOWN"
+                                class="input"
+                                id="s_DOWN"
+                                name="s__review-select"
+                                type="radio"
+                              />
+                              <svg
+                                class="input-icon"
+                                fill="currentColor"
+                                height="1em"
+                                stroke="currentColor"
+                                stroke-width="0"
+                                viewBox="0 0 24 24"
+                                width="1em"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <g>
+                                  <path
+                                    d="M0 0h24v24H0z"
+                                    fill="none"
+                                  />
+                                  <path
+                                    d="M22 15h-3V3h3a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1zm-5.293 1.293l-6.4 6.4a.5.5 0 0 1-.654.047L8.8 22.1a1.5 1.5 0 0 1-.553-1.57L9.4 16H3a2 2 0 0 1-2-2v-2.104a2 2 0 0 1 .15-.762L4.246 3.62A1 1 0 0 1 5.17 3H16a1 1 0 0 1 1 1v11.586a1 1 0 0 1-.293.707z"
+                                  />
+                                </g>
+                              </svg>
+                            </label>
+                            <label
+                              class="input-label"
+                              for="s_STAY"
+                            >
+                              <input
+                                aria-label="STAY"
+                                class="input"
+                                id="s_STAY"
+                                name="s__review-select"
+                                type="radio"
+                              />
+                              <svg
+                                class="input-icon"
+                                fill="currentColor"
+                                height="1em"
+                                stroke="currentColor"
+                                stroke-width="0"
+                                viewBox="0 0 24 24"
+                                width="1em"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <g>
+                                  <path
+                                    d="M0 0h24v24H0z"
+                                    fill="none"
+                                  />
+                                  <path
+                                    d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm-4-8v2h8v-2H8zm0-3a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zm8 0a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"
+                                  />
+                                </g>
+                              </svg>
+                            </label>
+                          </div>
+                        </div>
+                        <div
+                          class="input-wrapper"
+                        >
+                          <label
+                            class="label"
+                            for="s-reps"
+                          >
+                            REPS
+                            <input
+                              class="input"
+                              data-char-count="2"
+                              id="s-reps"
+                              placeholder="##"
+                              type="number"
+                              value="12"
+                            />
+                          </label>
+                          <label
+                            class="ml-4 label"
+                            for="s-weight"
+                          >
+                            WEIGHT
+                            <input
+                              class="input"
+                              data-char-count="2"
+                              id="s-weight"
+                              placeholder="##"
+                              type="number"
+                              value="20"
+                            />
+                          </label>
+                          <button
+                            aria-describedby="popup-76"
+                            class="wrapper "
+                            data-editable="true"
+                            data-testid="metric-input-wrapper"
+                          >
+                            KG
+                          </button>
+                        </div>
+                      </div>
+                      <button
+                        aria-describedby="popup-77"
+                        class="btn btn--icon btn--xs btn--ghost delete_set_btn"
+                      >
+                        <svg
+                          fill="currentColor"
+                          height="1em"
+                          stroke="currentColor"
+                          stroke-width="0"
+                          viewBox="0 0 24 24"
+                          width="1em"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <g>
+                            <path
+                              d="M0 0h24v24H0z"
+                              fill="none"
+                            />
+                            <path
+                              d="M7 4V2h10v2h5v2h-2v15a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6H2V4h5zM6 6v14h12V6H6zm3 3h2v8H9V9zm4 0h2v8h-2V9z"
+                            />
+                          </g>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="flex items-center flex-wrap"
+                >
+                  <button
+                    class="btn btn--s btn--ghost button_group_item"
+                    data-testid="add-set"
+                  >
+                    <svg
+                      fill="currentColor"
+                      height="1em"
+                      stroke="currentColor"
+                      stroke-width="0"
+                      viewBox="0 0 24 24"
+                      width="1em"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M6 5L6 11 6 13 6 19 9 19 9 13 15 13 15 19 18 19 18 5 15 5 15 11 9 11 9 5zM3 15c0 .553.447 1 1 1h1V8H4C3.447 8 3 8.447 3 9v2H2v2h1V15zM21 9c0-.553-.447-1-1-1h-1v8h1c.553 0 1-.447 1-1v-2h1v-2h-1V9z"
+                      />
+                    </svg>
+                    ADD SET
+                  </button>
+                  <button
+                    class="btn btn--s btn--ghost button_group_item"
+                  >
+                    <svg
+                      fill="currentColor"
+                      height="1em"
+                      stroke="currentColor"
+                      stroke-width="0"
+                      viewBox="0 0 24 24"
+                      width="1em"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <g>
+                        <path
+                          d="M0 0h24v24H0z"
+                          fill="none"
+                        />
+                        <path
+                          d="M7 4V2h10v2h5v2h-2v15a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6H2V4h5zM6 6v14h12V6H6zm3 3h2v8H9V9zm4 0h2v8h-2V9z"
+                        />
+                      </g>
+                    </svg>
+                    REMOVE
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="flex items-start sm:items-center flex-col sm:flex-row"
+          >
+            <button
+              class="btn btn--xs btn--secondary button_group add_exercise_btn"
+            >
+              <svg
+                fill="currentColor"
+                height="1em"
+                stroke="currentColor"
+                stroke-width="0"
+                viewBox="0 0 24 24"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g>
+                  <path
+                    d="M0 0h24v24H0z"
+                    fill="none"
+                  />
+                  <path
+                    d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2z"
+                  />
+                </g>
+              </svg>
+              ADD EXERCISE
+            </button>
+          </div>
+        </div>
+      </div>
+      <button
+        class="btn btn--s btn--ghost save-button"
+        data-testid="save-btn"
+      >
+        <svg
+          class="mr-3 h-4 w-4"
+          fill="currentColor"
+          height="1em"
+          stroke="currentColor"
+          stroke-width="0"
+          viewBox="0 0 24 24"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <g>
+            <path
+              d="M0 0h24v24H0z"
+              fill="none"
+            />
+            <path
+              d="M7 19v-6h10v6h2V7.828L16.172 5H5v14h2zM4 3h13l4 4v13a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zm5 12v4h6v-4H9z"
+            />
+          </g>
+        </svg>
+        SAVE CHANGES
+      </button>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;

@@ -1,8 +1,9 @@
 import { defaultTemplateTableWithData, filledTemplateTableWithData } from '@/mock/workout-template'
 import { colorCodes } from '@c/color-picker'
+import { PageState } from '@c/view-header/view-header'
 import { render, cleanup, fireEvent } from '@testing-library/react'
 import { changeEvent } from '@tests/utils/changeEvent'
-import Template, { PageState, Props } from '@v/template/template'
+import Template, { Props } from '@v/template/template'
 
 afterEach(cleanup)
 
@@ -81,7 +82,7 @@ describe('Template page', () => {
     fireEvent.click(t('change-state-btn'))
     fireEvent.click(qat('state-btn')[0])
 
-    fireEvent.click(qtxt('Discard Changes'))
+    fireEvent.click(qtxt('DISCARD CHANGES'))
     filledTemplateTableWithData.exercises.forEach((e) => {
       // expect(t('exercise-list-wrapper').textContent).toContain(e.exerciseData.name)
       expect(
@@ -99,7 +100,7 @@ describe('Template page', () => {
       getAllByLabelText: altxt,
       getByTestId: t,
       queryAllByTestId: qat,
-      queryByText: qtxt,
+      queryAllByText: qatxt,
     } = component({
       template: filledTemplateTableWithData,
       handleSave,
@@ -113,7 +114,7 @@ describe('Template page', () => {
     fireEvent.click(t('change-state-btn'))
     fireEvent.click(qat('state-btn')[0])
 
-    fireEvent.click(qtxt('Save Changes'))
+    fireEvent.click(qatxt('SAVE CHANGES')[0])
 
     const { exercises, ...rest } = filledTemplateTableWithData
 
@@ -169,7 +170,7 @@ describe('Template page', () => {
     const { getByLabelText: l, getByTestId: t, getByText: txt } = component({ handleDelete })
     fireEvent.click(t('change-state-btn'))
     fireEvent.click(l('delete template'))
-    fireEvent.click(txt('Delete'))
+    fireEvent.click(txt('DELETE'))
 
     expect(handleDelete).toBeCalled()
     expect(handleDelete).toBeCalledWith(defaultTemplateTableWithData.id)

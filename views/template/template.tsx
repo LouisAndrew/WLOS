@@ -6,47 +6,16 @@ import { TemplateTableWithData } from '@t/tables/Template'
 import { defaultTemplateTableWithData } from '@/mock/workout-template'
 
 import style from './template.module.css'
-import { IconType } from 'react-icons/lib'
-import { RiBallPenLine, RiDeleteBin6Line, RiEyeLine, RiFile3Line, RiSaveLine } from 'react-icons/ri'
+import { RiSaveLine } from 'react-icons/ri'
 import Popup from 'reactjs-popup'
-import { ColorPicker } from '@c/color-picker'
 import { ExerciseModelWithId } from '@t/Exercise'
-import { isExerciseListEqual } from '@lib/exercise-list-comparator'
+import { isExerciseListEqual } from '@lib/comparator'
 import { SaveChangesModal } from '@c/modals'
 import ConfirmDeleteModal from '@c/modals/confirm-delete-modal'
+import ViewHeader, { PageState } from '@c/view-header/view-header'
+import { PageProps } from './page-props'
 
-export type Props = {
-  /**
-   * Workout template to be shown.
-   */
-  template: TemplateTableWithData
-  /**
-   * Sets default state of the view component.
-   */
-  defaultState?: PageState
-  /**
-   * Handler function to be called when save button is clicked.
-   */
-  handleSave?: (template: TemplateTableWithData, withCallback?: boolean) => Promise<void>
-  /**
-   * Hanlder function to be called when user deletes the template.
-   */
-  handleDelete?: (templateId: number) => Promise<void>
-}
-
-export enum PageState {
-  VIEW = 'Viewing',
-  EDIT = 'Editing',
-  DELETE = 'Deleting..',
-  CREATE = 'Creating',
-}
-
-const PageStateIcon: Record<PageState, IconType> = {
-  [PageState.CREATE]: RiFile3Line,
-  [PageState.EDIT]: RiBallPenLine,
-  [PageState.VIEW]: RiEyeLine,
-  [PageState.DELETE]: RiDeleteBin6Line,
-}
+export type Props = PageProps<TemplateTableWithData>
 
 const checkIfEditable = (state: PageState) => state === PageState.EDIT || state === PageState.CREATE
 
@@ -174,83 +143,19 @@ const Template: FC<Props> = ({ template, defaultState, handleSave, handleDelete 
     setIsEditable(checkIfEditable(pageState))
   }, [pageState])
 
-  const Icon = PageStateIcon[pageState]
-
   return (
-    <div data-testid="template-wrapper" className={style.wrapper}>
-      <div className={style.header}>
-        <Popup
-          trigger={
-            <button
-              className={`btn btn--xs btn--ghost ${style['page-state']}`}
-              data-testid="change-state-btn"
-            >
-              {pageState.toUpperCase()}
-              <Icon />
-            </button>
-          }
-          arrow={false}
-          offsetY={8}
-          position="bottom right"
-          disabled={pageState === PageState.CREATE}
-        >
-          <>
-            {Object.keys(PageState)
-              .filter((key) => PageState[key] !== pageState && PageState[key] !== PageState.CREATE)
-              .map((key) => {
-                const value = PageState[key]
-                const I = PageStateIcon[value]
-                return (
-                  <button
-                    className={`btn btn--ghost btn--s w-full flex items-center ml-0`}
-                    onClick={() => handleChangePageState(value)}
-                    key={key}
-                    data-testid="state-btn"
-                    aria-label={`${key.toLowerCase()} template`}
-                  >
-                    <I className="mr-3" />
-                    {key.toUpperCase()} TEMPLATE
-                  </button>
-                )
-              })}
-          </>
-        </Popup>
-        <div className={style['name-wrapper']}>
-          <div
-            className={style['color-indicator']}
-            style={{ backgroundColor: templateColor }}
-            data-testid="color-indicator"
-            aria-label="Template Color"
-          />
-          <label className={style['name-input-label']}>
-            TEMPLATE NAME
-            <input
-              type="text"
-              placeholder="ENTER NAME"
-              value={templateName}
-              onChange={handleChangeTemplateName}
-            />
-          </label>
-        </div>
-        {isEditable && (
-          <div className={style['button-group']}>
-            <Popup
-              arrow={false}
-              position="bottom left"
-              trigger={<button className="btn btn--ghost btn--xs">CHANGE COLOR</button>}
-              offsetY={8}
-            >
-              <ColorPicker
-                className="w-48"
-                onColorChange={handleColorChange}
-                defaultSelected={templateColor}
-              />
-            </Popup>
-          </div>
-        )}
-      </div>
+    <div data-testid="template-wrapper" className="view-wrapper">
+      <ViewHeader
+        pageState={pageState}
+        isEditable={isEditable}
+        templateName={templateName}
+        templateColorCode={templateColor}
+        handleChangePageState={handleChangePageState}
+        handleChangeTemplateName={handleChangeTemplateName}
+        handleColorChange={handleColorChange}
+      />
       <div>
-        <span className={style['exercise-text']}>
+        <span className="view-text">
           {getCurrentTemplate()?.exercises.length > 0 ? 'EXERCISES' : 'ADD EXERCISES TO TEMPLATE'}
         </span>
         <ExerciseList

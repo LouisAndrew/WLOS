@@ -23,10 +23,10 @@ const ConfirmDeleteModal: FC<Props> = ({ onDelete, onCancel, deletedItemName }) 
   <Modal
     onPrimaryClicked={onDelete}
     onSecondaryClicked={onCancel}
-    headerText={`Are you sure you want to delete this ${deletedItemName}`}
+    headerText={`Are you sure you want to delete this ${deletedItemName}?`}
     bodyText={`Deleted ${deletedItemName} cannot be restored!`}
-    primaryButtonText="Delete"
-    secondaryButtonText="Cancel"
+    primaryButtonText="DELETE"
+    secondaryButtonText="CANCEL"
     Icon={RiDeleteBin6Line}
     iconFill="red"
     className={style['confirm-delete-modal']}

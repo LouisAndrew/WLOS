@@ -19,7 +19,7 @@
 .comparison_sets_todo {
   width: 100%;
   min-width: 70vw;
-  @apply border-dashed border-2 border-primary-yellow bg-secondary-gray text-primary-yellow font-bold h-full flex flex-center
+  @apply border-dashed border-2 border-primary-yellow bg-secondary-gray text-primary-yellow font-semibold h-full flex flex-center
     p-3 rounded my-1 text-center px-10 uppercase text-xl duration-200;
 
   @screen sm {
@@ -60,10 +60,14 @@
 }
 
 .delete_set_btn {
-  @apply self-start sm:ml-3;
+  @apply self-start sm:ml-3 hover:bg-red-400;
 }
 
 .delete_set_btn svg {
   fill: theme('colors.red.400');
-  @apply h-4 w-4;
+  @apply h-4 w-4 duration-200;
+}
+
+.delete_set_btn:hover svg {
+  fill: theme('colors.red.900');
 }

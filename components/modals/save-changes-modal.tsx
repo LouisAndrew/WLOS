@@ -19,8 +19,8 @@ const SaveChangesModal: FC<Props> = ({ onDiscardClick, onSaveClick }) => {
       onSecondaryClicked={onDiscardClick}
       headerText="Looks like you haven't saved your changes yet.."
       bodyText="Do you want to save the changes you've made? Unsaved changes would be lost! 🙀"
-      secondaryButtonText="Discard Changes"
-      primaryButtonText="Save Changes"
+      secondaryButtonText="DISCARD CHANGES"
+      primaryButtonText="SAVE CHANGES"
       Icon={RiAlarmWarningLine}
       iconFill="yellow"
     />

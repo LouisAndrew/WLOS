@@ -143,24 +143,26 @@ const LogListItem: FC<Props> = ({
                     isEditable={isLoggable}
                     onSetChange={(s) => handleSetDataChange(listId, s)}
                   />
-                  <Tooltip
-                    trigger={
-                      <button
-                        className={`btn btn--icon btn--xs btn--ghost ${style.delete_set_btn}`}
-                        onClick={() => handleDeleteSet(listId)}
-                      >
-                        <RiDeleteBin6Line />
-                      </button>
-                    }
-                    content="delete set log"
-                  />
+                  {isLoggable && (
+                    <Tooltip
+                      trigger={
+                        <button
+                          className={`btn btn--icon btn--xs btn--ghost ${style.delete_set_btn}`}
+                          onClick={() => handleDeleteSet(listId)}
+                        >
+                          <RiDeleteBin6Line />
+                        </button>
+                      }
+                      content="delete set log"
+                    />
+                  )}
                 </div>
               )
             }
           )}
           {showComparison && comparisonSets.length > exerciseSets.length ? (
             <div className={style.comparison_sets_todo}>
-              {comparisonSets.length - exerciseSets.length} sets behind.
+              ⚡️ {comparisonSets.length - exerciseSets.length} sets behind.
             </div>
           ) : null}
         </div>
@@ -198,14 +200,16 @@ const LogListItem: FC<Props> = ({
         )}
       </div>
       <div className="flex items-center flex-wrap">
-        <button
-          className={`btn btn--s btn--ghost ${style.button_group_item}`}
-          data-testid="add-set"
-          onClick={handleNewSet}
-        >
-          <BiDumbbell />
-          ADD SET
-        </button>
+        {isLoggable && (
+          <button
+            className={`btn btn--s btn--ghost ${style.button_group_item}`}
+            data-testid="add-set"
+            onClick={handleNewSet}
+          >
+            <BiDumbbell />
+            ADD SET
+          </button>
+        )}
         {comparisonSets.length > 0 && (
           <button
             className={`btn btn--ghost btn--s ${style.button_group_item}`}
@@ -215,13 +219,15 @@ const LogListItem: FC<Props> = ({
             {showComparison ? 'HIDE' : 'SHOW'} COMPARISON
           </button>
         )}
-        <button
-          className={`btn btn--s btn--ghost ${style.button_group_item}`}
-          onClick={() => onDelete?.(exerciseModel.exerciseId)}
-        >
-          <RiDeleteBin6Line />
-          REMOVE
-        </button>
+        {isLoggable && (
+          <button
+            className={`btn btn--s btn--ghost ${style.button_group_item}`}
+            onClick={() => onDelete?.(exerciseModel.exerciseId)}
+          >
+            <RiDeleteBin6Line />
+            REMOVE
+          </button>
+        )}
       </div>
     </div>
   )

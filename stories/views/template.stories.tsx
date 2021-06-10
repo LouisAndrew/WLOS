@@ -1,8 +1,9 @@
 import React from 'react'
 import { Story } from '@storybook/react'
 
-import Template, { PageState, Props } from '@v/template/template'
+import Template, { Props } from '@v/template/template'
 import { defaultTemplateTableWithData, filledTemplateTableWithData } from '@/mock/workout-template'
+import { PageState } from '@c/view-header/view-header'
 
 export default {
   title: 'Views/Template',

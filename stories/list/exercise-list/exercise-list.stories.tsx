@@ -3,7 +3,7 @@ import { Story } from '@storybook/react'
 
 import ExerciseList, { Props } from '@c/list/exercise-list/exercise-list'
 import { mockModel2, mockModelWithId } from '@/mock/exercise'
-import { isExerciseListEqual } from '@lib/exercise-list-comparator'
+import { isExerciseListEqual } from '@lib/comparator'
 
 const mockExercises = [mockModelWithId, { ...mockModel2, exerciseId: '1' }]
 

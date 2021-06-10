@@ -1,8 +1,8 @@
-import React, { FC, useEffect, useState } from 'react'
+import React, { FC, useEffect, useRef, useState } from 'react'
 import { isEqual } from 'lodash'
 import uniqid from 'uniqid'
 
-import { TemplateExerciseTable, TemplateTableWithData } from '@t/tables/Template'
+import { TemplateTableWithData } from '@t/tables/Template'
 import { LogEntry, WorkoutLog } from '@t/WorkoutLog'
 import { LogListItem } from './log-list-item'
 import { convertExerciseTableToModel } from '@lib/exercise-helper'
@@ -33,12 +33,18 @@ export type Props = {
    * Sets if the log-list should be editable
    */
   isEditable?: boolean
+  /**
+   * Handler function if any changes are made
+   */
+  onChange?: (entries: LogEntry[]) => void
 }
 
 // todo [] Restore deleted exercise from template
-const LogList: FC<Props> = ({ template, workoutLog, comparisonLog, isEditable }) => {
+const LogList: FC<Props> = ({ template, workoutLog, comparisonLog, isEditable, onChange }) => {
   const [entries, setEntries] = useState<(LogEntry & { listId: string })[]>([])
   const [deletedList, setDeletedList] = useState<LogEntry[]>([])
+
+  const firstRender = useRef(true)
 
   const getDefaultEntries = (): LogEntry[] =>
     template.exercises.map((e) => ({ exercise: convertExerciseTableToModel(e), sets: [] }))
@@ -62,7 +68,11 @@ const LogList: FC<Props> = ({ template, workoutLog, comparisonLog, isEditable })
       return false
     }
 
-    const { sets, reps } = exercise
+    const { sets, reps, name } = exercise
+
+    if (!name || sets.start === -1 || reps.start === -1) {
+      return false
+    }
 
     const entrySets = exerciseEntry.sets
     if (entrySets.length + 1 <= sets.start) {
@@ -121,8 +131,6 @@ const LogList: FC<Props> = ({ template, workoutLog, comparisonLog, isEditable })
       .map((item) => {
         const index = list.findIndex((defaultItem) => isEqual(defaultItem.exercise, item.exercise))
 
-        console.log({ item, index })
-
         return {
           item,
           isEqual: index > -1,
@@ -147,13 +155,22 @@ const LogList: FC<Props> = ({ template, workoutLog, comparisonLog, isEditable })
   useEffect(() => {
     if (workoutLog.entries.length === 0) {
       setEntries(getDefaultEntries().map((entry) => ({ ...entry, listId: uniqid() })))
+      firstRender.current = false
+
       return
     }
 
     const list = workoutLog.entries.map((entry) => ({ ...entry, listId: uniqid() }))
     setEntries(list)
     getDeletedList(list)
+    firstRender.current = false
   }, [])
+
+  useEffect(() => {
+    if (!firstRender.current) {
+      onChange?.(entries.map(({ listId, ...data }) => data))
+    }
+  }, [entries])
 
   return (
     <div data-testid="log-list-wrapper">
@@ -173,14 +190,16 @@ const LogList: FC<Props> = ({ template, workoutLog, comparisonLog, isEditable })
           </div>
         ))}
       </div>
-      <div className="flex items-center">
-        <button
-          className={`btn btn--xs btn--secondary ${style.button_group} ${style.add_exercise_btn}`}
-          onClick={handleAddExercise}
-        >
-          <RiAddFill />
-          ADD EXERCISE
-        </button>
+      <div className="flex items-start sm:items-center flex-col sm:flex-row">
+        {isEditable && (
+          <button
+            className={`btn btn--xs btn--secondary ${style.button_group} ${style.add_exercise_btn}`}
+            onClick={handleAddExercise}
+          >
+            <RiAddFill />
+            ADD EXERCISE
+          </button>
+        )}
         {deletedList.length > 0 && (
           <button className={`btn btn--xs btn--ghost ${style.button_group} ${style.info_btn}`}>
             <RiInformationLine />

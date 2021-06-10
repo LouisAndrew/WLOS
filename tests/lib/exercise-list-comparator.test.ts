@@ -1,5 +1,5 @@
 import { mockModel2, mockModelWithId } from '@/mock/exercise'
-import { isExerciseListEqual } from '@lib/exercise-list-comparator'
+import { isExerciseListEqual } from '@lib/comparator'
 
 const mockModelWithId2 = { ...mockModel2, exerciseId: '12' }
 

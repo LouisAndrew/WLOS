@@ -2,6 +2,7 @@ import { Band } from './Band'
 import { ExerciseTable } from './tables/Exercise'
 import { SavedLogsTable } from './tables/Log'
 import { TemplateTable } from './tables/Template'
+import { WorkoutLog } from './WorkoutLog'
 
 export type UserData = {
   /**
@@ -27,7 +28,7 @@ export type UserData = {
   /**
    * user saved logs
    */
-  savedLogs: SavedLogsTable[]
+  savedLogs: WorkoutLog[]
   /**
    * user saved exercises
    */
