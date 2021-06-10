@@ -5,7 +5,7 @@ import { ExerciseSet, defaultExerciseSet } from '@t/ExerciseSet'
 import { ExerciseListItem } from '@c/list/exercise-list/exercise-list-item'
 import { SetInput } from '@c/input/set-input'
 import uniqid from 'uniqid'
-import { RiDeleteBin6Line, RiEyeFill, RiEyeOffFill } from 'react-icons/ri'
+import { RiDeleteBin6Line, RiEyeFill, RiEyeOffFill, RiMoreFill } from 'react-icons/ri'
 
 import style from './log-list-item.module.css'
 import classnames from 'classnames/bind'
@@ -127,17 +127,6 @@ const LogListItem: FC<Props> = ({
         isEditable={isEditable}
         className={style.set}
       />
-      {comparisonSets.length > 0 && (
-        <div className="flex mt-2">
-          <button
-            className={`btn btn--ghost btn--xs ${style.comparison_toggle}`}
-            onClick={() => setShowComparison((prev) => !prev)}
-          >
-            {showComparison ? <RiEyeOffFill /> : <RiEyeFill />}
-            {showComparison ? 'HIDE' : 'SHOW'} COMPARISON
-          </button>
-        </div>
-      )}
       <div className={style.exercise_sets}>
         <div className={cx({ exercise_set_container: true, comparison_active: showComparison })}>
           {exerciseSets.map(
@@ -208,14 +197,30 @@ const LogListItem: FC<Props> = ({
           </div>
         )}
       </div>
-      <div>
+      <div className="flex items-center flex-wrap">
         <button
-          className={`btn btn--s btn--ghost ${style.add_btn}`}
+          className={`btn btn--s btn--ghost ${style.button_group_item}`}
           data-testid="add-set"
           onClick={handleNewSet}
         >
           <BiDumbbell />
           ADD SET
+        </button>
+        {comparisonSets.length > 0 && (
+          <button
+            className={`btn btn--ghost btn--s ${style.button_group_item}`}
+            onClick={() => setShowComparison((prev) => !prev)}
+          >
+            {showComparison ? <RiEyeOffFill /> : <RiEyeFill />}
+            {showComparison ? 'HIDE' : 'SHOW'} COMPARISON
+          </button>
+        )}
+        <button
+          className={`btn btn--s btn--ghost ${style.button_group_item}`}
+          onClick={() => onDelete?.(exerciseModel.exerciseId)}
+        >
+          <RiDeleteBin6Line />
+          REMOVE
         </button>
       </div>
     </div>

@@ -104,6 +104,16 @@ const LogList: FC<Props> = ({ template, workoutLog, isEditable }) => {
     setEntries((prev) => [...prev, { exercise, sets: [], listId: uniqid() }])
   }
 
+  const handleDelete = (listId: string) => {
+    const exerciseEntryIndex = entries.findIndex((es) => es.listId === listId)
+
+    if (exerciseEntryIndex === -1) {
+      return
+    }
+
+    setEntries((prev) => prev.filter((entry) => entry.listId !== listId))
+  }
+
   useEffect(() => {
     if (workoutLog.entries.length === 0) {
       setEntries(getDefaultEntries().map((entry) => ({ ...entry, listId: uniqid() })))
@@ -125,6 +135,7 @@ const LogList: FC<Props> = ({ template, workoutLog, isEditable }) => {
               isEditable={shouldEditable(entry.exercise)}
               isLoggable={isEditable}
               onChange={(sets) => handleChangeExerciseSet(sets, entry.listId)}
+              onDelete={() => handleDelete(entry.listId)}
             />
           </div>
         ))}

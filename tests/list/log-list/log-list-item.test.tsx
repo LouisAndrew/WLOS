@@ -92,7 +92,4 @@ describe('Log list item', () => {
     expect(getInputValue(al('REPS')[1])).toBe('')
     expect(getInputValue(al('WEIGHT')[1])).toBe(value.weightValue.toString())
   })
-
-  // todo
-  it.skip('renders "delete exercise" button in a popup', () => {})
 })
