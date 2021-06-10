@@ -14,7 +14,8 @@ module.exports = {
         'secondary-yellow': '#F2E889',
         'shade-yellow' :'#FFF8B7',
         'shade-gray': '#3c3c3c',
-        'muted': '#adacac'
+        'muted': '#adacac',
+        'dark-gray': '#212121'
       },
       fontFamily: {
         body: ['Raleway', 'Arial', 'sans-serif'],
@@ -28,7 +29,7 @@ module.exports = {
       width: ['hover', 'focus', 'group-hover'],
       filter: ['hover'],
       brightness: ['hover'],
-      fill: ['hover']
+      fill: ['hover'],
     },
   },
   plugins: [

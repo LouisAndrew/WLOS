@@ -13,6 +13,10 @@ const cx = classname.bind(style)
 
 export type Props = {
   /**
+   * Id for the input element.
+   */
+  inputIds?: string
+  /**
    * Default value of the review.
    */
   defaultReview?: Review
@@ -32,7 +36,7 @@ const InputIcons: Record<Review, IconType> = {
   [Review.STAY]: RiEmotionNormalFill,
 }
 
-const ReviewSelect: FC<Props> = ({ onChange, defaultReview, isEditable }) => {
+const ReviewSelect: FC<Props> = ({ inputIds = 'ID', onChange, defaultReview, isEditable }) => {
   const [review, setReview] = useState<Review | undefined>(defaultReview)
 
   useEffect(() => {
@@ -55,17 +59,19 @@ const ReviewSelect: FC<Props> = ({ onChange, defaultReview, isEditable }) => {
           active: r === review,
         })
 
+        const id = `${inputIds}_${r}`
+
         return (
-          <label htmlFor={r} className={labelClassName} key={r}>
+          <label htmlFor={id} className={labelClassName} key={id}>
             <input
               aria-label={startCase(r)}
               type="radio"
-              id={r}
+              id={id}
               checked={r === review}
               onClick={() => setReview(r)}
               onSelect={() => setReview(r)}
               onChange={() => setReview(r)}
-              name="review-select"
+              name={`${inputIds}__review-select`}
               className={style.input}
             />
             <Icon className={style['input-icon']} />

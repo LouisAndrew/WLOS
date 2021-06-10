@@ -50,14 +50,6 @@ const PageStateIcon: Record<PageState, IconType> = {
 
 const checkIfEditable = (state: PageState) => state === PageState.EDIT || state === PageState.CREATE
 
-// todo 3 states: create / edit, view [x]
-// todo change color [x]
-// todo change template name [x]
-// todo render save button conditionally [x]
-// todo option to delete template [x]
-// todo [] create unit test
-// todo [] create handler when user wants to delete the template
-// todo [] create handler when user wants to save the template
 const Template: FC<Props> = ({ template, defaultState, handleSave, handleDelete }) => {
   const currentTemplate = useRef<TemplateTableWithData>(template || defaultTemplateTableWithData)
   const getCurrentTemplate = () => currentTemplate.current

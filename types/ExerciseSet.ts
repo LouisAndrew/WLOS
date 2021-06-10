@@ -23,3 +23,11 @@ export type ExerciseSet = {
    */
   review?: Review
 }
+
+export const defaultExerciseSet: ExerciseSet = {
+  setNumber: 0,
+  repsCount: -1,
+  weightValue: -1,
+  weightMetric: Metric.KG,
+  review: undefined,
+}

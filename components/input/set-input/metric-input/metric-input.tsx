@@ -25,13 +25,17 @@ export type Props = {
    * Handler function if the value is changed.
    */
   onChange?: (metric: Metric) => void
+  /**
+   * additional props
+   */
+  [key: string]: any
 }
 
-const MetricInput: FC<Props> = ({ defaultMetric, isEditable, className, onChange }) => {
+const MetricInput: FC<Props> = ({ defaultMetric, isEditable, className, onChange, ...props }) => {
   const { getUserBands } = useUserData()
   const couldSelectBanded = getUserBands().length > 0
   const renderMetricText = (m: Metric, renderText: boolean = false) =>
-    m === Metric.TIME && renderText ? 's' : m.replace('_', ' + ')
+    m === Metric.TIME && renderText ? 'S' : m.replace('_', ' + ')
 
   return (
     <Popup
@@ -40,6 +44,7 @@ const MetricInput: FC<Props> = ({ defaultMetric, isEditable, className, onChange
           className={`${styles.wrapper} ${className}`}
           data-testid="metric-input-wrapper"
           data-editable={isEditable}
+          {...props}
         >
           {renderMetricText(defaultMetric || Metric.KG, true)}
         </button>

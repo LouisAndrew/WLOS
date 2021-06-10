@@ -128,7 +128,7 @@ const BandWeightInput: FC<Props> = ({ defaultWeightValue, onChange }) => {
       </div>
       <div className={style['weight-wrapper']}>
         <label htmlFor="band-weight-input" className="col-span-full row-span-1">
-          Additional Weight
+          Weight
         </label>
         <input
           onChange={(e) => {
@@ -154,7 +154,7 @@ const BandWeightInput: FC<Props> = ({ defaultWeightValue, onChange }) => {
           placeholder="##"
           id="band-weight-input"
         />
-        <MetricInput isEditable={false} defaultMetric={Metric.KG} />
+        <MetricInput isEditable={false} defaultMetric={Metric.KG} style={{ alignSelf: 'center' }} />
       </div>
     </div>
   )

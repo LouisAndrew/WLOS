@@ -109,7 +109,7 @@ const SetInput: FC<Props> = ({
   }, [repsCount, weightValue, weightMetric, review])
 
   return (
-    <div data-testid="set-input-wrapper">
+    <div data-testid="set-input-wrapper" className={styles.wrapper}>
       <div className={styles['set-number-wrapper']}>
         SET
         <span className="ml-3" data-testid="set-number">
@@ -120,6 +120,7 @@ const SetInput: FC<Props> = ({
             defaultReview={review}
             isEditable={isEditable}
             onChange={(r) => setReview(r)}
+            inputIds={inputIds}
           />
         )}
       </div>
