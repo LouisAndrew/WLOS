@@ -17,7 +17,8 @@
 }
 
 .comparison_sets_todo {
-  min-width: 80vw;
+  width: 100%;
+  min-width: 70vw;
   @apply border-dashed border-2 border-primary-yellow bg-secondary-gray text-primary-yellow font-bold h-full flex flex-center
     p-3 rounded my-1 text-center px-10 uppercase text-xl duration-200;
 
@@ -26,7 +27,7 @@
   }
 
   @screen md {
-    min-width: 35vw;
+    min-width: 380px;
   }
 }
 

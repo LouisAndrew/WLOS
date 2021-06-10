@@ -1,11 +1,11 @@
+import { ExerciseModelWithId } from './Exercise'
 import { ExerciseSet } from './ExerciseSet'
-import { TemplateExerciseTable } from './tables/Template'
 
 export type LogEntry = {
   /**
    * Data of the exercise (model) of the log entry.
    */
-  exercise: TemplateExerciseTable
+  exercise: ExerciseModelWithId
   /**
    * Actual exercise sets that are inputted.
    */

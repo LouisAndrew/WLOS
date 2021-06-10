@@ -1,3 +1,4 @@
+import { convertExerciseTableToModel } from '@lib/exercise-helper'
 import { ExerciseModelWithId } from '@t/Exercise'
 import { WorkoutLog } from '@t/WorkoutLog'
 import { mockExerciseSet } from './exercise-set'
@@ -16,11 +17,11 @@ export const filledWorkoutLog: WorkoutLog = {
   date: mockDate,
   entries: [
     {
-      exercise: filledTemplateTableWithData.exercises[0],
+      exercise: convertExerciseTableToModel(filledTemplateTableWithData.exercises[0]),
       sets: [mockExerciseSet],
     },
     {
-      exercise: filledTemplateTableWithData.exercises[1],
+      exercise: convertExerciseTableToModel(filledTemplateTableWithData.exercises[1]),
       sets: [mockExerciseSet, { ...mockExerciseSet, setNumber: 2 }],
     },
   ],

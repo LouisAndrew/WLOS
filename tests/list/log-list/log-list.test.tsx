@@ -3,6 +3,9 @@ import LogList, { Props } from '@c/list/log-list/log-list'
 import { defaultTemplateTableWithData, filledTemplateTableWithData } from '@/mock/workout-template'
 import { defaultWorkoutLog, filledWorkoutLog } from '@/mock/workout-log'
 import { getInputValue } from '@tests/utils/changeEvent'
+import { convertExerciseTableToModel } from '@lib/exercise-helper'
+import { defaultRange } from '@t/Range'
+import { ExerciseModelWithId } from '@t/Exercise'
 
 afterEach(cleanup)
 
@@ -40,9 +43,7 @@ describe('Log list component', () => {
 
     const exerciseInputs = al('Exercise Name')
     exerciseInputs.forEach((el) => {
-      expect(
-        value.entries.map((e) => e.exercise.exerciseData.name).indexOf(getInputValue(el)) > -1
-      ).toBeTruthy()
+      expect(value.entries.map((e) => e.exercise.name).indexOf(getInputValue(el)) > -1).toBeTruthy()
     })
   })
 
@@ -58,22 +59,18 @@ describe('Log list component', () => {
   })
 
   it('should allow user to edit the exercise input that is not in the template', () => {
-    const additionalExercise = {
-      exerciseData: {
-        name: 'Test',
-        tags: [],
-        created_by: 1,
-        id: 12,
-      },
-      sets: '1',
-      reps: '2',
-      order: 2,
+    const additionalExercise: ExerciseModelWithId = {
+      name: 'Test',
+      sets: defaultRange,
+      reps: defaultRange,
+      exerciseId: '12',
     }
+
     const exercises = filledTemplateTableWithData.exercises
     const workoutLog = {
       ...defaultWorkoutLog,
       entries: [
-        ...exercises.map((e) => ({ exercise: e, sets: [] })),
+        ...exercises.map((e) => ({ exercise: convertExerciseTableToModel(e), sets: [] })),
         { exercise: additionalExercise, sets: [] },
       ],
     }
@@ -85,7 +82,7 @@ describe('Log list component', () => {
 
     const exerciseInputs = al('Exercise Name')
     const additionalExerciseInput = exerciseInputs.filter(
-      (el) => getInputValue(el) === additionalExercise.exerciseData.name
+      (el) => getInputValue(el) === additionalExercise.name
     )[0]
 
     expect(additionalExerciseInput.getAttribute('data-iseditable') === 'true').toBeTruthy()

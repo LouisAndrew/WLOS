@@ -44,3 +44,10 @@ DeletedExercise.args = {
     entries: [filledWorkoutLog.entries[0]],
   },
 }
+
+export const WithComparison = Template.bind({})
+WithComparison.args = {
+  ...defaultArgs,
+  workoutLog: filledWorkoutLog,
+  comparisonLog: filledWorkoutLog,
+}

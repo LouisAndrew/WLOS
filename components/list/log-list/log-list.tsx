@@ -8,10 +8,11 @@ import { LogListItem } from './log-list-item'
 import { convertExerciseTableToModel } from '@lib/exercise-helper'
 
 import style from './log-list.module.css'
-import { stringToRange } from '@lib/range-helper'
 import LogListProgress from './log-list-progress'
 import { ExerciseSet } from '@t/ExerciseSet'
 import { RiAddFill, RiInformationLine } from 'react-icons/ri'
+import { ExerciseModelWithId } from '@t/Exercise'
+import { defaultRange } from '@t/Range'
 
 export type Props = {
   /**
@@ -25,49 +26,49 @@ export type Props = {
    */
   workoutLog: WorkoutLog
   /**
+   * Workout log that should be compared to the log-list
+   */
+  comparisonLog?: WorkoutLog
+  /**
    * Sets if the log-list should be editable
    */
   isEditable?: boolean
 }
 
 // todo [] Restore deleted exercise from template
-const LogList: FC<Props> = ({ template, workoutLog, isEditable }) => {
+const LogList: FC<Props> = ({ template, workoutLog, comparisonLog, isEditable }) => {
   const [entries, setEntries] = useState<(LogEntry & { listId: string })[]>([])
   const [deletedList, setDeletedList] = useState<LogEntry[]>([])
 
   const getDefaultEntries = (): LogEntry[] =>
-    template.exercises.map((e) => ({ exercise: e, sets: [] }))
+    template.exercises.map((e) => ({ exercise: convertExerciseTableToModel(e), sets: [] }))
 
-  const shouldEditable = (exerciseTable: TemplateExerciseTable) => {
+  const shouldEditable = (exercise: ExerciseModelWithId) => {
     if (!isEditable) {
       return false
     }
 
     return (
-      template.exercises.findIndex((e) => e.exerciseData.id === exerciseTable.exerciseData.id) ===
-      -1
+      template.exercises.findIndex(
+        (e) => e.exerciseData.id === Number.parseInt(exercise.exerciseId)
+      ) === -1
     )
   }
 
-  const isExerciseDone = (exerciseTable: TemplateExerciseTable) => {
-    const exerciseEntry = entries.find(
-      (es) => es.exercise.exerciseData.id === exerciseTable.exerciseData.id
-    )
+  const isExerciseDone = (exercise: ExerciseModelWithId) => {
+    const exerciseEntry = entries.find((es) => es.exercise.exerciseId === exercise.exerciseId)
 
     if (!exerciseEntry) {
       return false
     }
 
-    const { sets, reps } = exerciseTable
+    const { sets, reps } = exercise
 
     const entrySets = exerciseEntry.sets
-    const setsRange = stringToRange(sets)
-    if (entrySets.length + 1 <= setsRange.start) {
+    if (entrySets.length + 1 <= sets.start) {
       return false
     }
-
-    const repsRange = stringToRange(reps)
-    return entrySets.filter((set) => set.repsCount >= repsRange.start).length >= setsRange.start
+    return entrySets.filter((set) => set.repsCount >= reps.start).length >= sets.start
   }
 
   const handleChangeExerciseSet = (sets: ExerciseSet[], listId: string) => {
@@ -92,15 +93,11 @@ const LogList: FC<Props> = ({ template, workoutLog, isEditable }) => {
   }
 
   const handleAddExercise = () => {
-    const exercise: TemplateExerciseTable = {
-      exerciseData: {
-        name: '',
-        id: -1,
-        tags: [],
-      },
-      reps: '',
-      sets: '',
-      order: entries.length,
+    const exercise: ExerciseModelWithId = {
+      exerciseId: '-1',
+      name: '',
+      reps: defaultRange,
+      sets: defaultRange,
     }
 
     setEntries((prev) => [...prev, { exercise, sets: [], listId: uniqid() }])
@@ -120,7 +117,6 @@ const LogList: FC<Props> = ({ template, workoutLog, isEditable }) => {
 
   const getDeletedList = (list: LogEntry[]) => {
     const defaultList = getDefaultEntries()
-    console.log(defaultList)
     const deleted = defaultList
       .map((item) => {
         const index = list.findIndex((defaultItem) => isEqual(defaultItem.exercise, item.exercise))
@@ -137,6 +133,17 @@ const LogList: FC<Props> = ({ template, workoutLog, isEditable }) => {
     setDeletedList(deleted.map(({ item }) => item))
   }
 
+  const getComparison = (exerciseId: string, index: number): ExerciseSet[] | undefined => {
+    if (!comparisonLog) {
+      return undefined
+    }
+    const comparisonList = comparisonLog.entries.filter(
+      (entry, i) => entry.exercise.exerciseId === exerciseId && i === index
+    )
+
+    return comparisonList.length > 0 ? comparisonList[0].sets : undefined
+  }
+
   useEffect(() => {
     if (workoutLog.entries.length === 0) {
       setEntries(getDefaultEntries().map((entry) => ({ ...entry, listId: uniqid() })))
@@ -151,15 +158,16 @@ const LogList: FC<Props> = ({ template, workoutLog, isEditable }) => {
   return (
     <div data-testid="log-list-wrapper">
       <div>
-        {entries.map((entry) => (
+        {entries.map((entry, index) => (
           <div key={entry.listId} className={style.log_list_item}>
             <LogListProgress isDone={isExerciseDone(entry.exercise)} />
             <LogListItem
-              exerciseModel={convertExerciseTableToModel(entry.exercise)}
+              exerciseModel={entry.exercise}
               exerciseSets={entry.sets}
               isEditable={shouldEditable(entry.exercise)}
               isLoggable={isEditable}
               onChange={(sets) => handleChangeExerciseSet(sets, entry.listId)}
+              comparisonSets={getComparison(entry.exercise.exerciseId, index)}
               onDelete={() => handleDelete(entry.listId)}
             />
           </div>
