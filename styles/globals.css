@@ -67,7 +67,7 @@
 
   .btn {
     @apply font-display font-bold text-center px-3 py-1 rounded text-sm
-      duration-200 border-2 border-transparent flex whitespace-nowrap;
+      duration-200 border-2 border-transparent flex whitespace-nowrap align-middle;
   }
 
   .btn--primary {

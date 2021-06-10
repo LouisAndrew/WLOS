@@ -11,6 +11,7 @@ import style from './log-list.module.css'
 import { stringToRange } from '@lib/range-helper'
 import LogListProgress from './log-list-progress'
 import { ExerciseSet } from '@t/ExerciseSet'
+import { RiAddFill } from 'react-icons/ri'
 
 export type Props = {
   /**
@@ -88,6 +89,21 @@ const LogList: FC<Props> = ({ template, workoutLog, isEditable }) => {
     )
   }
 
+  const handleAddExercise = () => {
+    const exercise: TemplateExerciseTable = {
+      exerciseData: {
+        name: '',
+        id: -1,
+        tags: [],
+      },
+      reps: '',
+      sets: '',
+      order: entries.length,
+    }
+
+    setEntries((prev) => [...prev, { exercise, sets: [], listId: uniqid() }])
+  }
+
   useEffect(() => {
     if (workoutLog.entries.length === 0) {
       setEntries(getDefaultEntries().map((entry) => ({ ...entry, listId: uniqid() })))
@@ -113,6 +129,13 @@ const LogList: FC<Props> = ({ template, workoutLog, isEditable }) => {
           </div>
         ))}
       </div>
+      <button
+        className={`btn btn--xs btn--secondary ${style.add_exercise_btn}`}
+        onClick={handleAddExercise}
+      >
+        <RiAddFill />
+        ADD EXERCISE
+      </button>
     </div>
   )
 }

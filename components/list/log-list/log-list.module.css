@@ -26,3 +26,16 @@
 .log_list_progress_line.is_done {
   @apply bg-primary-yellow;
 }
+
+.add_exercise_btn {
+  @apply flex flex-center;
+}
+
+.add_exercise_btn svg {
+  fill: theme('colors.primary-yellow');
+  @apply h-4 w-4 mr-2;
+}
+
+.add_exercise_btn:hover svg {
+  fill: theme('colors.bg-gray');
+}
