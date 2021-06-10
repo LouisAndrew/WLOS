@@ -7,8 +7,7 @@ import { changeEvent } from '@tests/utils/changeEvent'
 
 const bands = mockUserData.settings.bands.map((b) => [b])
 
-const component = (args: Partial<Props> = {}) =>
-  render(<BandWeightInput metric={Metric.BAND} {...args} />)
+const component = (args: Partial<Props> = {}) => render(<BandWeightInput {...args} />)
 
 const getLabelText = (value: number) => `${value}-band-select`
 
@@ -48,13 +47,12 @@ describe('Band Weight input component and calls onChange when selected', () => {
   })
 
   describe('Band and weights.', () => {
-    const c = (args: Partial<Props> = {}) =>
-      render(<BandWeightInput metric={Metric.BAND_KG} {...args} />)
+    const c = (args: Partial<Props> = {}) => render(<BandWeightInput {...args} />)
 
     it('Renders an additional input for weight and disables it if no band is selected', () => {
       const { queryByLabelText: ql } = c()
-      expect(ql('Additional Weight')).toBeInTheDocument()
-      expect((ql('Additional Weight') as HTMLInputElement).disabled).toBeTruthy()
+      expect(ql('Weight')).toBeInTheDocument()
+      expect((ql('Weight') as HTMLInputElement).disabled).toBeTruthy()
     })
 
     const bandValue = bands[0][0]
@@ -64,7 +62,7 @@ describe('Band Weight input component and calls onChange when selected', () => {
     it('Sets default values', () => {
       const { getByLabelText: l } = c({ defaultWeightValue: parseFloat(value) })
       expect((l(getLabelText(bandValue.id)) as HTMLInputElement).select).toBeTruthy()
-      expect(l('Additional Weight').getAttribute('value')).toBe(weightValue.toString())
+      expect(l('Weight').getAttribute('value')).toBe(weightValue.toString())
     })
 
     it('Calls the `onChange` function with appropriate parameter', () => {
@@ -72,7 +70,7 @@ describe('Band Weight input component and calls onChange when selected', () => {
       const { getByLabelText: l } = c({ onChange })
 
       fireEvent.click(l(getLabelText(bandValue.id)))
-      fireEvent.change(l('Additional Weight'), changeEvent(weightValue))
+      fireEvent.change(l('Weight'), changeEvent(weightValue))
       expect(onChange).toBeCalled()
       expect(onChange).toBeCalledTimes(3)
       expect(onChange).nthCalledWith(3, parseFloat(value))

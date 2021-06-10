@@ -1,0 +1,52 @@
+.log_list_item {
+  @apply my-3 flex mr-2;
+}
+
+.log_list_progress {
+  @apply flex flex-col items-center my-2 mr-4;
+}
+
+.log_list_progress_item {
+  @apply h-5 w-5 border-2  border-shade-gray rounded-full duration-200 flex flex-center;
+}
+
+.log_list_progress_item svg {
+  fill: theme('colors.shade-gray');
+  @apply h-3 w-3;
+}
+
+.log_list_progress_item.is_done {
+  @apply bg-primary-yellow border-none;
+}
+
+.log_list_progress_line {
+  @apply h-full w-0.5 bg-shade-gray my-2;
+}
+
+.log_list_progress_line.is_done {
+  @apply bg-primary-yellow;
+}
+
+.button_group {
+  @apply flex flex-center;
+}
+
+.button_group svg {
+  @apply h-4 w-4 mr-2;
+}
+
+.add_exercise_btn svg {
+  fill: theme('colors.primary-yellow');
+}
+
+.info_btn {
+  @apply ml-3;
+}
+
+.info_btn:hover {
+  @apply border-primary-gray;
+}
+
+.add_exercise_btn:hover svg {
+  fill: theme('colors.bg-gray');
+}

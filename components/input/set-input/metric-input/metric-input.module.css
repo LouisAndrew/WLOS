@@ -1,6 +1,7 @@
 .wrapper {
   @apply w-max font-bold rounded px-2 py-0.5 duration-200
-   hover:bg-primary-gray;
+   hover:bg-primary-gray
+   self-end sm:self-center;
 }
 
 .wrapper[data-editable='true'] {
@@ -8,8 +9,8 @@
 }
 
 .metric-select-item {
-  @apply font-semibold px-1 py-0.5
-   hover:bg-secondary-gray duration-200 rounded
+  @apply font-body text-sm font-bold px-1 py-0.5 my-1
+   hover:bg-shade-gray duration-200 rounded tracking-widest
    w-min whitespace-nowrap;
 }
 

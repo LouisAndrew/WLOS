@@ -21,17 +21,18 @@ describe('Metric input component', () => {
     expect(t('metric-input-select-list')).toBeInTheDocument()
   })
 
-  it.each(Object.values(Metric).map((value) => [value]))(
-    'Calls the onChange function when one of the select item is clicked',
-    (metric) => {
-      const onChange = jest.fn()
-      const { getByTestId: t } = component({ onChange })
-      fireEvent.click(t('metric-input-wrapper'))
-      fireEvent.click(t(metric))
-      expect(onChange).toBeCalled()
-      expect(onChange).toBeCalledWith(metric)
-    }
-  )
+  it.each(
+    Object.values(Metric)
+      .filter((value) => value !== Metric.BAND_KG)
+      .map((value) => [value])
+  )('Calls the onChange function when one of the select item is clicked', (metric) => {
+    const onChange = jest.fn()
+    const { getByTestId: t } = component({ onChange })
+    fireEvent.click(t('metric-input-wrapper'))
+    fireEvent.click(t(metric))
+    expect(onChange).toBeCalled()
+    expect(onChange).toBeCalledWith(metric)
+  })
 
   describe('No Bands', () => {
     afterEach(cleanup)

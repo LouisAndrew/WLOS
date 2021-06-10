@@ -34,7 +34,10 @@ const SetInputBandDisplay: FC<Props> = ({ weightValue }) => {
         )}
       </div>
       {additionalWeight !== -1 && (
-        <div className={style['additional-display-wrapper']}>+ {additionalWeight}</div>
+        <div className={style['additional-display-wrapper']}>
+          <RiAddFill />
+          <span className={style['additional-weight']}>{additionalWeight} KG</span>
+        </div>
       )}
     </div>
   )
