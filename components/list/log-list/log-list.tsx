@@ -11,7 +11,7 @@ import style from './log-list.module.css'
 import { stringToRange } from '@lib/range-helper'
 import LogListProgress from './log-list-progress'
 import { ExerciseSet } from '@t/ExerciseSet'
-import { RiAddFill } from 'react-icons/ri'
+import { RiAddFill, RiInformationLine } from 'react-icons/ri'
 
 export type Props = {
   /**
@@ -30,8 +30,10 @@ export type Props = {
   isEditable?: boolean
 }
 
+// todo [] Restore deleted exercise from template
 const LogList: FC<Props> = ({ template, workoutLog, isEditable }) => {
   const [entries, setEntries] = useState<(LogEntry & { listId: string })[]>([])
+  const [deletedList, setDeletedList] = useState<LogEntry[]>([])
 
   const getDefaultEntries = (): LogEntry[] =>
     template.exercises.map((e) => ({ exercise: e, sets: [] }))
@@ -111,7 +113,28 @@ const LogList: FC<Props> = ({ template, workoutLog, isEditable }) => {
       return
     }
 
-    setEntries((prev) => prev.filter((entry) => entry.listId !== listId))
+    const newList = entries.filter((entry) => entry.listId !== listId)
+    getDeletedList(newList)
+    setEntries(newList)
+  }
+
+  const getDeletedList = (list: LogEntry[]) => {
+    const defaultList = getDefaultEntries()
+    console.log(defaultList)
+    const deleted = defaultList
+      .map((item) => {
+        const index = list.findIndex((defaultItem) => isEqual(defaultItem.exercise, item.exercise))
+
+        console.log({ item, index })
+
+        return {
+          item,
+          isEqual: index > -1,
+        }
+      })
+      .filter((listItem) => !listItem.isEqual)
+
+    setDeletedList(deleted.map(({ item }) => item))
   }
 
   useEffect(() => {
@@ -120,7 +143,9 @@ const LogList: FC<Props> = ({ template, workoutLog, isEditable }) => {
       return
     }
 
-    setEntries(workoutLog.entries.map((entry) => ({ ...entry, listId: uniqid() })))
+    const list = workoutLog.entries.map((entry) => ({ ...entry, listId: uniqid() }))
+    setEntries(list)
+    getDeletedList(list)
   }, [])
 
   return (
@@ -140,13 +165,22 @@ const LogList: FC<Props> = ({ template, workoutLog, isEditable }) => {
           </div>
         ))}
       </div>
-      <button
-        className={`btn btn--xs btn--secondary ${style.add_exercise_btn}`}
-        onClick={handleAddExercise}
-      >
-        <RiAddFill />
-        ADD EXERCISE
-      </button>
+      <div className="flex items-center">
+        <button
+          className={`btn btn--xs btn--secondary ${style.button_group} ${style.add_exercise_btn}`}
+          onClick={handleAddExercise}
+        >
+          <RiAddFill />
+          ADD EXERCISE
+        </button>
+        {deletedList.length > 0 && (
+          <button className={`btn btn--xs btn--ghost ${style.button_group} ${style.info_btn}`}>
+            <RiInformationLine />
+            {deletedList.length} {deletedList.length === 1 ? 'EXERCISE IS' : 'EXERCISES ARE'}{' '}
+            DELETED
+          </button>
+        )}
+      </div>
     </div>
   )
 }

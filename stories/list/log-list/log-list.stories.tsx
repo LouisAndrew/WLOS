@@ -34,3 +34,13 @@ FilledLogs.args = {
   ...defaultArgs,
   workoutLog: filledWorkoutLog,
 }
+
+export const DeletedExercise = Template.bind({})
+DeletedExercise.args = {
+  ...defaultArgs,
+  template: filledTemplateTableWithData,
+  workoutLog: {
+    ...filledWorkoutLog,
+    entries: [filledWorkoutLog.entries[0]],
+  },
+}

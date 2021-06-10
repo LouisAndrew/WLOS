@@ -27,13 +27,24 @@
   @apply bg-primary-yellow;
 }
 
-.add_exercise_btn {
+.button_group {
   @apply flex flex-center;
+}
+
+.button_group svg {
+  @apply h-4 w-4 mr-2;
 }
 
 .add_exercise_btn svg {
   fill: theme('colors.primary-yellow');
-  @apply h-4 w-4 mr-2;
+}
+
+.info_btn {
+  @apply ml-3;
+}
+
+.info_btn:hover {
+  @apply border-primary-gray;
 }
 
 .add_exercise_btn:hover svg {
