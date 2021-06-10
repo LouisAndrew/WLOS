@@ -47,6 +47,7 @@ export type Props = {
 
 type ExerciseSetWithListId = ExerciseSet & { listId: string }
 
+// todo [] create option for log-list-item
 const LogListItem: FC<Props> = ({
   exerciseModel,
   exerciseSets: defaultExerciseSets,
@@ -65,7 +66,7 @@ const LogListItem: FC<Props> = ({
   const firstRender = useRef(true)
 
   const handleSetDataChange = (listId: string, set: ExerciseSet) => {
-    if (isEditable && isLoggable) {
+    if (isLoggable) {
       setExerciseSets(
         exerciseSets.map((s) => {
           if (s.listId === listId) {
@@ -127,7 +128,7 @@ const LogListItem: FC<Props> = ({
         className={style.set}
       />
       {comparisonSets.length > 0 && (
-        <div className="flex flex-row-reverse mt-2">
+        <div className="flex mt-2">
           <button
             className={`btn btn--ghost btn--xs ${style.comparison_toggle}`}
             onClick={() => setShowComparison((prev) => !prev)}

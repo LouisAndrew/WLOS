@@ -104,6 +104,7 @@ const ExerciseInput: FC<Props> = ({ onChange, defaultExercise, isEditable, class
           value={exerciseName}
           onChange={handleNameChange}
           onKeyDown={handleKeyDown}
+          data-iseditable={isEditable}
         />
       </span>
       <div className={styles.ranges}>

@@ -11,7 +11,7 @@
 }
 
 .label {
-  @apply flex flex-col mr-2 sm:flex-row sm:items-center sm:mr-0;
+  @apply flex flex-col mr-2 text-xs sm:text-sm sm:flex-row sm:items-center sm:mr-0;
 }
 
 .input {

@@ -1,5 +1,4 @@
 .wrapper {
-  max-width: 90vw;
   @apply w-full overflow-x-hidden;
 }
 
@@ -48,7 +47,7 @@
 }
 
 .set {
-  @apply sm:px-4;
+  @apply sm:px-4 w-full sm:w-max;
 }
 
 .add_btn {

@@ -11,7 +11,6 @@ import style from './exercise-list.module.css'
 import { ExerciseListItem } from './exercise-list-item'
 import { Tooltip } from '@c/tooltip'
 import { isEqual } from 'lodash'
-import { ExerciseTable } from '@t/tables/Exercise'
 
 const cx = classname.bind(style)
 
