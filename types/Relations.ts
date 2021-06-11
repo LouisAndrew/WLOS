@@ -4,18 +4,16 @@ import { ExerciseDBSchema } from './Exercise'
 import { TemplateDBSchema } from './Template'
 import { WorkoutLogDBSChema } from './WorkoutLog'
 
-export enum RelationCollectionNames {
-  SAVED_EXERCISES = 'SavedExercises',
-  SAVED_TEMPLATES = 'SavedTemplates',
-  SAVED_LOGS = 'SavedLogs',
-  USER_BANDS = 'UserBands',
-}
-
 export enum CollectionNames {
   USER = 'User',
   EXERCISE = 'Exercise',
   TEMPLATE = 'Template',
   WORKOUT_LOG = 'WorkoutLog',
+  // ! relational collections
+  SAVED_EXERCISES = 'SavedExercises',
+  SAVED_TEMPLATES = 'SavedTemplates',
+  SAVED_LOGS = 'SavedLogs',
+  USER_BANDS = 'UserBands',
 }
 
 export type SavedExercises = {

@@ -6,14 +6,17 @@ export type ExerciseName = string
 export type ExerciseSets = Range
 export type ExerciseReps = Range
 
-export type ExerciseDBSchema = {
+/**
+ * @generic T identifies if the `createdBy` field is resolved
+ */
+export type ExerciseDBSchema<T = false> = {
   name: string
   exerciseId: string
   tags: string[] // ! WIP
   /**
    * reference to user
    */
-  createdBy?: DocumentReference<UserDBSChema> | string
+  createdBy: T extends true ? string : DocumentReference<UserDBSChema>
 }
 
 /**

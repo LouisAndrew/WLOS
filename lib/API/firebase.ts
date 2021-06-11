@@ -11,6 +11,11 @@ export type FirestoreConverter<T> = firebase.firestore.FirestoreDataConverter<T>
 
 export type FirestoreDocumentData = firebase.firestore.DocumentData
 export type FirestoreQueryDocumentSnapshot = firebase.firestore.QueryDocumentSnapshot
+export type FirestoreCollectionRef<
+  T = FirestoreDocumentData
+> = firebase.firestore.CollectionReference<T>
+export type FirestoreError = firebase.firestore.FirestoreError
+
 export type FirebaseApp = firebase.app.App
 export type Firestore = firebase.firestore.Firestore
 
