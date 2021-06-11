@@ -1,8 +1,20 @@
-import { Range } from './Range'
+import { Range } from '@t/Range'
+import { DocumentReference } from '@lib/API/firebase'
+import { UserDBSChema } from './User'
 
 export type ExerciseName = string
 export type ExerciseSets = Range
 export type ExerciseReps = Range
+
+export type ExerciseDBSchema = {
+  name: string
+  exerciseId: string
+  tags: string[] // ! WIP
+  /**
+   * reference to user
+   */
+  createdBy?: DocumentReference<UserDBSChema> | string
+}
 
 /**
  * Substype of exercise used just for presentation purposes
