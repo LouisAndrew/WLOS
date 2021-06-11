@@ -1,22 +1,6 @@
-// Firebase App (the core Firebase SDK) is always required and must be listed first
 import firebase from 'firebase/app'
-// If you are using v7 or any earlier version of the JS SDK, you should import firebase using namespace import
-// import * as firebase from "firebase/app"
-
-// If you enabled Analytics in your project, add the Firebase SDK for Analytics
-// import 'firebase/analytics'
-
-// Add the Firebase products that you want to use
 import 'firebase/auth'
 import 'firebase/firestore'
-
-const firebaseConfig = {
-  // ...
-}
-
-// Initialize Firebase
-const initApp = () => firebase.initializeApp(firebaseConfig)
-export default initApp
 
 export type DocumentReference<
   T = firebase.firestore.DocumentData
@@ -24,6 +8,20 @@ export type DocumentReference<
 
 export type FirestoreTimestamp = firebase.firestore.Timestamp
 export type FirestoreConverter<T> = firebase.firestore.FirestoreDataConverter<T>
+
+export type FirestoreDocumentData = firebase.firestore.DocumentData
+export type FirestoreQueryDocumentSnapshot = firebase.firestore.QueryDocumentSnapshot
+export type FirebaseApp = firebase.app.App
+export type Firestore = firebase.firestore.Firestore
+
+const firebaseConfig = {
+  // ...
+}
+
+// Initialize Firebase
+const initApp = () => firebase.initializeApp(firebaseConfig)
+
+export default initApp
 
 export const converter = <T>() => ({
   toFirestore: (data: T) => data,
