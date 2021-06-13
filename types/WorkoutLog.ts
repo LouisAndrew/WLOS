@@ -1,5 +1,25 @@
-import { ExerciseModelWithId } from './Exercise'
+import { DocumentReference, FirestoreTimestamp } from '@lib/API/firebase'
+import { ExerciseDBSchema, ExerciseModelWithId } from './Exercise'
 import { ExerciseSet } from './ExerciseSet'
+
+export type LogBase = {
+  /**
+   * Id of the template for the workout.
+   */
+  templateId: string
+  /**
+   * Timestamp of when the workout log is created.
+   */
+  date: any
+}
+
+export type WorkoutLogDBSChema = LogBase & {
+  date: FirestoreTimestamp
+  entries: {
+    exercise: DocumentReference<ExerciseDBSchema>
+    sets: ExerciseSet[]
+  }[]
+}
 
 export type LogEntry = {
   /**
@@ -12,14 +32,7 @@ export type LogEntry = {
   sets: ExerciseSet[]
 }
 
-export type WorkoutLog = {
-  /**
-   * Id of the template for the workout.
-   */
-  templateId: number
-  /**
-   * Timestamp of when the workout log is created.
-   */
+export type WorkoutLog = LogBase & {
   date: Date
   /**
    * Entries for the current workout log.

@@ -7,13 +7,13 @@ import { defaultTemplateTableWithData, filledTemplateTableWithData } from './wor
 const mockDate = new Date(Date.parse('10-10-2000'))
 
 export const defaultWorkoutLog: WorkoutLog = {
-  templateId: defaultTemplateTableWithData.id,
+  templateId: defaultTemplateTableWithData.id.toString(),
   date: mockDate,
   entries: [],
 }
 
 export const filledWorkoutLog: WorkoutLog = {
-  templateId: filledTemplateTableWithData.id,
+  templateId: filledTemplateTableWithData.id.toString(),
   date: mockDate,
   entries: [
     {
