@@ -5,6 +5,7 @@ import { Template } from '@t/Template'
 import { UserDBSChema } from '@t/User'
 import { WorkoutLog } from '@t/WorkoutLog'
 import { FirebaseApp, Firestore, FirestoreCollectionRef, FirestoreError } from './firebase'
+import exerciseService from './services/exercise'
 
 export type Error = { msg: string }
 export type SuccessResponse = { success: true }
@@ -38,7 +39,7 @@ export type ServiceReturnType<T> = T extends CollectionNames.USER
 export type ServiceGetter<T> = (collectionRef: FirestoreCollectionRef) => Service<T>
 // export type ServiceTree = Record<CollectionNames.EXERCISE, ServiceGetter<any>>
 const serviceTree = {
-  [CollectionNames.EXERCISE]: (ref) => ({} as ServiceGetter<any>),
+  [CollectionNames.EXERCISE]: exerciseService,
 }
 
 export const handleFirestoreError = (e: any | unknown): Response<null> => [
@@ -48,11 +49,9 @@ export const handleFirestoreError = (e: any | unknown): Response<null> => [
 
 export const handleNotExist = (): Response<null> => [null, { msg: 'Document does not exist' }]
 
-export const firestore = (app: FirebaseApp) => app.firestore()
+export const initFirestore = (app: FirebaseApp) => app.firestore()
 export const getService = <T extends CollectionNames>(
   firestore: Firestore,
   collectionName: T
 ): Service<ServiceReturnType<T>> =>
   serviceTree[collectionName as any](firestore.collection(collectionName))
-
-export type GetService = typeof getService

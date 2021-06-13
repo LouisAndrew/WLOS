@@ -20,11 +20,25 @@ export type FirebaseApp = firebase.app.App
 export type Firestore = firebase.firestore.Firestore
 
 const firebaseConfig = {
-  // ...
+  apiKey: process.env.API_KEY,
+  authDomain: process.env.AUTH_DOMAIN,
+  projectId: process.env.PROJECT_ID,
+  storageBucket: process.env.STORAGE_BUCKET,
+  messagingSenderId: process.env.MESSAGING_SENDER_ID,
+  appId: process.env.APP_ID,
+  // measurementId: process.env.MEASUREMENT_ID,
 }
 
 // Initialize Firebase
-const initApp = () => firebase.initializeApp(firebaseConfig)
+const initApp = () => {
+  try {
+    return firebase.app()
+  } catch (e) {
+    return firebase.initializeApp(firebaseConfig)
+  }
+}
+
+export const initFirestore = () => firebase.firestore()
 
 export default initApp
 

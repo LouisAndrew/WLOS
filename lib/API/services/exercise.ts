@@ -76,3 +76,5 @@ const exerciseService: ServiceGetter<ServiceType> = (collectionRef) => ({
     }
   },
 })
+
+export default exerciseService
